@@ -371,6 +371,38 @@ Tests: two-layer suite.
     session): `anchor test`, 34/34 passing on first run.
   Combined: `yarn test` runs cargo test then anchor test sequentially.
 
+  TEST VALIDATOR IS SURFPOOL BY DEFAULT, AND THE LEGACY VALIDATOR CANNOT RUN THIS SUITE.
+  Established 2026-09-17 by live reproduction, not from docs. anchor-cli 1.0.1 launches
+  Surfpool (installed: surfpool 1.3.1) for `anchor test` unless told otherwise. Surfpool
+  deploys the program with the wallet as ProgramData upgrade authority (read live via
+  `solana program show` mid-run: Authority = EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd).
+  Every "34/34" result in this project's history has run against Surfpool.
+
+  `anchor test --validator legacy` launches `solana-test-validator --bpf-program <id> <so>`
+  instead. Agave 4.0.1 documents --bpf-program as adding the program "with upgrades
+  disabled", and the resulting ProgramData carries upgrade_authority_address =
+  Some(Pubkey::default()) (read live: Authority = 11111111111111111111111111111111,
+  Last Deployed In Slot: 0). init_registry_config's constraint
+  `program_data.upgrade_authority_address == Some(signer.key())` can therefore never hold
+  for any real signer. The suite's `before all` hook fails with Unauthorized (6009) on
+  account program_data at preflight, mocha aborts, and the result is 0 passing. This is
+  deterministic, not a flake. Reproduced 2026-09-17: `anchor test --skip-build --validator
+  legacy` -> 0 passing, 1 failing (before all, 6009); `anchor test --skip-build` (Surfpool)
+  -> 34/34, same working tree, same binaries. The leftover .anchor/test-ledger from the
+  2026-09-14 M2 pass-4 attempt matches the legacy signature exactly: a ~7 second validator
+  lifetime, zero transactions to the program, no RegistryConfig account.
+
+  IF THE LEGACY VALIDATOR IS EVER NEEDED, start it yourself with the authority assigned:
+    solana-test-validator --reset --upgradeable-program 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 target/deploy/plotarmor.so ~/.config/solana/id.json
+    anchor test --skip-build --skip-local-validator
+  That is the workaround already proven to work in the M2 pass-4 session, and re-run
+  live 2026-09-17 with exactly that command line: Authority = the wallet, 34/34. No
+  change is being made to Anchor.toml: a `[[test.genesis]]` entry with upgradeable = true would
+  double-load the same program ID alongside the [programs.localnet] --bpf-program entry.
+  This is a documented constraint of the harness, not a bug being patched, and not a
+  program-logic issue; the constraint in init_registry_config.rs is behaving exactly as
+  intended (Known v1 limitations, item B).
+
 ## Devnet deploy history (established from chain 2026-09-03)
 
 Read from ProgramData Dr8S95D7bHGBrd6gFSAommQjBNH1qcBMJpofe9ooLRpL, which has exactly 9

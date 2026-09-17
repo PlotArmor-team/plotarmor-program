@@ -72,7 +72,12 @@ pub fn handler(
     ctx: Context<SignContract>,
     content_hash: [u8; 32],
 ) -> Result<()> {
-    // 1. Reject if paused. First check, matching the other five instructions.
+    // 1. Reject if paused. The account CONSTRAINT matches the other five instructions
+    // that read RegistryConfig; handler ORDERING does not, and is not meant to. The
+    // four anchoring instructions run assert_mode_allowed first and check paused
+    // second; add_owner and sign_contract take no anchor_mode_arg, so paused is
+    // simply their first check. Only the paused-vs-mode order differs, and it is
+    // unobservable here because there is no mode check to order against.
     require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
 
     // 2. The client's asserted content hash must match the on-chain artifact.

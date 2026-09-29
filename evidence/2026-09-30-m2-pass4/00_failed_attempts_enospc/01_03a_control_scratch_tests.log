@@ -1,0 +1,257 @@
+Tue Sep 29 18:38:02 UTC 2026
+### CONTROL: 7c267e9 source unmodified, scratch tests appended to test file only
+platform-tools pin: v1.52  (mode: devnet)
+    Finished `release` profile [optimized] target(s) in 4.78s
+control .so sha256_trimmed 33577f6bb627340776f21e44556ba08b6134742d0524d4357233b7bcbe25a7ba
+   Compiling proc-macro2 v1.0.106
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.45
+   Compiling version_check v0.9.5
+   Compiling cfg-if v1.0.4
+   Compiling libc v0.2.186
+   Compiling typenum v1.20.1
+   Compiling subtle v2.6.1
+   Compiling const-oid v0.9.6
+   Compiling autocfg v1.5.1
+   Compiling serde_core v1.0.228
+   Compiling cpufeatures v0.2.17
+   Compiling serde v1.0.228
+   Compiling generic-array v0.14.7
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling winnow v1.0.3
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling num-traits v0.2.19
+   Compiling cfg_aliases v0.2.1
+   Compiling indexmap v2.14.0
+   Compiling once_cell v1.21.4
+   Compiling borsh v1.6.1
+   Compiling syn v2.0.117
+   Compiling getrandom v0.2.17
+   Compiling five8_core v1.0.0
+   Compiling solana-sanitize v3.0.1
+   Compiling rand_core v0.6.4
+   Compiling semver v1.0.28
+   Compiling five8 v1.0.0
+   Compiling toml_parser v1.1.2+spec-1.1.0
+   Compiling solana-atomic-u64 v3.0.1
+   Compiling sha2-const-stable v0.1.0
+   Compiling five8_const v1.0.0
+   Compiling rustc_version v0.4.1
+   Compiling zerocopy v0.8.50
+   Compiling bs58 v0.5.1
+   Compiling either v1.16.0
+   Compiling num-integer v0.1.46
+   Compiling toml_edit v0.25.12+spec-1.1.0
+   Compiling syn v1.0.109
+   Compiling curve25519-dalek v4.1.3
+   Compiling getrandom v0.3.4
+   Compiling lazy_static v1.5.0
+   Compiling arrayvec v0.7.6
+   Compiling solana-program-memory v3.1.0
+   Compiling ahash v0.8.12
+   Compiling proc-macro-crate v3.5.0
+   Compiling feature-probe v0.1.1
+   Compiling log v0.4.32
+   Compiling bv v0.11.1
+   Compiling thiserror v2.0.18
+   Compiling base64 v0.22.1
+   Compiling solana-define-syscall v4.0.1
+   Compiling hybrid-array v0.4.12
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.9
+   Compiling num-bigint v0.4.6
+   Compiling serde_bytes v0.11.19
+   Compiling cc v1.2.63
+   Compiling solana-msg v3.1.0
+   Compiling cmov v0.5.4
+   Compiling thiserror v1.0.69
+   Compiling ctutils v0.4.2
+   Compiling block-buffer v0.12.0
+   Compiling crypto-common v0.2.2
+   Compiling paste v1.0.15
+   Compiling byteorder v1.5.0
+   Compiling arrayref v0.3.9
+   Compiling cpufeatures v0.3.0
+   Compiling blake3 v1.8.5
+   Compiling constant_time_eq v0.4.2
+   Compiling digest v0.11.3
+   Compiling memchr v2.8.1
+   Compiling solana-short-vec v3.2.2
+   Compiling num-bigint v0.2.6
+   Compiling bitflags v2.13.0
+   Compiling zeroize_derive v1.4.3
+   Compiling serde_derive v1.0.228
+   Compiling bytemuck_derive v1.10.2
+   Compiling borsh-derive v1.6.1
+   Compiling curve25519-dalek-derive v0.1.1
+   Compiling zeroize v1.8.2
+   Compiling solana-sdk-macro v3.0.1
+   Compiling ppv-lite86 v0.2.21
+   Compiling bytemuck v1.25.0
+   Compiling thiserror-impl v2.0.18
+   Compiling thiserror-impl v1.0.69
+   Compiling rand_chacha v0.3.1
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling rand v0.8.6
+   Compiling digest v0.10.7
+   Compiling num-complex v0.2.4
+   Compiling num-rational v0.2.4
+   Compiling void v1.0.2
+   Compiling sha2 v0.10.9
+   Compiling signature v2.2.0
+   Compiling hmac v0.12.1
+   Compiling ed25519 v2.2.3
+   Compiling unreachable v1.0.0
+   Compiling solana-svm-feature-set v3.1.14
+   Compiling ascii v0.9.3
+   Compiling enum-iterator-derive v1.5.0
+   Compiling enum-ordinalize-derive v4.3.2
+   Compiling hash32 v0.3.1
+   Compiling combine v3.8.1
+   Compiling num-iter v0.1.45
+   Compiling solana-program-error v3.0.1
+   Compiling itertools v0.12.1
+   Compiling rustc-demangle v0.1.27
+   Compiling crunchy v0.2.4
+   Compiling enum-ordinalize v4.3.2
+   Compiling ark-std v0.5.0
+   Compiling enum-iterator v1.5.0
+   Compiling solana-hash v4.4.0
+   Compiling solana-instruction-error v2.3.0
+   Compiling solana-sha256-hasher v3.1.0
+   Compiling bincode v1.3.3
+   Compiling solana-fee-calculator v3.2.1
+   Compiling solana-transaction-error v3.2.1
+   Compiling serde-big-array v0.5.1
+   Compiling solana-hash v3.1.0
+   Compiling num v0.2.1
+   Compiling ark-serialize-derive v0.5.0
+   Compiling solana-precompile-error v3.0.0
+   Compiling eager v0.1.0
+   Compiling opaque-debug v0.3.1
+   Compiling solana-fee-structure v3.0.0
+   Compiling percentage v0.1.0
+   Compiling educe v0.6.0
+   Compiling ark-serialize v0.5.0
+   Compiling solana-address v2.6.1
+   Compiling ed25519-dalek v2.2.0
+   Compiling ark-std v0.4.0
+   Compiling solana-pubkey v4.2.0
+   Compiling solana-sdk-ids v3.1.0
+   Compiling solana-instruction v3.4.0
+   Compiling solana-address v1.1.0
+   Compiling solana-pubkey v3.0.0
+   Compiling solana-account-info v3.1.1
+   Compiling solana-sysvar-id v3.1.0
+   Compiling solana-signature v3.4.1
+   Compiling solana-epoch-schedule v3.1.0
+   Compiling solana-clock v3.1.0
+   Compiling solana-program-entrypoint v3.1.1
+   Compiling solana-rent v3.1.0
+   Compiling solana-slot-hashes v3.0.2
+   Compiling solana-slot-history v3.0.1
+   Compiling solana-epoch-rewards v3.0.2
+   Compiling solana-last-restart-slot v3.0.1
+   Compiling solana-signer v3.0.1
+   Compiling solana-system-interface v2.0.0
+   Compiling solana-sysvar v3.1.1
+   Compiling solana-serialize-utils v3.1.2
+   Compiling solana-cpi v3.1.0
+   Compiling solana-system-interface v3.2.0
+   Compiling solana-instructions-sysvar v3.0.1
+   Compiling solana-stable-layout v3.0.1
+   Compiling solana-account v3.4.0
+   Compiling solana-message v3.1.0
+   Compiling solana-stake-interface v2.0.2
+   Compiling solana-loader-v3-interface v6.1.1
+   Compiling solana-svm-callback v3.1.14
+   Compiling solana-svm-timings v3.1.14
+   Compiling solana-svm-type-overrides v3.1.14
+   Compiling ark-serialize-derive v0.4.2
+   Compiling der v0.7.10
+   Compiling ark-ff-asm v0.5.0
+   Compiling solana-sbpf v0.13.1
+   Compiling ark-ff-macros v0.5.0
+   Compiling solana-transaction v3.1.0
+   Compiling solana-svm-log-collector v3.1.14
+   Compiling itertools v0.13.0
+   Compiling solana-svm-transaction v3.1.14
+   Compiling anyhow v1.0.102
+   Compiling allocator-api2 v0.2.21
+   Compiling keccak v0.1.6
+   Compiling solana-svm-measure v3.1.14
+   Compiling zmij v1.0.21
+   Compiling ark-serialize v0.4.2
+   Compiling ark-ff-asm v0.4.2
+   Compiling ark-ff-macros v0.4.2
+   Compiling derivative v2.2.0
+   Compiling hashbrown v0.15.5
+   Compiling digest v0.9.0
+   Compiling itertools v0.10.5
+   Compiling serde_json v1.0.150
+   Compiling ark-ff v0.5.0
+   Compiling getrandom v0.1.16
+   Compiling libsecp256k1-core v0.2.2
+   Compiling sha3 v0.10.9
+   Compiling spki v0.7.3
+   Compiling hashbrown v0.13.2
+   Compiling ff v0.13.1
+   Compiling itoa v1.0.18
+   Compiling solana-transaction-context v3.1.14
+   Compiling base16ct v0.2.0
+   Compiling unicode-segmentation v1.13.3
+   Compiling sec1 v0.7.3
+   Compiling group v0.13.0
+   Compiling solana-program-runtime v3.1.14
+   Compiling heck v0.3.3
+   Compiling pkcs8 v0.10.2
+   Compiling ark-ff v0.4.2
+   Compiling pbkdf2 v0.11.0
+   Compiling crypto-bigint v0.5.5
+   Compiling strsim v0.11.1
+   Compiling ident_case v1.0.1
+   Compiling darling_core v0.23.0
+   Compiling rand_core v0.5.1
+   Compiling solana-seed-phrase v3.0.0
+   Compiling libsecp256k1-gen-ecmult v0.2.1
+   Compiling libsecp256k1-gen-genmult v0.2.1
+   Compiling rfc6979 v0.4.0
+   Compiling inout v0.1.4
+rustc-LLVM ERROR: IO failure on output stream: No space left on device
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmeta5PkR7h/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `digest` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetad4BoFd/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `solana-sbpf` (lib)
+
+Caused by:
+  No space left on device (os error 28)
+
+Caused by:
+  failed to parse process output: `/home/sucka/.rustup/toolchains/1.96.0-x86_64-unknown-linux-gnu/bin/rustc --crate-name solana_sbpf --edition=2018 /home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-sbpf-0.13.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="jit"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("arbitrary", "debugger", "default", "fuzzer-not-safe-for-production", "jit", "jit-enable-host-stack-frames", "shuttle-test"))' -C metadata=9fec456251772604 -C extra-filename=-1ad58c9cb59f3811 --out-dir /tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps -L dependency=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps --extern byteorder=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libbyteorder-84532e27cf0dd08f.rmeta --extern combine=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libcombine-b926bcf9aae21bae.rmeta --extern hash32=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libhash32-7d89630a7a2a41f8.rmeta --extern libc=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/liblibc-df491add64751ce6.rmeta --extern log=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/liblog-a903af10d0238107.rmeta --extern rand=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/librand-550a8750ce17c5be.rmeta --extern rustc_demangle=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/librustc_demangle-02d5d1262c8a81cb.rmeta --extern thiserror=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libthiserror-d6da2ad7f39a86cf.rmeta --cap-lints allow` (exit status: 101)
+error: could not compile `inout` (lib) due to 1 previous error
+rustc-LLVM ERROR: IO failure on output stream: No space left on device
+error: could not compile `solana-program-runtime` (lib)
+
+Caused by:
+  No space left on device (os error 28)
+
+Caused by:
+  failed to parse process output: `/home/sucka/.rustup/toolchains/1.96.0-x86_64-unknown-linux-gnu/bin/rustc --crate-name solana_program_runtime --edition=2021 /home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-program-runtime-3.1.14/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --deny=warnings '--deny=clippy::used_underscore_binding' --warn=unexpected_cfgs '--deny=clippy::manual_let_else' '--deny=clippy::default_trait_access' '--deny=clippy::arithmetic_side_effects' --check-cfg 'cfg(target_os, values("solana"))' --check-cfg 'cfg(feature, values("frozen-abi", "no-entrypoint"))' --cfg 'feature="agave-unstable-api"' --cfg 'feature="metrics"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("agave-unstable-api", "dev-context-only-utils", "dummy-for-ci-check", "frozen-abi", "metrics", "shuttle-test"))' -C metadata=6a4dc812e9354932 -C extra-filename=-85130c14ff46d985 --out-dir /tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps -L dependency=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps --extern base64=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libbase64-76f54f820f429c43.rmeta --extern bincode=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libbincode-58691019626ac1f9.rmeta --extern itertools=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libitertools-248e4234a30bf0a7.rmeta --extern log=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/liblog-a903af10d0238107.rmeta --extern percentage=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libpercentage-0b5a5df70326d3e0.rmeta --extern rand=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/librand-550a8750ce17c5be.rmeta --extern serde=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libserde-30ce6581e4492aee.rmeta --extern solana_account=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_account-b8464fb24c9dce58.rmeta --extern solana_account_info=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_account_info-ee90745f4454d572.rmeta --extern solana_clock=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_clock-fcdef0ab78d32e56.rmeta --extern solana_epoch_rewards=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_epoch_rewards-919992fc38d9cc37.rmeta --extern solana_epoch_schedule=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_epoch_schedule-6cdb014269630e25.rmeta --extern solana_fee_structure=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_fee_structure-780b368f14a2d537.rmeta --extern solana_hash=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_hash-05ac1f062cad8bb2.rmeta --extern solana_instruction=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_instruction-c21ae8aa32cf2565.rmeta --extern solana_last_restart_slot=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_last_restart_slot-bfbc1e17a3ec3f6d.rmeta --extern solana_loader_v3_interface=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_loader_v3_interface-0d3d42802020643d.rmeta --extern solana_program_entrypoint=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_program_entrypoint-31da5adb69e65b96.rmeta --extern solana_pubkey=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_pubkey-9fee878a020e3cd7.rmeta --extern solana_rent=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_rent-25db0bb26ee3bf6d.rmeta --extern solana_sbpf=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_sbpf-1ad58c9cb59f3811.rmeta --extern solana_sdk_ids=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_sdk_ids-5590b5e0e37a78e0.rmeta --extern solana_slot_hashes=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_slot_hashes-fd76ee2d0de013a4.rmeta --extern solana_stable_layout=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_stable_layout-e447da55900f3d8c.rmeta --extern solana_stake_interface=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_stake_interface-55299c76b667d2dc.rmeta --extern solana_svm_callback=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_svm_callback-48a7de07a21eb55d.rmeta --extern solana_svm_feature_set=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_svm_feature_set-6c15a146a53e659a.rmeta --extern solana_svm_log_collector=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_svm_log_collector-6cefbc26b30f9416.rmeta --extern solana_svm_measure=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_svm_measure-f046a77d0bc783e2.rmeta --extern solana_svm_timings=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_svm_timings-68368eb2e30a5792.rmeta --extern solana_svm_transaction=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_svm_transaction-0240fc33120df049.rmeta --extern solana_svm_type_overrides=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_svm_type_overrides-8fcbc6ef9c9ca5e4.rmeta --extern solana_system_interface=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_system_interface-c3624b168e0f3d57.rmeta --extern solana_sysvar=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_sysvar-50b827664d3004f8.rmeta --extern solana_sysvar_id=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_sysvar_id-b0e5a657e84f4621.rmeta --extern solana_transaction_context=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libsolana_transaction_context-9bfc89d50e79745e.rmeta --extern thiserror=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/libthiserror-d6da2ad7f39a86cf.rmeta --cap-lints allow -L native=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/build/blake3-34b52099aab6317e/out -L native=/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/build/blake3-34b52099aab6317e/out` (exit status: 101)
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetafUtqyf/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `crypto-bigint` (lib) due to 1 previous error
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetagL0ufn/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `darling_core` (lib) due to 1 previous error
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmeta6nCHiD/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `ark-ff` (lib) due to 1 previous error
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetahjzhqM/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `ark-ff` (lib) due to 1 previous error
+EXIT=101

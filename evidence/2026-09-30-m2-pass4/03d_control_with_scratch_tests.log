@@ -1,0 +1,44 @@
+Tue Sep 29 18:49:52 UTC 2026
+### CONTROL: 7c267e9 program unmodified; 6 scratch tests appended to test file only
+target/deploy/plotarmor.so bytes 472280 sha256_trimmed 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
+   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+warning: field `payer` is never read
+  --> programs/plotarmor/tests/common/mod.rs:28:9
+   |
+26 | pub struct TestContext {
+   |            ----------- field in this struct
+27 |     pub svm: LiteSVM,
+28 |     pub payer: Keypair,
+   |         ^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `plotarmor` (test "sign_contract_tests") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.96s
+     Running tests/sign_contract_tests.rs (target/debug/deps/sign_contract_tests-2738082cbb34a9c5)
+
+running 14 tests
+PASS4 observed AccountNotInitialized (3012) err=InstructionError(0, Custom(3012))
+test pass4_config_missing_rejected ... ok
+PASS4 observed ConstraintSeeds (2006) err=InstructionError(0, Custom(2006))
+test pass4_fake_config_wrong_address_rejected ... ok
+PASS4 observed Paused (6008) err=InstructionError(0, Custom(6008))
+test pass4_paused_checked_before_content_hash ... ok
+PASS4 observed AccountDiscriminatorMismatch (3002) err=InstructionError(0, Custom(3002))
+test pass4_other_program_account_as_config_rejected ... ok
+PASS4 observed AccountOwnedByWrongProgram (3007) err=InstructionError(0, Custom(3007))
+test pass4_config_wrong_owner_rejected ... ok
+PASS4 observed AccountDiscriminatorMismatch (3002) err=InstructionError(0, Custom(3002))
+test paused_registry_rejects_sign_contract ... ok
+test pass4_config_wrong_discriminator_rejected ... ok
+test double_sign_by_same_signer_rejected ... ok
+test registry_wiring_sanity_check ... ok
+test signed_at_and_slot_come_from_onchain_clock_not_a_fixed_value ... ok
+test sign_contract_happy_path ... ok
+test signing_nonexistent_contract_rejected ... ok
+test unrelated_wallet_can_sign_no_onchain_creator_check ... ok
+test wrong_content_hash_rejected ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.90s
+
+EXIT=0

@@ -1,0 +1,24 @@
+Tue Sep 29 18:50:20 UTC 2026
+### RESTORED: sign_contract.rs back to 7c267e9
+source identical to 7c267e9
+platform-tools pin: v1.52  (mode: devnet)
+   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+    Finished `release` profile [optimized] target(s) in 8.19s
+target/deploy/plotarmor.so bytes 472280 sha256_trimmed 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
+expected 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
+test pass4_config_wrong_owner_rejected ... ok
+test double_sign_by_same_signer_rejected ... ok
+test paused_registry_rejects_sign_contract ... ok
+test pass4_other_program_account_as_config_rejected ... ok
+test pass4_fake_config_wrong_address_rejected ... ok
+test pass4_paused_checked_before_content_hash ... ok
+test pass4_config_wrong_discriminator_rejected ... ok
+test pass4_config_missing_rejected ... ok
+test registry_wiring_sanity_check ... ok
+test sign_contract_happy_path ... ok
+test signing_nonexistent_contract_rejected ... ok
+test signed_at_and_slot_come_from_onchain_clock_not_a_fixed_value ... ok
+test unrelated_wallet_can_sign_no_onchain_creator_check ... ok
+test wrong_content_hash_rejected ... ok
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.55s
+EXIT=0

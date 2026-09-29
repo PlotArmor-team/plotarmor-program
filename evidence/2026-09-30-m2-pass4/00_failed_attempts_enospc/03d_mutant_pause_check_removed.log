@@ -1,0 +1,134 @@
+Tue Sep 29 18:41:07 UTC 2026
+### MUTANT: diff vs 7c267e9
+0a1,94
+> use anchor_lang::prelude::*;
+> 
+> use crate::error::PlotArmorError;
+> use crate::state::{ContractArtifact, ContractSignature, RegistryConfig};
+> 
+> #[derive(Accounts)]
+> #[instruction(content_hash: [u8; 32])]
+> pub struct SignContract<'info> {
+>     // Added 2026-09-04 (audit M2). sign_contract was previously the ONLY instruction
+>     // taking no RegistryConfig, so it could not honour the paused flag and sat outside
+>     // the kill-switch surface the other five respect. Same shape as the other five:
+>     // Account (not mut), const seed, paused checked in the handler. This does NOT add a
+>     // pause setter; the kill switch itself stays deferred (Known v1 limitations, item C).
+>     #[account(
+>         seeds = [b"config"],
+>         bump,
+>     )]
+>     pub registry_config: Account<'info, RegistryConfig>,
+> 
+>     // The contract being signed. Must already exist on-chain; ContractArtifact
+>     // is never init'd here (sign_contract does not stand alone -- see spec §Design decisions #3).
+>     // Seeds re-derived from the account's OWN stored raw_hash (not the client's
+>     // content_hash arg) -- same pattern as work_claim in anchor_authorized_contract.rs
+>     // and add_owner.rs. This proves the passed account is a canonically-addressed
+>     // ContractArtifact, independent of and in addition to the handler's separate
+>     // content_hash == raw_hash check below (which stays the reachable source of
+>     // the custom ContentHashMismatch error; deriving seeds from content_hash
+>     // instead would make that error unreachable, replaced by a generic
+>     // Anchor ConstraintSeeds failure).
+>     #[account(
+>         seeds = [b"contract_artifact", contract_artifact.raw_hash.as_ref()],
+>         bump,
+>     )]
+>     pub contract_artifact: Account<'info, ContractArtifact>,
+> 
+>     // One signature PDA per (contract, signer) pair. `init`, not `init_if_needed`:
+>     // a repeat signer hits the account-already-exists error, which is the
+>     // correct anti-double-sign behavior (idempotent, no silent overwrite).
+>     #[account(
+>         init,
+>         payer = signer,
+>         space = ContractSignature::LEN,
+>         seeds = [b"signature", contract_artifact.key().as_ref(), signer.key().as_ref()],
+>         bump,
+>     )]
+>     pub contract_signature: Account<'info, ContractSignature>,
+> 
+>     #[account(mut)]
+>     pub signer: Signer<'info>,
+> 
+>     pub system_program: Program<'info, System>,
+> }
+> 
+> // MVP creator-only authorization is intentionally NOT enforced on-chain here.
+> // ContractArtifact (state.rs) carries no creator/authority field -- it is
+> // content-addressed and shared, so any signer's first call to
+> // anchor_evidence_contract/anchor_authorized_contract may have initialized it.
+> // The only program-checked identity link to a contract is
+> // AuthorizedContractAnchor.work_claim -> Ownership.admin, which records "who
+> // authorized anchoring this hash," not "who is a party to this contract," and
+> // is not guaranteed to exist for every ContractArtifact (anchor_evidence_contract
+> // requires no such link at all). Building a real on-chain creator/party check
+> // would mean adding that representation to ContractArtifact first -- out of
+> // scope for this MVP pass (decision: Option 2, locked by Milan, see
+> // sign_contract-spec.md "Open question"). Consequently `signer` may be any
+> // funded wallet; creator/party restriction is enforced off-chain only
+> // (Supabase/RLS, gating which wallet the frontend will even prompt to sign).
+> // A ContractSignature therefore proves "this wallet signed this exact content
+> // hash at this on-chain time" -- not "the contract's creator signed." Do not
+> // describe it as on-chain proof of *who* in UI or docs.
+> pub fn handler(
+>     ctx: Context<SignContract>,
+>     content_hash: [u8; 32],
+> ) -> Result<()> {
+>     // 1. Reject if paused. First check, matching the other five instructions.
+>     require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+> 
+>     // 2. The client's asserted content hash must match the on-chain artifact.
+>     require!(
+>         content_hash == ctx.accounts.contract_artifact.raw_hash,
+>         PlotArmorError::ContentHashMismatch
+>     );
+> 
+>     let clock = Clock::get()?;
+> 
+>     ctx.accounts.contract_signature.contract_artifact = ctx.accounts.contract_artifact.key();
+>     ctx.accounts.contract_signature.signer = ctx.accounts.signer.key();
+>     ctx.accounts.contract_signature.content_hash = content_hash;
+>     ctx.accounts.contract_signature.signed_at = clock.unix_timestamp;
+>     ctx.accounts.contract_signature.slot = clock.slot;
+>     ctx.accounts.contract_signature.bump = ctx.bumps.contract_signature;
+> 
+>     Ok(())
+> }
+platform-tools pin: v1.52  (mode: devnet)
+    Finished `release` profile [optimized] target(s) in 0.69s
+mutant .so sha256_trimmed 33577f6bb627340776f21e44556ba08b6134742d0524d4357233b7bcbe25a7ba
+   Compiling solana-sbpf v0.13.1
+   Compiling ark-ff v0.5.0
+   Compiling ark-ff v0.4.2
+   Compiling crypto-bigint v0.5.5
+   Compiling darling_core v0.23.0
+   Compiling inout v0.1.4
+   Compiling digest v0.9.0
+   Compiling num-derive v0.4.2
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetaU2f7ow/full.rmeta`: No space left on device (os error 28)
+
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetaVr0GK7/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `inout` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `digest` (lib) due to 1 previous error
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetapQVtqi/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `num-derive` (lib) due to 1 previous error
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetafJOISF/full.rmeta`: No space left on device (os error 28)
+
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetauZbg0I/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `darling_core` (lib) due to 1 previous error
+error: could not compile `crypto-bigint` (lib) due to 1 previous error
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetafeuB8q/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `solana-sbpf` (lib) due to 1 previous error
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetaz4C4lp/full.rmeta`: No space left on device (os error 28)
+
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/target/debug/deps/rmetakimpCh/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `ark-ff` (lib) due to 1 previous error
+error: could not compile `ark-ff` (lib) due to 1 previous error
+EXIT=101

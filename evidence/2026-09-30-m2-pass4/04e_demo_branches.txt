@@ -1,0 +1,77 @@
+Tue Sep 29 18:14:15 UTC 2026
+### plotarmor-demo branches vs sign_contract call shape
+312c043b91f95d7a57b83cc7098e479fa0e5b11a
+== main @ 34fed7c  contains d9da574: NO
+main:src/ContractsApp.tsx:1198:            .signContract(Array.from(rawHashBytes))
+main:src/ContractsApp.tsx-1199-            .accountsStrict({
+main:src/ContractsApp.tsx-1200-              contractArtifact,
+main:src/ContractsApp.tsx-1201-              contractSignature,
+main:src/ContractsApp.tsx-1202-              signer: anchorWallet.publicKey,
+main:src/ContractsApp.tsx-1203-              systemProgram: SystemProgram.programId,
+main:src/ContractsApp.tsx-1204-            })
+main:src/ContractsApp.tsx-1205-            .rpc({ commitment: "confirmed" });
+main:src/ContractsApp.tsx-1206-
+main:src/ContractsApp.tsx-1207-          await updateContractSignature(signatureRow.id, {
+IDL sign_contract accounts: ['contract_artifact', 'contract_signature', 'signer', 'system_program']
+== origin/main @ 34fed7c  contains d9da574: NO
+origin/main:src/ContractsApp.tsx:1198:            .signContract(Array.from(rawHashBytes))
+origin/main:src/ContractsApp.tsx-1199-            .accountsStrict({
+origin/main:src/ContractsApp.tsx-1200-              contractArtifact,
+origin/main:src/ContractsApp.tsx-1201-              contractSignature,
+origin/main:src/ContractsApp.tsx-1202-              signer: anchorWallet.publicKey,
+origin/main:src/ContractsApp.tsx-1203-              systemProgram: SystemProgram.programId,
+origin/main:src/ContractsApp.tsx-1204-            })
+origin/main:src/ContractsApp.tsx-1205-            .rpc({ commitment: "confirmed" });
+origin/main:src/ContractsApp.tsx-1206-
+origin/main:src/ContractsApp.tsx-1207-          await updateContractSignature(signatureRow.id, {
+IDL sign_contract accounts: ['contract_artifact', 'contract_signature', 'signer', 'system_program']
+== feat/wallet-bindings @ 5aaff08  contains d9da574: NO
+feat/wallet-bindings:src/ContractsApp.tsx:1198:            .signContract(Array.from(rawHashBytes))
+feat/wallet-bindings:src/ContractsApp.tsx-1199-            .accountsStrict({
+feat/wallet-bindings:src/ContractsApp.tsx-1200-              contractArtifact,
+feat/wallet-bindings:src/ContractsApp.tsx-1201-              contractSignature,
+feat/wallet-bindings:src/ContractsApp.tsx-1202-              signer: anchorWallet.publicKey,
+feat/wallet-bindings:src/ContractsApp.tsx-1203-              systemProgram: SystemProgram.programId,
+feat/wallet-bindings:src/ContractsApp.tsx-1204-            })
+feat/wallet-bindings:src/ContractsApp.tsx-1205-            .rpc({ commitment: "confirmed" });
+feat/wallet-bindings:src/ContractsApp.tsx-1206-
+feat/wallet-bindings:src/ContractsApp.tsx-1207-          await updateContractSignature(signatureRow.id, {
+IDL sign_contract accounts: ['contract_artifact', 'contract_signature', 'signer', 'system_program']
+== origin/feat/wallet-bindings @ 5aaff08  contains d9da574: NO
+origin/feat/wallet-bindings:src/ContractsApp.tsx:1198:            .signContract(Array.from(rawHashBytes))
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1199-            .accountsStrict({
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1200-              contractArtifact,
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1201-              contractSignature,
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1202-              signer: anchorWallet.publicKey,
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1203-              systemProgram: SystemProgram.programId,
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1204-            })
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1205-            .rpc({ commitment: "confirmed" });
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1206-
+origin/feat/wallet-bindings:src/ContractsApp.tsx-1207-          await updateContractSignature(signatureRow.id, {
+IDL sign_contract accounts: ['contract_artifact', 'contract_signature', 'signer', 'system_program']
+== feat/notifications @ 312c043  contains d9da574: yes
+feat/notifications:src/ContractsApp.tsx:1202:            .signContract(Array.from(rawHashBytes))
+feat/notifications:src/ContractsApp.tsx-1203-            .accountsStrict({
+feat/notifications:src/ContractsApp.tsx-1204-              registryConfig,
+feat/notifications:src/ContractsApp.tsx-1205-              contractArtifact,
+feat/notifications:src/ContractsApp.tsx-1206-              contractSignature,
+feat/notifications:src/ContractsApp.tsx-1207-              signer: anchorWallet.publicKey,
+feat/notifications:src/ContractsApp.tsx-1208-              systemProgram: SystemProgram.programId,
+feat/notifications:src/ContractsApp.tsx-1209-            })
+feat/notifications:src/ContractsApp.tsx-1210-            .rpc({ commitment: "confirmed" });
+feat/notifications:src/ContractsApp.tsx-1211-
+IDL sign_contract accounts: ['registry_config', 'contract_artifact', 'contract_signature', 'signer', 'system_program']
+== fix/sign-contract-registry-config @ d9da574  contains d9da574: yes
+fix/sign-contract-registry-config:src/ContractsApp.tsx:1199:            .signContract(Array.from(rawHashBytes))
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1200-            .accountsStrict({
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1201-              registryConfig,
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1202-              contractArtifact,
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1203-              contractSignature,
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1204-              signer: anchorWallet.publicKey,
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1205-              systemProgram: SystemProgram.programId,
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1206-            })
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1207-            .rpc({ commitment: "confirmed" });
+fix/sign-contract-registry-config:src/ContractsApp.tsx-1208-
+IDL sign_contract accounts: ['registry_config', 'contract_artifact', 'contract_signature', 'signer', 'system_program']
+### remote branches containing d9da574:
+(empty = d9da574 not pushed)

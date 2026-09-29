@@ -1,0 +1,37 @@
+Tue Sep 29 18:12:34 UTC 2026
+solana-cli 4.0.1 (src:e4e3aa49; feat:6ff76655, client:Agave)
+### solana program show (devnet)
+
+Program Id: 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2
+Owner: BPFLoaderUpgradeab1e11111111111111111111111
+ProgramData Address: Dr8S95D7bHGBrd6gFSAommQjBNH1qcBMJpofe9ooLRpL
+Authority: EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
+Last Deployed In Slot: 476301346
+Data Length: 471960 (0x73398) bytes
+Balance: 3.28604568 SOL
+
+### RegistryConfig PDA
+RegistryConfig PDA (seeds ["config"]): BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG
+BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG
+### account on devnet
+{
+  "pubkey": "BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG",
+  "account": {
+    "lamports": 1197120,
+    "data": [
+      "F3YK9q3n85zMFOLqP7ntSZlPw/SBeZl+kzpo9JlQnVKUOnKMk9XSKgEAAAA=",
+      "base64"
+    ],
+    "owner": "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2",
+    "executable": false,
+    "rentEpoch": 18446744073709551615,
+    "space": 44
+  }
+}
+### decoded RegistryConfig
+len 44
+discriminator [23, 118, 10, 246, 173, 231, 243, 156] expected sha256('account:RegistryConfig')[:8] = [23, 118, 10, 246, 173, 231, 243, 156]
+authority EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
+schema_version 1
+enabled_anchor_modes 0
+paused 0

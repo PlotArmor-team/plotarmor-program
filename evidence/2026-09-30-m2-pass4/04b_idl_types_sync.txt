@@ -1,0 +1,3001 @@
+### diff target/idl vs demo src/anchor/plotarmor.json
+IDENTICAL
+### target/types sign_contract accounts
+1087:       "name": "signContract",
+1100:           "name": "registryConfig",
+1118:           "name": "contractArtifact",
+1152:           "name": "contractSignature",
+1182:           "name": "signer",
+1187:           "name": "systemProgram",
+1193:           "name": "contentHash",
+1206:       "name": "anchorRecord",
+1219:       "name": "authorizedContractAnchor",
+### demo types sign_contract accounts
+### diff target/types vs demo types
+8,1748c8,1240
+<   "address": "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2",
+<   "metadata": {
+<     "name": "plotarmor",
+<     "version": "0.1.0",
+<     "spec": "0.1.0",
+<     "description": "Created with Anchor"
+<   },
+<   "instructions": [
+<     {
+<       "name": "addOwner",
+<       "discriminator": [
+<         211,
+<         140,
+<         15,
+<         161,
+<         64,
+<         48,
+<         232,
+<         184
+<       ],
+<       "accounts": [
+<         {
+<           "name": "registryConfig",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   102,
+<                   105,
+<                   103
+<                 ]
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "workClaim",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   108,
+<                   97,
+<                   105,
+<                   109
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "work_claim.root_artifact",
+<                 "account": "workClaim"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "work_claim.claimant",
+<                 "account": "workClaim"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "ownership",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   111,
+<                   119,
+<                   110,
+<                   101,
+<                   114,
+<                   115,
+<                   104,
+<                   105,
+<                   112
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "workClaim"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "newOwnerRecord",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   111,
+<                   119,
+<                   110,
+<                   101,
+<                   114
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "ownership"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "newOwner"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "admin",
+<           "writable": true,
+<           "signer": true,
+<           "relations": [
+<             "ownership"
+<           ]
+<         },
+<         {
+<           "name": "newOwner"
+<         },
+<         {
+<           "name": "systemProgram",
+<           "address": "11111111111111111111111111111111"
+<         }
+<       ],
+<       "args": [
+<         {
+<           "name": "newShare",
+<           "type": "u16"
+<         },
+<         {
+<           "name": "newRole",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "newThresholdShares",
+<           "type": "u16"
+<         }
+<       ]
+<     },
+<     {
+<       "name": "addVersion",
+<       "discriminator": [
+<         167,
+<         42,
+<         0,
+<         24,
+<         83,
+<         109,
+<         61,
+<         248
+<       ],
+<       "accounts": [
+<         {
+<           "name": "registryConfig",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   102,
+<                   105,
+<                   103
+<                 ]
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "workClaim",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   108,
+<                   97,
+<                   105,
+<                   109
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "work_claim.root_artifact",
+<                 "account": "workClaim"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "work_claim.claimant",
+<                 "account": "workClaim"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contentArtifact",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   116,
+<                   101,
+<                   110,
+<                   116
+<                 ]
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "rawHash"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "claimArtifactLink",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   108,
+<                   97,
+<                   105,
+<                   109,
+<                   95,
+<                   97,
+<                   114,
+<                   116,
+<                   105,
+<                   102,
+<                   97,
+<                   99,
+<                   116
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "workClaim"
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "linkNonce"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorRecord",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   97,
+<                   110,
+<                   99,
+<                   104,
+<                   111,
+<                   114
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "contentArtifact"
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "anchorNonce"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "claimant",
+<           "writable": true,
+<           "signer": true,
+<           "relations": [
+<             "workClaim"
+<           ]
+<         },
+<         {
+<           "name": "systemProgram",
+<           "address": "11111111111111111111111111111111"
+<         }
+<       ],
+<       "args": [
+<         {
+<           "name": "rawHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contentKind",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "linkNonce",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorNonce",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorModeArg",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "expectedPreviousLink",
+<           "type": "pubkey"
+<         },
+<         {
+<           "name": "externalRefHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         }
+<       ]
+<     },
+<     {
+<       "name": "anchorAuthorizedContract",
+<       "discriminator": [
+<         210,
+<         79,
+<         150,
+<         32,
+<         196,
+<         91,
+<         92,
+<         64
+<       ],
+<       "accounts": [
+<         {
+<           "name": "registryConfig",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   102,
+<                   105,
+<                   103
+<                 ]
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "workClaim",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   108,
+<                   97,
+<                   105,
+<                   109
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "work_claim.root_artifact",
+<                 "account": "workClaim"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "work_claim.claimant",
+<                 "account": "workClaim"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "ownership",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   111,
+<                   119,
+<                   110,
+<                   101,
+<                   114,
+<                   115,
+<                   104,
+<                   105,
+<                   112
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "workClaim"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contractArtifact",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   116,
+<                   114,
+<                   97,
+<                   99,
+<                   116,
+<                   95,
+<                   97,
+<                   114,
+<                   116,
+<                   105,
+<                   102,
+<                   97,
+<                   99,
+<                   116
+<                 ]
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "rawContractHash"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "authorizedContractAnchor",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   97,
+<                   117,
+<                   116,
+<                   104,
+<                   111,
+<                   114,
+<                   105,
+<                   122,
+<                   101,
+<                   100,
+<                   95,
+<                   99,
+<                   111,
+<                   110,
+<                   116,
+<                   114,
+<                   97,
+<                   99,
+<                   116
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "workClaim"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "contractArtifact"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorRecord",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   97,
+<                   110,
+<                   99,
+<                   104,
+<                   111,
+<                   114
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "authorizedContractAnchor"
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "anchorNonce"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "admin",
+<           "writable": true,
+<           "signer": true
+<         },
+<         {
+<           "name": "systemProgram",
+<           "address": "11111111111111111111111111111111"
+<         }
+<       ],
+<       "args": [
+<         {
+<           "name": "rawContractHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contractKind",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "anchorNonce",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorModeArg",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "externalRefHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         }
+<       ]
+<     },
+<     {
+<       "name": "anchorEvidenceContract",
+<       "discriminator": [
+<         5,
+<         43,
+<         187,
+<         2,
+<         36,
+<         176,
+<         229,
+<         86
+<       ],
+<       "accounts": [
+<         {
+<           "name": "registryConfig",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   102,
+<                   105,
+<                   103
+<                 ]
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contractArtifact",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   116,
+<                   114,
+<                   97,
+<                   99,
+<                   116,
+<                   95,
+<                   97,
+<                   114,
+<                   116,
+<                   105,
+<                   102,
+<                   97,
+<                   99,
+<                   116
+<                 ]
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "rawContractHash"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "evidenceAnchor",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   101,
+<                   118,
+<                   105,
+<                   100,
+<                   101,
+<                   110,
+<                   99,
+<                   101
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "anchorer"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "contractArtifact"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorRecord",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   97,
+<                   110,
+<                   99,
+<                   104,
+<                   111,
+<                   114
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "evidenceAnchor"
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "anchorNonce"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorer",
+<           "writable": true,
+<           "signer": true
+<         },
+<         {
+<           "name": "systemProgram",
+<           "address": "11111111111111111111111111111111"
+<         }
+<       ],
+<       "args": [
+<         {
+<           "name": "rawContractHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contractKind",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "anchorNonce",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorModeArg",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "assertedWorkClaim",
+<           "type": "pubkey"
+<         },
+<         {
+<           "name": "externalRefHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         }
+<       ]
+<     },
+<     {
+<       "name": "initRegistryConfig",
+<       "discriminator": [
+<         157,
+<         90,
+<         204,
+<         184,
+<         92,
+<         221,
+<         52,
+<         86
+<       ],
+<       "accounts": [
+<         {
+<           "name": "registryConfig",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   102,
+<                   105,
+<                   103
+<                 ]
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "signer",
+<           "writable": true,
+<           "signer": true
+<         },
+<         {
+<           "name": "systemProgram",
+<           "address": "11111111111111111111111111111111"
+<         },
+<         {
+<           "name": "program",
+<           "address": "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2"
+<         },
+<         {
+<           "name": "programData"
+<         }
+<       ],
+<       "args": []
+<     },
+<     {
+<       "name": "registerWorkClaim",
+<       "discriminator": [
+<         128,
+<         224,
+<         48,
+<         240,
+<         166,
+<         14,
+<         119,
+<         76
+<       ],
+<       "accounts": [
+<         {
+<           "name": "registryConfig",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   102,
+<                   105,
+<                   103
+<                 ]
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contentArtifact",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   116,
+<                   101,
+<                   110,
+<                   116
+<                 ]
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "rawHash"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "workClaim",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   108,
+<                   97,
+<                   105,
+<                   109
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "contentArtifact"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "signer"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "ownership",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   111,
+<                   119,
+<                   110,
+<                   101,
+<                   114,
+<                   115,
+<                   104,
+<                   105,
+<                   112
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "workClaim"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "ownerRecord",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   111,
+<                   119,
+<                   110,
+<                   101,
+<                   114
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "ownership"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "signer"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "claimArtifactLink",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   108,
+<                   97,
+<                   105,
+<                   109,
+<                   95,
+<                   97,
+<                   114,
+<                   116,
+<                   105,
+<                   102,
+<                   97,
+<                   99,
+<                   116
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "workClaim"
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "linkNonce"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorRecord",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   97,
+<                   110,
+<                   99,
+<                   104,
+<                   111,
+<                   114
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "workClaim"
+<               },
+<               {
+<                 "kind": "arg",
+<                 "path": "anchorNonce"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "signer",
+<           "writable": true,
+<           "signer": true
+<         },
+<         {
+<           "name": "systemProgram",
+<           "address": "11111111111111111111111111111111"
+<         }
+<       ],
+<       "args": [
+<         {
+<           "name": "rawHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contentKind",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "claimKind",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "totalShares",
+<           "type": "u16"
+<         },
+<         {
+<           "name": "thresholdShares",
+<           "type": "u16"
+<         },
+<         {
+<           "name": "linkNonce",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorNonce",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         },
+<         {
+<           "name": "anchorModeArg",
+<           "type": "u8"
+<         },
+<         {
+<           "name": "externalRefHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         }
+<       ]
+<     },
+<     {
+<       "name": "signContract",
+<       "discriminator": [
+<         145,
+<         83,
+<         234,
+<         177,
+<         104,
+<         87,
+<         183,
+<         156
+<       ],
+<       "accounts": [
+<         {
+<           "name": "registryConfig",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   102,
+<                   105,
+<                   103
+<                 ]
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contractArtifact",
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   99,
+<                   111,
+<                   110,
+<                   116,
+<                   114,
+<                   97,
+<                   99,
+<                   116,
+<                   95,
+<                   97,
+<                   114,
+<                   116,
+<                   105,
+<                   102,
+<                   97,
+<                   99,
+<                   116
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "contract_artifact.raw_hash",
+<                 "account": "contractArtifact"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "contractSignature",
+<           "writable": true,
+<           "pda": {
+<             "seeds": [
+<               {
+<                 "kind": "const",
+<                 "value": [
+<                   115,
+<                   105,
+<                   103,
+<                   110,
+<                   97,
+<                   116,
+<                   117,
+<                   114,
+<                   101
+<                 ]
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "contractArtifact"
+<               },
+<               {
+<                 "kind": "account",
+<                 "path": "signer"
+<               }
+<             ]
+<           }
+<         },
+<         {
+<           "name": "signer",
+<           "writable": true,
+<           "signer": true
+<         },
+<         {
+<           "name": "systemProgram",
+<           "address": "11111111111111111111111111111111"
+<         }
+<       ],
+<       "args": [
+<         {
+<           "name": "contentHash",
+<           "type": {
+<             "array": [
+<               "u8",
+<               32
+<             ]
+<           }
+<         }
+<       ]
+<     }
+<   ],
+<   "accounts": [
+<     {
+<       "name": "anchorRecord",
+<       "discriminator": [
+<         18,
+<         113,
+<         142,
+<         13,
+<         101,
+<         130,
+<         207,
+<         223
+<       ]
+<     },
+<     {
+<       "name": "authorizedContractAnchor",
+<       "discriminator": [
+<         36,
+<         219,
+<         186,
+<         192,
+<         120,
+<         236,
+<         101,
+<         46
+<       ]
+<     },
+<     {
+<       "name": "claimArtifactLink",
+<       "discriminator": [
+<         236,
+<         10,
+<         36,
+<         209,
+<         164,
+<         167,
+<         156,
+<         69
+<       ]
+<     },
+<     {
+<       "name": "contentArtifact",
+<       "discriminator": [
+<         93,
+<         184,
+<         215,
+<         45,
+<         244,
+<         173,
+<         147,
+<         101
+<       ]
+<     },
+<     {
+<       "name": "contractArtifact",
+<       "discriminator": [
+<         30,
+<         37,
+<         242,
+<         17,
+<         204,
+<         13,
+<         231,
+<         208
+<       ]
+<     },
+<     {
+<       "name": "contractSignature",
+<       "discriminator": [
+<         165,
+<         97,
+<         146,
+<         105,
+<         80,
+<         228,
+<         87,
+<         65
+<       ]
+<     },
+<     {
+<       "name": "evidenceAnchor",
+<       "discriminator": [
+<         194,
+<         239,
+<         221,
+<         1,
+<         37,
+<         134,
+<         22,
+<         64
+<       ]
+<     },
+<     {
+<       "name": "ownerRecord",
+<       "discriminator": [
+<         5,
+<         36,
+<         17,
+<         69,
+<         246,
+<         236,
+<         83,
+<         166
+<       ]
+<     },
+<     {
+<       "name": "ownership",
+<       "discriminator": [
+<         41,
+<         84,
+<         101,
+<         206,
+<         145,
+<         175,
+<         88,
+<         65
+<       ]
+<     },
+<     {
+<       "name": "registryConfig",
+<       "discriminator": [
+<         23,
+<         118,
+<         10,
+<         246,
+<         173,
+<         231,
+<         243,
+<         156
+<       ]
+<     },
+<     {
+<       "name": "workClaim",
+<       "discriminator": [
+<         149,
+<         227,
+<         108,
+<         190,
+<         112,
+<         37,
+<         190,
+<         47
+<       ]
+<     }
+<   ],
+<   "errors": [
+<     {
+<       "code": 6000,
+<       "name": "alreadyInitialized",
+<       "msg": "Account already initialized"
+<     },
+<     {
+<       "code": 6001,
+<       "name": "staleLineageHead",
+<       "msg": "Lineage head is stale; refresh and retry"
+<     },
+<     {
+<       "code": 6002,
+<       "name": "anchorModeNotAllowed",
+<       "msg": "Anchor mode not allowed by registry config"
+<     },
+<     {
+<       "code": 6003,
+<       "name": "simulatedModeRejected",
+<       "msg": "Simulated anchor mode is rejected on this build"
+<     },
+<     {
+<       "code": 6004,
+<       "name": "shareOverflow",
+<       "msg": "Share arithmetic overflow"
+<     },
+<     {
+<       "code": 6005,
+<       "name": "shareSumMismatch",
+<       "msg": "Share sum mismatch"
+<     },
+<     {
+<       "code": 6006,
+<       "name": "reservedFieldNonZero",
+<       "msg": "Reserved field must be zero"
+<     },
+<     {
+<       "code": 6007,
+<       "name": "thresholdNotMet",
+<       "msg": "Threshold not met"
+<     },
+<     {
+<       "code": 6008,
+<       "name": "paused",
+<       "msg": "Program is paused"
+<     },
+<     {
+<       "code": 6009,
+<       "name": "unauthorized",
+<       "msg": "Signer is not the work claim claimant"
+<     },
+<     {
+<       "code": 6010,
+<       "name": "supersededClaim",
+<       "msg": "Work claim has been superseded"
+<     },
+<     {
+<       "code": 6011,
+<       "name": "contentHashMismatch",
+<       "msg": "Provided content hash does not match the on-chain contract artifact"
+<     }
+<   ],
+<   "types": [
+<     {
+<       "name": "anchorRecord",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "anchoredObject",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "anchoredObjectKind",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "anchorMode",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "createdAt",
+<             "type": "i64"
+<           },
+<           {
+<             "name": "externalRefHash",
+<             "type": {
+<               "array": [
+<                 "u8",
+<                 32
+<               ]
+<             }
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "authorizedContractAnchor",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "workClaim",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "contractArtifact",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "timestamp",
+<             "type": "i64"
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "claimArtifactLink",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "workClaim",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "contentArtifact",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "previousLink",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "createdAt",
+<             "type": "i64"
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "contentArtifact",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "isInitialized",
+<             "type": "bool"
+<           },
+<           {
+<             "name": "rawHash",
+<             "type": {
+<               "array": [
+<                 "u8",
+<                 32
+<               ]
+<             }
+<           },
+<           {
+<             "name": "contentKind",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "createdAt",
+<             "type": "i64"
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "contractArtifact",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "isInitialized",
+<             "type": "bool"
+<           },
+<           {
+<             "name": "rawHash",
+<             "type": {
+<               "array": [
+<                 "u8",
+<                 32
+<               ]
+<             }
+<           },
+<           {
+<             "name": "contentKind",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "createdAt",
+<             "type": "i64"
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "contractSignature",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "contractArtifact",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "signer",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "contentHash",
+<             "type": {
+<               "array": [
+<                 "u8",
+<                 32
+<               ]
+<             }
+<           },
+<           {
+<             "name": "signedAt",
+<             "type": "i64"
+<           },
+<           {
+<             "name": "slot",
+<             "type": "u64"
+<           },
+<           {
+<             "name": "bump",
+<             "type": "u8"
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "evidenceAnchor",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "anchorer",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "contractArtifact",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "assertedWorkClaim",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "timestamp",
+<             "type": "i64"
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "ownerRecord",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "ownership",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "owner",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "share",
+<             "type": "u16"
+<           },
+<           {
+<             "name": "role",
+<             "type": "u8"
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "ownership",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "workClaim",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "totalShares",
+<             "type": "u16"
+<           },
+<           {
+<             "name": "thresholdShares",
+<             "type": "u16"
+<           },
+<           {
+<             "name": "admin",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "rulesVersion",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "privacyMode",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "commitmentRoot",
+<             "type": {
+<               "array": [
+<                 "u8",
+<                 32
+<               ]
+<             }
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "registryConfig",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "authority",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "schemaVersion",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "enabledAnchorModes",
+<             "type": "u16"
+<           },
+<           {
+<             "name": "paused",
+<             "type": "bool"
+<           }
+<         ]
+<       }
+<     },
+<     {
+<       "name": "workClaim",
+<       "type": {
+<         "kind": "struct",
+<         "fields": [
+<           {
+<             "name": "rootArtifact",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "latestArtifact",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "latestLink",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "claimant",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "ownership",
+<             "type": "pubkey"
+<           },
+<           {
+<             "name": "createdAt",
+<             "type": "i64"
+<           },
+<           {
+<             "name": "claimKind",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "discoverability",
+<             "type": "u8"
+<           },
+<           {
+<             "name": "supersededBy",
+<             "type": "pubkey"
+<           }
+<         ]
+<       }
+<     }
+<   ],
+<   "constants": [
+<     {
+<       "name": "seed",
+<       "type": "string",
+<       "value": "\"anchor\""
+<     }
+<   ]
+---
+>   address: "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2";
+>   metadata: {
+>     name: "plotarmor";
+>     version: "0.1.0";
+>     spec: "0.1.0";
+>     description: "Created with Anchor";
+>   };
+>   instructions: [
+>     {
+>       name: "addOwner";
+>       discriminator: [211, 140, 15, 161, 64, 48, 232, 184];
+>       accounts: [
+>         {
+>           name: "registryConfig";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 102, 105, 103];
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "workClaim";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 108, 97, 105, 109];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "work_claim.root_artifact";
+>                 account: "workClaim";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "work_claim.claimant";
+>                 account: "workClaim";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "ownership";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [111, 119, 110, 101, 114, 115, 104, 105, 112];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "workClaim";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "newOwnerRecord";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [111, 119, 110, 101, 114];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "ownership";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "newOwner";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "admin";
+>           writable: true;
+>           signer: true;
+>           relations: ["ownership"];
+>         },
+>         {
+>           name: "newOwner";
+>         },
+>         {
+>           name: "systemProgram";
+>           address: "11111111111111111111111111111111";
+>         },
+>       ];
+>       args: [
+>         {
+>           name: "newShare";
+>           type: "u16";
+>         },
+>         {
+>           name: "newRole";
+>           type: "u8";
+>         },
+>         {
+>           name: "newThresholdShares";
+>           type: "u16";
+>         },
+>       ];
+>     },
+>     {
+>       name: "addVersion";
+>       discriminator: [167, 42, 0, 24, 83, 109, 61, 248];
+>       accounts: [
+>         {
+>           name: "registryConfig";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 102, 105, 103];
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "workClaim";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 108, 97, 105, 109];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "work_claim.root_artifact";
+>                 account: "workClaim";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "work_claim.claimant";
+>                 account: "workClaim";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "contentArtifact";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 116, 101, 110, 116];
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "rawHash";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "claimArtifactLink";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 108, 97, 105, 109, 95, 97, 114, 116, 105, 102, 97, 99, 116];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "workClaim";
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "linkNonce";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "anchorRecord";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [97, 110, 99, 104, 111, 114];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "contentArtifact";
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "anchorNonce";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "claimant";
+>           writable: true;
+>           signer: true;
+>           relations: ["workClaim"];
+>         },
+>         {
+>           name: "systemProgram";
+>           address: "11111111111111111111111111111111";
+>         },
+>       ];
+>       args: [
+>         {
+>           name: "rawHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "contentKind";
+>           type: "u8";
+>         },
+>         {
+>           name: "linkNonce";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "anchorNonce";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "anchorModeArg";
+>           type: "u8";
+>         },
+>         {
+>           name: "expectedPreviousLink";
+>           type: "pubkey";
+>         },
+>         {
+>           name: "externalRefHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>       ];
+>     },
+>     {
+>       name: "anchorAuthorizedContract";
+>       discriminator: [210, 79, 150, 32, 196, 91, 92, 64];
+>       accounts: [
+>         {
+>           name: "registryConfig";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 102, 105, 103];
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "workClaim";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 108, 97, 105, 109];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "work_claim.root_artifact";
+>                 account: "workClaim";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "work_claim.claimant";
+>                 account: "workClaim";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "ownership";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [111, 119, 110, 101, 114, 115, 104, 105, 112];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "workClaim";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "contractArtifact";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 116, 114, 97, 99, 116, 95, 97, 114, 116, 105, 102, 97, 99, 116];
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "rawContractHash";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "authorizedContractAnchor";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [97, 117, 116, 104, 111, 114, 105, 122, 101, 100, 95, 99, 111, 110, 116, 114, 97, 99, 116];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "workClaim";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "contractArtifact";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "anchorRecord";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [97, 110, 99, 104, 111, 114];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "authorizedContractAnchor";
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "anchorNonce";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "admin";
+>           writable: true;
+>           signer: true;
+>         },
+>         {
+>           name: "systemProgram";
+>           address: "11111111111111111111111111111111";
+>         },
+>       ];
+>       args: [
+>         {
+>           name: "rawContractHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "contractKind";
+>           type: "u8";
+>         },
+>         {
+>           name: "anchorNonce";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "anchorModeArg";
+>           type: "u8";
+>         },
+>         {
+>           name: "externalRefHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>       ];
+>     },
+>     {
+>       name: "anchorEvidenceContract";
+>       discriminator: [5, 43, 187, 2, 36, 176, 229, 86];
+>       accounts: [
+>         {
+>           name: "registryConfig";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 102, 105, 103];
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "contractArtifact";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 116, 114, 97, 99, 116, 95, 97, 114, 116, 105, 102, 97, 99, 116];
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "rawContractHash";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "evidenceAnchor";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [101, 118, 105, 100, 101, 110, 99, 101];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "anchorer";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "contractArtifact";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "anchorRecord";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [97, 110, 99, 104, 111, 114];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "evidenceAnchor";
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "anchorNonce";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "anchorer";
+>           writable: true;
+>           signer: true;
+>         },
+>         {
+>           name: "systemProgram";
+>           address: "11111111111111111111111111111111";
+>         },
+>       ];
+>       args: [
+>         {
+>           name: "rawContractHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "contractKind";
+>           type: "u8";
+>         },
+>         {
+>           name: "anchorNonce";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "anchorModeArg";
+>           type: "u8";
+>         },
+>         {
+>           name: "assertedWorkClaim";
+>           type: "pubkey";
+>         },
+>         {
+>           name: "externalRefHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>       ];
+>     },
+>     {
+>       name: "initRegistryConfig";
+>       discriminator: [157, 90, 204, 184, 92, 221, 52, 86];
+>       accounts: [
+>         {
+>           name: "registryConfig";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 102, 105, 103];
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "signer";
+>           writable: true;
+>           signer: true;
+>         },
+>         {
+>           name: "systemProgram";
+>           address: "11111111111111111111111111111111";
+>         },
+>         {
+>           name: "program";
+>           address: "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2";
+>         },
+>         {
+>           name: "programData";
+>         },
+>       ];
+>       args: [];
+>     },
+>     {
+>       name: "registerWorkClaim";
+>       discriminator: [128, 224, 48, 240, 166, 14, 119, 76];
+>       accounts: [
+>         {
+>           name: "registryConfig";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 102, 105, 103];
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "contentArtifact";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 116, 101, 110, 116];
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "rawHash";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "workClaim";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 108, 97, 105, 109];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "contentArtifact";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "signer";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "ownership";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [111, 119, 110, 101, 114, 115, 104, 105, 112];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "workClaim";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "ownerRecord";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [111, 119, 110, 101, 114];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "ownership";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "signer";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "claimArtifactLink";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 108, 97, 105, 109, 95, 97, 114, 116, 105, 102, 97, 99, 116];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "workClaim";
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "linkNonce";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "anchorRecord";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [97, 110, 99, 104, 111, 114];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "workClaim";
+>               },
+>               {
+>                 kind: "arg";
+>                 path: "anchorNonce";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "signer";
+>           writable: true;
+>           signer: true;
+>         },
+>         {
+>           name: "systemProgram";
+>           address: "11111111111111111111111111111111";
+>         },
+>       ];
+>       args: [
+>         {
+>           name: "rawHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "contentKind";
+>           type: "u8";
+>         },
+>         {
+>           name: "claimKind";
+>           type: "u8";
+>         },
+>         {
+>           name: "totalShares";
+>           type: "u16";
+>         },
+>         {
+>           name: "thresholdShares";
+>           type: "u16";
+>         },
+>         {
+>           name: "linkNonce";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "anchorNonce";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>         {
+>           name: "anchorModeArg";
+>           type: "u8";
+>         },
+>         {
+>           name: "externalRefHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>       ];
+>     },
+>     {
+>       name: "signContract";
+>       discriminator: [145, 83, 234, 177, 104, 87, 183, 156];
+>       accounts: [
+>         {
+>           name: "registryConfig";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 102, 105, 103];
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "contractArtifact";
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [99, 111, 110, 116, 114, 97, 99, 116, 95, 97, 114, 116, 105, 102, 97, 99, 116];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "contract_artifact.raw_hash";
+>                 account: "contractArtifact";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "contractSignature";
+>           writable: true;
+>           pda: {
+>             seeds: [
+>               {
+>                 kind: "const";
+>                 value: [115, 105, 103, 110, 97, 116, 117, 114, 101];
+>               },
+>               {
+>                 kind: "account";
+>                 path: "contractArtifact";
+>               },
+>               {
+>                 kind: "account";
+>                 path: "signer";
+>               },
+>             ];
+>           };
+>         },
+>         {
+>           name: "signer";
+>           writable: true;
+>           signer: true;
+>         },
+>         {
+>           name: "systemProgram";
+>           address: "11111111111111111111111111111111";
+>         },
+>       ];
+>       args: [
+>         {
+>           name: "contentHash";
+>           type: {
+>             array: ["u8", 32];
+>           };
+>         },
+>       ];
+>     },
+>   ];
+>   accounts: [
+>     {
+>       name: "anchorRecord";
+>       discriminator: [18, 113, 142, 13, 101, 130, 207, 223];
+>     },
+>     {
+>       name: "authorizedContractAnchor";
+>       discriminator: [36, 219, 186, 192, 120, 236, 101, 46];
+>     },
+>     {
+>       name: "claimArtifactLink";
+>       discriminator: [236, 10, 36, 209, 164, 167, 156, 69];
+>     },
+>     {
+>       name: "contentArtifact";
+>       discriminator: [93, 184, 215, 45, 244, 173, 147, 101];
+>     },
+>     {
+>       name: "contractArtifact";
+>       discriminator: [30, 37, 242, 17, 204, 13, 231, 208];
+>     },
+>     {
+>       name: "contractSignature";
+>       discriminator: [165, 97, 146, 105, 80, 228, 87, 65];
+>     },
+>     {
+>       name: "evidenceAnchor";
+>       discriminator: [194, 239, 221, 1, 37, 134, 22, 64];
+>     },
+>     {
+>       name: "ownerRecord";
+>       discriminator: [5, 36, 17, 69, 246, 236, 83, 166];
+>     },
+>     {
+>       name: "ownership";
+>       discriminator: [41, 84, 101, 206, 145, 175, 88, 65];
+>     },
+>     {
+>       name: "registryConfig";
+>       discriminator: [23, 118, 10, 246, 173, 231, 243, 156];
+>     },
+>     {
+>       name: "workClaim";
+>       discriminator: [149, 227, 108, 190, 112, 37, 190, 47];
+>     },
+>   ];
+>   errors: [
+>     {
+>       code: 6000;
+>       name: "alreadyInitialized";
+>       msg: "Account already initialized";
+>     },
+>     {
+>       code: 6001;
+>       name: "staleLineageHead";
+>       msg: "Lineage head is stale; refresh and retry";
+>     },
+>     {
+>       code: 6002;
+>       name: "anchorModeNotAllowed";
+>       msg: "Anchor mode not allowed by registry config";
+>     },
+>     {
+>       code: 6003;
+>       name: "simulatedModeRejected";
+>       msg: "Simulated anchor mode is rejected on this build";
+>     },
+>     {
+>       code: 6004;
+>       name: "shareOverflow";
+>       msg: "Share arithmetic overflow";
+>     },
+>     {
+>       code: 6005;
+>       name: "shareSumMismatch";
+>       msg: "Share sum mismatch";
+>     },
+>     {
+>       code: 6006;
+>       name: "reservedFieldNonZero";
+>       msg: "Reserved field must be zero";
+>     },
+>     {
+>       code: 6007;
+>       name: "thresholdNotMet";
+>       msg: "Threshold not met";
+>     },
+>     {
+>       code: 6008;
+>       name: "paused";
+>       msg: "Program is paused";
+>     },
+>     {
+>       code: 6009;
+>       name: "unauthorized";
+>       msg: "Signer is not the work claim claimant";
+>     },
+>     {
+>       code: 6010;
+>       name: "supersededClaim";
+>       msg: "Work claim has been superseded";
+>     },
+>     {
+>       code: 6011;
+>       name: "contentHashMismatch";
+>       msg: "Provided content hash does not match the on-chain contract artifact";
+>     },
+>   ];
+>   types: [
+>     {
+>       name: "anchorRecord";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "anchoredObject";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "anchoredObjectKind";
+>             type: "u8";
+>           },
+>           {
+>             name: "anchorMode";
+>             type: "u8";
+>           },
+>           {
+>             name: "createdAt";
+>             type: "i64";
+>           },
+>           {
+>             name: "externalRefHash";
+>             type: {
+>               array: ["u8", 32];
+>             };
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "authorizedContractAnchor";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "workClaim";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "contractArtifact";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "timestamp";
+>             type: "i64";
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "claimArtifactLink";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "workClaim";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "contentArtifact";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "previousLink";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "createdAt";
+>             type: "i64";
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "contentArtifact";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "isInitialized";
+>             type: "bool";
+>           },
+>           {
+>             name: "rawHash";
+>             type: {
+>               array: ["u8", 32];
+>             };
+>           },
+>           {
+>             name: "contentKind";
+>             type: "u8";
+>           },
+>           {
+>             name: "createdAt";
+>             type: "i64";
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "contractArtifact";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "isInitialized";
+>             type: "bool";
+>           },
+>           {
+>             name: "rawHash";
+>             type: {
+>               array: ["u8", 32];
+>             };
+>           },
+>           {
+>             name: "contentKind";
+>             type: "u8";
+>           },
+>           {
+>             name: "createdAt";
+>             type: "i64";
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "contractSignature";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "contractArtifact";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "signer";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "contentHash";
+>             type: {
+>               array: ["u8", 32];
+>             };
+>           },
+>           {
+>             name: "signedAt";
+>             type: "i64";
+>           },
+>           {
+>             name: "slot";
+>             type: "u64";
+>           },
+>           {
+>             name: "bump";
+>             type: "u8";
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "evidenceAnchor";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "anchorer";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "contractArtifact";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "assertedWorkClaim";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "timestamp";
+>             type: "i64";
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "ownerRecord";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "ownership";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "owner";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "share";
+>             type: "u16";
+>           },
+>           {
+>             name: "role";
+>             type: "u8";
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "ownership";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "workClaim";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "totalShares";
+>             type: "u16";
+>           },
+>           {
+>             name: "thresholdShares";
+>             type: "u16";
+>           },
+>           {
+>             name: "admin";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "rulesVersion";
+>             type: "u8";
+>           },
+>           {
+>             name: "privacyMode";
+>             type: "u8";
+>           },
+>           {
+>             name: "commitmentRoot";
+>             type: {
+>               array: ["u8", 32];
+>             };
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "registryConfig";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "authority";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "schemaVersion";
+>             type: "u8";
+>           },
+>           {
+>             name: "enabledAnchorModes";
+>             type: "u16";
+>           },
+>           {
+>             name: "paused";
+>             type: "bool";
+>           },
+>         ];
+>       };
+>     },
+>     {
+>       name: "workClaim";
+>       type: {
+>         kind: "struct";
+>         fields: [
+>           {
+>             name: "rootArtifact";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "latestArtifact";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "latestLink";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "claimant";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "ownership";
+>             type: "pubkey";
+>           },
+>           {
+>             name: "createdAt";
+>             type: "i64";
+>           },
+>           {
+>             name: "claimKind";
+>             type: "u8";
+>           },
+>           {
+>             name: "discoverability";
+>             type: "u8";
+>           },
+>           {
+>             name: "supersededBy";
+>             type: "pubkey";
+>           },
+>         ];
+>       };
+>     },
+>   ];
+>   constants: [
+>     {
+>       name: "seed";
+>       type: "string";
+>       value: '"anchor"';
+>     },
+>   ];
+### demo src/anchor/plotarmor.ts (prettier-formatted, not byte-identical to target/types) signContract account names:
+1:      name: "signContract";
+5:          name: "registryConfig";
+16:          name: "contractArtifact";
+32:          name: "contractSignature";
+52:          name: "signer";
+57:          name: "systemProgram";
+### semantic compare: strip whitespace/quotes/commas/semicolons
+DIFFERENT after normalization
+### re-normalize also stripping single quotes and backslashes
+SEMANTICALLY IDENTICAL (only difference was string-literal quoting of the "anchor" constant: "\"anchor\"" vs '"anchor"', equal values)

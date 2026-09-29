@@ -1,0 +1,11 @@
+target/idl/plotarmor.json -> ['registry_config', 'contract_artifact', 'contract_signature', 'signer', 'system_program']
+/home/sucka/plotarmor-demo/src/anchor/plotarmor.json -> ['registry_config', 'contract_artifact', 'contract_signature', 'signer', 'system_program']
+30:          "name": "registryConfig",
+171:          "name": "registryConfig",
+380:          "name": "registryConfig",
+612:          "name": "registryConfig",
+785:          "name": "registryConfig",
+836:          "name": "registryConfig",
+1100:          "name": "registryConfig",
+1323:      "name": "registryConfig",
+1674:      "name": "registryConfig",

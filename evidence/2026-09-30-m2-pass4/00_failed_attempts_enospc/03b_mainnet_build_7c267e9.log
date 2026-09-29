@@ -1,0 +1,16 @@
+Tue Sep 29 18:40:55 UTC 2026
+platform-tools pin: v1.52  (mode: mainnet)
+   Compiling plotarmor v0.1.0 (/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-7c267e9/programs/plotarmor)
+error: failed to write to `/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-7c267e9/target/sbpf-solana-solana/release/deps/rmetaVsJ3b1/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `plotarmor` (lib) due to 1 previous error
+
+real	0m13.644s
+user	0m6.031s
+sys	0m2.541s
+EXIT=1
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import hashlib;b=open('target/deploy-mainnet/plotarmor.so','rb').read();print('mainnet .so bytes',len(b),'sha256_trimmed',hashlib.sha256(b.rstrip(b'\0')).hexdigest())
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'target/deploy-mainnet/plotarmor.so'

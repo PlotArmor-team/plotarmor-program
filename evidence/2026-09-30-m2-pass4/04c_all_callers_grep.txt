@@ -1,0 +1,73 @@
+===== plotarmor-program
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:2: * PlotArmor — sign_contract Adversarial Devnet Test
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:4: * devnet_sign_contract_test.ts (2026-07-15) proved only the happy path live
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:7: * only ever been run against LiteSVM (sign_contract_tests.rs) and a local
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:12: *   1. sign_contract — wrong content_hash -> ContentHashMismatch (6011)
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:13: *   2. sign_contract — double-sign by same signer -> already in use
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:14: *   3. sign_contract — nonexistent ContractArtifact -> account-validation failure
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:17: *   DEVNET_RPC_URL=<url> node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_adversarial_test.ts
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:118:    const label = "sign_contract — wrong content_hash (expect ContentHashMismatch 6011)";
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:127:        .signContract(wrongHash)
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:147:    const label = "sign_contract — double-sign by same signer (expect already-in-use)";
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:155:      .signContract(rawContractHash)
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:168:        .signContract(rawContractHash)
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:188:    const label = "sign_contract — nonexistent ContractArtifact (expect account-validation failure)";
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:198:        .signContract(phantomHash)
+plotarmor-program/scripts/verify_calls.py:18:  signContract:             1  (content_hash)
+plotarmor-program/scripts/verify_calls.py:29:    "signContract": 1,
+plotarmor-program/programs/plotarmor/src/state.rs:134:// handler, never accepted as a client-supplied argument (see sign_contract.rs).
+plotarmor-program/scripts/check_integrity.py:16:  signContract:             1
+plotarmor-program/scripts/check_integrity.py:32:    "signContract": 1,
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:92:fn sign_contract_instruction(
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:104:    // (audit M2), when sign_contract gained the RegistryConfig account.
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:161:fn sign_contract_happy_path() {
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:178:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:215:        sign_contract_instruction(contract_artifact, &context.authority, wrong_hash);
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:225:// Design decision, locked by Milan (sign_contract-spec.md, "Open question"):
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:255:        sign_contract_instruction(contract_artifact, &stranger, raw_contract_hash);
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:281:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:292:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:319:        sign_contract_instruction(phantom_contract_artifact, &context.authority, phantom_hash);
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:364:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:382:// Audit M2, closed 2026-09-04. Until then sign_contract was the ONLY instruction
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:393:fn paused_registry_rejects_sign_contract() {
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:424:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:427:        .expect_err("sign_contract must be rejected while the registry is paused");
+plotarmor-program/programs/plotarmor/src/lib.rs:30:use instructions::sign_contract::__client_accounts_sign_contract;
+plotarmor-program/programs/plotarmor/src/lib.rs:162:    pub fn sign_contract(
+plotarmor-program/programs/plotarmor/src/lib.rs:166:        instructions::sign_contract::handler(ctx, content_hash)
+plotarmor-program/scripts/devnet_sign_contract_test.ts:2: * PlotArmor — Standalone Devnet Proof Script for sign_contract
+plotarmor-program/scripts/devnet_sign_contract_test.ts:5: * anchor_evidence_contract, then call the new sign_contract instruction,
+plotarmor-program/scripts/devnet_sign_contract_test.ts:11: *   HELIUS_API_KEY=<key> node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_test.ts
+plotarmor-program/scripts/devnet_sign_contract_test.ts:60:  console.log("PlotArmor — Devnet sign_contract Proof");
+plotarmor-program/scripts/devnet_sign_contract_test.ts:138:  // 2. sign_contract
+plotarmor-program/scripts/devnet_sign_contract_test.ts:144:  console.log("\nStep 2: sign_contract...");
+plotarmor-program/scripts/devnet_sign_contract_test.ts:155:    .signContract(ba(rawContractHash))
+plotarmor-program/scripts/devnet_sign_contract_test.ts:228:  console.log(allPass ? "RESULT: Devnet sign_contract proof SUCCESSFUL" : "RESULT: FAILED — see checks above");
+plotarmor-program/scripts/devnet_sign_contract_test.ts:245:    sign_contract_cost_lamports: costLamports,
+plotarmor-program/scripts/devnet_sign_contract_test.ts:246:    sign_contract_cost_sol: costSol,
+plotarmor-program/scripts/devnet_sign_contract_test.ts:247:    sign_contract_cost_usd_at_90: costUsd,
+plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:9:    // Added 2026-09-04 (audit M2). sign_contract was previously the ONLY instruction
+plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:21:    // is never init'd here (sign_contract does not stand alone -- see spec §Design decisions #3).
+plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:65:// sign_contract-spec.md "Open question"). Consequently `signer` may be any
+plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:78:    // second; add_owner and sign_contract take no anchor_mode_arg, so paused is
+plotarmor-program/programs/plotarmor/src/instructions.rs:7:pub mod sign_contract;
+plotarmor-program/programs/plotarmor/src/instructions.rs:15:pub use sign_contract::SignContract;
+plotarmor-program/tests/plotarmor.ts:193:  // used to create it, for reuse by sign_contract tests.
+plotarmor-program/tests/plotarmor.ts:551:  describe("sign_contract", () => {
+plotarmor-program/tests/plotarmor.ts:561:        .signContract(ba(rawContractHash))
+plotarmor-program/tests/plotarmor.ts:1091:    // --- sign_contract ────────────────────────────────────────────────────────
+plotarmor-program/tests/plotarmor.ts:1093:    it("sign_contract wrong content_hash -> ContentHashMismatch 6011", async () => {
+plotarmor-program/tests/plotarmor.ts:1103:          .signContract(ba(wrongHash))
+plotarmor-program/tests/plotarmor.ts:1118:    it("sign_contract double-sign by same signer -> already in use", async () => {
+plotarmor-program/tests/plotarmor.ts:1126:        .signContract(ba(rawContractHash))
+plotarmor-program/tests/plotarmor.ts:1138:          .signContract(ba(rawContractHash))
+plotarmor-program/tests/plotarmor.ts:1153:    it("sign_contract on a nonexistent ContractArtifact fails", async () => {
+plotarmor-program/tests/plotarmor.ts:1163:          .signContract(ba(phantomHash))
+===== plotarmor-demo
+plotarmor-demo/src/ContractsApp.tsx:1202:            .signContract(Array.from(rawHashBytes))
+plotarmor-demo/src/anchor/plotarmor.ts:740:      name: "signContract";
+plotarmor-demo/src/anchor/plotarmor.ts:741:      discriminator: [145, 83, 234, 177, 104, 87, 183, 156];
+plotarmor-demo/src/anchor/plotarmor.json:734:      "name": "sign_contract",
+plotarmor-demo/src/anchor/plotarmor.json:735:      "discriminator": [145, 83, 234, 177, 104, 87, 183, 156],
+===== plotarmor-kora

@@ -1,0 +1,1 @@
+These runs failed with ENOSPC (/tmp tmpfs 1.8G full). Not evidence of pass or fail. The .so hashes printed inside are of stale artifacts left by builds that did not complete. Also: the control run reused a HEAD-built .so because git-archive mtimes were older than the existing artifact. Superseded by the runs in the parent directory.

@@ -1,0 +1,11 @@
+plotarmor-program/tests/plotarmor.ts:561  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/tests/plotarmor.ts:1103  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/tests/plotarmor.ts:1126  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/tests/plotarmor.ts:1138  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/tests/plotarmor.ts:1163  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/scripts/devnet_sign_contract_test.ts:155  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:127  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:155  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:168  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:198  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True
+plotarmor-demo/src/ContractsApp.tsx:1202  .accountsStrict  keys=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']  first_is_registryConfig=True has_all5=True

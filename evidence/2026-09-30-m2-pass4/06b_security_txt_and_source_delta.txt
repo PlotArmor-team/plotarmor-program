@@ -1,0 +1,22 @@
+### security.txt block at 7c267e9 (lib.rs)
+49:security_txt! {
+50-    name: "PlotArmor",
+51-    project_url: "private",
+52-    contacts: "email:UNSET-PLACEHOLDER-DO-NOT-DEPLOY@example.invalid",
+53-    policy: "UNSET-PLACEHOLDER-DO-NOT-DEPLOY",
+54-    source_code: "private"
+55-}
+56-
+57-declare_id!("3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2");
+58-
+59-#[program]
+60-pub mod plotarmor {
+61-    use super::*;
+62-
+63-    pub fn init_registry_config(ctx: Context<InitRegistryConfig>) -> Result<()> {
+### SECURITY.md present at HEAD?
+ls: cannot access 'SECURITY.md': No such file or directory
+### files changed in programs/ between deployed 09c5bfc and 7c267e9
+ .../plotarmor/src/instructions/sign_contract.rs    | 17 +++++++++++++++-
+ programs/plotarmor/src/lib.rs                      | 23 ++++++++++++++++++++++
+ 2 files changed, 39 insertions(+), 1 deletion(-)

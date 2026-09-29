@@ -1,0 +1,12 @@
+Tue Sep 29 18:42:05 UTC 2026
+tree: git archive 7c267e9 -> /home/sucka/.m2-pass4-claude-scratch/src (fresh, no prior target)
+   Compiling anchor-attribute-program v1.0.2
+   Compiling anchor-lang v1.0.2
+   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+    Finished `release` profile [optimized] target(s) in 3m 49s
+
+real	3m53.125s
+user	12m19.185s
+sys	1m30.125s
+target/deploy/plotarmor.so bytes 472280 sha256_trimmed 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
+expected 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6

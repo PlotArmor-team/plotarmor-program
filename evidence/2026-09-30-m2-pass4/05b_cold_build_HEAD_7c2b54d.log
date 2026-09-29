@@ -1,0 +1,129 @@
+Tue Sep 29 18:12:14 UTC 2026
+7c2b54d15872af17cd9de3d9c30d7ee9f6ff5f29
+cargo-build-sbf 4.0.0
+platform-tools v1.53
+rustc 1.89.0
+platform-tools pin: v1.52  (mode: devnet)
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on shared package cache
+   Compiling proc-macro2 v1.0.106
+   Compiling quote v1.0.45
+   Compiling unicode-ident v1.0.24
+   Compiling winnow v1.0.3
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling serde_core v1.0.228
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling serde v1.0.228
+   Compiling cfg_aliases v0.2.1
+   Compiling borsh v1.6.1
+   Compiling once_cell v1.21.4
+   Compiling five8_core v1.0.0
+   Compiling solana-define-syscall v4.0.1
+   Compiling solana-define-syscall v5.1.0
+   Compiling sha2-const-stable v0.1.0
+   Compiling solana-atomic-u64 v3.0.1
+   Compiling solana-sanitize v3.0.1
+   Compiling five8 v1.0.0
+   Compiling five8_const v1.0.0
+   Compiling bs58 v0.5.1
+   Compiling version_check v0.9.5
+   Compiling typenum v1.20.1
+   Compiling indexmap v2.14.0
+   Compiling autocfg v1.5.1
+   Compiling toml_parser v1.1.2+spec-1.1.0
+   Compiling generic-array v0.14.7
+   Compiling syn v2.0.117
+   Compiling num-traits v0.2.19
+   Compiling toml_edit v0.25.12+spec-1.1.0
+   Compiling anyhow v1.0.102
+   Compiling syn v1.0.109
+   Compiling thiserror v1.0.69
+   Compiling proc-macro-crate v3.5.0
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling digest v0.10.7
+   Compiling unicode-segmentation v1.13.3
+   Compiling cfg-if v1.0.4
+   Compiling cpufeatures v0.2.17
+   Compiling sha2 v0.10.9
+   Compiling solana-program-memory v3.1.0
+   Compiling feature-probe v0.1.1
+   Compiling zmij v1.0.21
+   Compiling heck v0.3.3
+   Compiling bv v0.11.1
+   Compiling solana-msg v3.1.0
+   Compiling serde_json v1.0.150
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.1
+   Compiling log v0.4.32
+   Compiling lazy_static v1.5.0
+   Compiling serde_bytes v0.11.19
+   Compiling keccak-const v0.2.0
+   Compiling solana-define-syscall v3.0.0
+   Compiling base64 v0.21.7
+   Compiling const-crypto v0.3.0
+   Compiling solana-program-option v3.1.0
+   Compiling solana-security-txt v1.1.3
+   Compiling serde_derive v1.0.228
+   Compiling borsh-derive v1.6.1
+   Compiling bytemuck_derive v1.10.2
+   Compiling thiserror-impl v1.0.69
+   Compiling solana-sdk-macro v3.0.1
+   Compiling anchor-attribute-access-control v1.0.2
+   Compiling anchor-derive-space v1.0.2
+   Compiling bytemuck v1.25.0
+   Compiling solana-program-error v3.0.1
+   Compiling solana-instruction-error v2.3.0
+   Compiling solana-program-pack v3.1.0
+   Compiling solana-hash v4.4.0
+   Compiling bincode v1.3.3
+   Compiling solana-fee-calculator v3.2.1
+   Compiling anchor-syn v1.0.2
+   Compiling anchor-lang-idl-spec v0.1.0
+   Compiling solana-sha256-hasher v3.1.0
+   Compiling solana-address v2.6.1
+   Compiling solana-sdk-ids v3.1.0
+   Compiling solana-pubkey v4.2.0
+   Compiling solana-account-info v3.1.1
+   Compiling solana-address v1.1.0
+   Compiling solana-pubkey v3.0.0
+   Compiling solana-sysvar-id v3.1.0
+   Compiling solana-program-entrypoint v3.1.1
+   Compiling solana-last-restart-slot v3.0.1
+   Compiling solana-clock v3.1.0
+   Compiling solana-slot-hashes v3.0.2
+   Compiling solana-rent v3.1.0
+   Compiling solana-epoch-schedule v3.1.0
+   Compiling solana-instruction v3.4.0
+   Compiling solana-epoch-rewards v3.0.2
+   Compiling solana-serialize-utils v3.1.2
+   Compiling solana-feature-gate-interface v3.1.0
+   Compiling solana-stable-layout v3.0.1
+   Compiling solana-system-interface v2.0.0
+   Compiling solana-system-interface v3.2.0
+   Compiling solana-instructions-sysvar v3.0.1
+   Compiling solana-cpi v3.1.0
+   Compiling solana-slot-history v3.0.1
+   Compiling solana-invoke v0.5.0
+   Compiling anchor-lang-idl v0.1.3
+   Compiling solana-sysvar v3.1.1
+   Compiling solana-stake-interface v2.0.2
+   Compiling solana-loader-v3-interface v6.1.1
+   Compiling anchor-attribute-error v1.0.2
+   Compiling anchor-attribute-event v1.0.2
+   Compiling anchor-attribute-account v1.0.2
+   Compiling anchor-attribute-constant v1.0.2
+   Compiling anchor-derive-serde v1.0.2
+   Compiling anchor-derive-accounts v1.0.2
+   Compiling anchor-attribute-program v1.0.2
+   Compiling anchor-lang v1.0.2
+   Compiling plotarmor v0.1.0 (/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/programs/plotarmor)
+    Finished `release` profile [optimized] target(s) in 5m 34s
+
+real	5m38.487s
+user	13m57.300s
+sys	1m32.105s
+Tue Sep 29 18:17:53 UTC 2026

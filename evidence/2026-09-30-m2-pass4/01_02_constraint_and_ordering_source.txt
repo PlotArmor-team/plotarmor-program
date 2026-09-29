@@ -1,0 +1,90 @@
+Source tree: 7c267e9 (and HEAD 7c2b54d, whose only programs/ delta is a comment in sign_contract.rs)
+
+### registry_config account attribute, every instruction that reads it (7c267e9)
+-- sign_contract.rs
+14-    #[account(
+15:        seeds = [b"config"],
+16-        bump,
+17-    )]
+18-    pub registry_config: Account<'info, RegistryConfig>,
+19-
+-- add_owner.rs
+9-    #[account(
+10:        seeds = [b"config"],
+11-        bump,
+12-    )]
+13-    pub registry_config: Account<'info, RegistryConfig>,
+14-
+-- add_version.rs
+18-    #[account(
+19:        seeds = [b"config"],
+20-        bump,
+21-    )]
+22-    pub registry_config: Account<'info, RegistryConfig>,
+23-
+-- anchor_authorized_contract.rs
+18-    #[account(
+19:        seeds = [b"config"],
+20-        bump,
+21-    )]
+22-    pub registry_config: Account<'info, RegistryConfig>,
+23-
+-- anchor_evidence_contract.rs
+17-    #[account(
+18:        seeds = [b"config"],
+19-        bump,
+20-    )]
+21-    pub registry_config: Account<'info, RegistryConfig>,
+22-
+-- register_work_claim.rs
+23-    #[account(
+24:        seeds = [b"config"],
+25-        bump,
+26-    )]
+27-    pub registry_config: Account<'info, RegistryConfig>,
+28-
+
+### first 3 require!/assert lines in each handler (7c267e9)
+-- sign_contract.rs
+76:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+79:    require!(
+-- add_owner.rs
+53:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+56:    require!(new_share > 0, PlotArmorError::ShareSumMismatch);
+59:    OwnerRole::from_u8(new_role)
+-- add_version.rs
+4:use crate::helpers::assert_mode_allowed;
+76:    assert_mode_allowed(anchor_mode_arg, &ctx.accounts.registry_config)?;
+79:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+-- anchor_authorized_contract.rs
+4:use crate::helpers::assert_mode_allowed;
+78:    assert_mode_allowed(anchor_mode_arg, &ctx.accounts.registry_config)?;
+81:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+-- anchor_evidence_contract.rs
+4:use crate::helpers::assert_mode_allowed;
+66:    assert_mode_allowed(anchor_mode_arg, &ctx.accounts.registry_config)?;
+69:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+-- register_work_claim.rs
+4:use crate::helpers::assert_mode_allowed;
+102:    assert_mode_allowed(anchor_mode_arg, &ctx.accounts.registry_config)?;
+105:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+
+### error code
+21-    #[msg("Program is paused")]
+22:    Paused,
+23-    #[msg("Signer is not the work claim claimant")]
+3:#[error_code]
+30:    // AlreadyInitialized (6000) - reserved; is_initialized guard currently
+
+### RegistryConfig struct (state.rs @7c267e9)
+3-// RegistryConfig — ["config"] — deploy-time singleton, ~44 bytes
+4-#[account]
+5:pub struct RegistryConfig {
+6-    pub authority: Pubkey,
+7-    pub schema_version: u8,
+8-    pub enabled_anchor_modes: u16,
+9-    pub paused: bool,
+10-}
+11-
+12-impl RegistryConfig {
+13-    pub const LEN: usize = 8 + 32 + 1 + 2 + 1;

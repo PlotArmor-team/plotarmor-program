@@ -1,0 +1,5 @@
+7c267e9 cold: file_bytes=472280 trimmed_bytes=472265 sha256_trimmed=789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6 match_expected=True
+HEAD 7c2b54d cold: file_bytes=472280 trimmed_bytes=472265 sha256_trimmed=33577f6bb627340776f21e44556ba08b6134742d0524d4357233b7bcbe25a7ba match_expected=False
+repo target/deploy (Sep 4, not cold): file_bytes=472280 trimmed_bytes=472265 sha256_trimmed=789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6 match_expected=True
+expected: 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
+devnet ProgramData program capacity (Data Length): 471960

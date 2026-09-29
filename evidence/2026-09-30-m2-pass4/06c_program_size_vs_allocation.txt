@@ -1,0 +1,10 @@
+### size vs devnet allocation
+7c267e9 pinned .so file bytes: 472280 (trimmed 472265)
+devnet ProgramData program capacity: 471960 (solana program show, 06a)
+shortfall: 320 bytes untrimmed, 305 trimmed
+
+### solana CLI 4.0.1 deploy flags mentioning extend
+        --no-auto-extend                 Don't automatically extend the program's data account size
+        --skip-feature-verify            Don't verify program against the activated feature set. This setting means a
+### solana program upgrade --help mentions extend?
+0

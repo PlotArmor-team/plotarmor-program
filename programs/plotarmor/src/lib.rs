@@ -35,22 +35,21 @@ pub use state::*;
 // adds no code. Gated off for the no-entrypoint build so dependent crates that
 // pull this program in as a library do not inherit a second copy of the blob.
 //
-// WARNING: contacts and policy below are UNRESOLVED PLACEHOLDERS. They are
-// deliberately set to values that cannot resolve (RFC 2606 .invalid TLD) so that
-// any attempt to deploy this binary fails review rather than shipping a security
-// contact that nobody reads. Do NOT deploy until Milan supplies both values.
-// project_url and source_code are intentionally "private" while the source
-// repository is private. Per the approved scope, source_revision, source_release
-// and auditors are omitted rather than filled with provisional values.
+// contacts and policy were supplied by Milan on 2026-09-29, replacing the
+// .invalid placeholders that previously blocked deployment. The policy text is
+// mirrored in SECURITY.md at the repo root; keep the two in sync. source_code
+// stays "private" while the source repository is private. Per the approved
+// scope, source_revision, source_release and auditors are omitted rather than
+// filled with provisional values.
 #[cfg(not(feature = "no-entrypoint"))]
 use solana_security_txt::security_txt;
 
 #[cfg(not(feature = "no-entrypoint"))]
 security_txt! {
     name: "PlotArmor",
-    project_url: "private",
-    contacts: "email:UNSET-PLACEHOLDER-DO-NOT-DEPLOY@example.invalid",
-    policy: "UNSET-PLACEHOLDER-DO-NOT-DEPLOY",
+    project_url: "https://plotarmor.io",
+    contacts: "email:info@plotarmor.io",
+    policy: "Please report security issues privately to info@plotarmor.io. We acknowledge reports within 5 business days. Do not test against accounts or data you do not own. This program runs on Solana devnet as a demo MVP.",
     source_code: "private"
 }
 

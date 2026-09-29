@@ -1,0 +1,79 @@
+crate dir: /home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-security-txt-1.1.3
+programs/plotarmor/Cargo.toml:26:solana-security-txt = "1.1.3"
+Cargo.lock:1879: "solana-security-txt",
+Cargo.lock:3157:name = "solana-security-txt"
+### README: policy field
+78-    project_url: "http://example.com",
+79-    contacts: "email:example@example.com,link:https://example.com/security,discord:example#1234",
+80:    policy: "https://github.com/solana-labs/solana/blob/master/SECURITY.md",
+81-
+82-    // Optional Fields
+83-    preferred_languages: "en,de",
+84-    source_code: "https://github.com/example/example",
+85-    source_revision: default_env!("GITHUB_SHA", ""),
+86-    source_release: default_env!("GITHUB_REF_NAME", ""),
+--
+112-### Example Policies
+113-
+114:Bug bounty policies can be a bit daunting to write. For a good and thorough example, take a look at Solana Foundation's [SECURITY.md](https://github.com/solana-labs/solana/blob/master/SECURITY.md). But even a very brief policy is better than none. A starting point might be something like:
+115-
+116-> We pay a bug bounty at our discretion after verifying the bug, up to 10% of value at risk, limited by a maximum of $x. This bounty is only paid out if details about the security issues have not been provided to third parties before a fix has been introduced and verified. Furthermore, the reporter is in no way allowed to exploit the issue without our explicit consent.
+117-
+118-If you don't pay bounties, which might be sensible for toy projects that don't handle much value, you can also put something like
+119-
+120-> We do not pay a bug bounty.
+121-
+122-For more inspiration, take a look at how other large Solana projects structure their policies (random, non-exhaustive collection):
+123:- <https://github.com/solana-labs/solana/security/policy>
+124-- <https://forum.projectserum.com/t/formalizing-a-bug-bounty-program/410>
+125-- <https://docs.marinade.finance/developers/bug-bounty>
+126-- <https://docs.solend.fi/protocol/bug-bounty>
+127-- <https://github.com/certusone/wormhole/blob/dev.v2/ImmuneFi%20bug-bounty.md>
+128-- <https://immunefi.com/bounty/lido/ >
+129-- <https://docs.mango.markets/mango/bug-bounty>
+--
+145-| **`project_url`**     | https url (required) | A URL to the project's homepage/dapp. If the project isn't public, you can put `private`.                                                                                                                                                                                                                                                      |
+146-| **`contacts`**        |   list (required)    | A comma-separated list of contact information in the format `<contact type>:<contact information>`. Should roughly be ordered in preference. Possible contact types are `email`, `link`, `discord`, `telegram`, `twitter` and `other`. Prefer contact types that likely won't change for a while, like a `security@example.com` email address. |
+147:| **`policy`**          | link/text (required) | Either a link or a text document describing the project's security policy. This should describe what kind of bounties your project offers and the terms under which you offer them.                                                                                                                                                            |
+148-| `preferred_languages` |   list (optional)    | A comma-separated list of preferred languages (ISO 639-1).                                                                                                                                                                                                                                                                                     |
+149-| `encryption`          | link/text (optional) | A PGP public key block (or similar) or a link to one.                                                                                                                                                                                                                                                                                          |
+150-| `source_code`         |   link (optional)    | A URL to the project's source code.                                                                                                                                                                                                                                                                                                            |
+151-| `source_release`      |   string (optional   | The release identifier of this build, ideally corresponding to a tag on git that can be rebuilt to reproduce the same binary. 3rd party build verification tools will use this tag to identify a matching github releases.                                                                                                                     |
+152-| `source_revision`     |  string (optional)   | The revision identifier of this build, usually a git sha that can be rebuilt to reproduce the same binary. 3rd party build verification tools will use this tag to identify a matching github releases.                                                                                                                                        |
+153-| `auditors`            | link/list (optional) | A comma-separated list of people or entities that audited this smart contract, or a link to a page where audit reports are hosted. Note that this field is self-reported by the author of the program and might not be accurate.                                                                                                               |
+### src/lib.rs: policy field
+### macro source /home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-security-txt-1.1.3/src/lib.rs
+13:pub const SECURITY_TXT_BEGIN: &str = "=======BEGIN SECURITY.TXT V1=======\0";
+15:pub const SECURITY_TXT_END: &str = "=======END SECURITY.TXT V1=======\0";
+19:macro_rules! security_txt {
+25:        pub static SECURITY_TXT: &str = concat! {
+26:            "=======BEGIN SECURITY.TXT V1=======\0",
+27:            $(stringify!($name), "\0", $value, "\0",)*
+28:            "=======END SECURITY.TXT V1=======\0"
+### parser.rs: required fields and any policy/value validation
+38:    pub project_url: String,
+39:    pub contacts: Vec<Contact>,
+40:    pub policy: String,
+54:        writeln!(f, "Project URL: {}", self.project_url)?;
+56:        if !self.contacts.is_empty() {
+57:            writeln!(f, "\nContacts:")?;
+58:            for contact in &self.contacts {
+63:        writeln!(f, "\nPolicy:")?;
+64:        writeln!(f, "{}", self.policy)?;
+145:    #[error("Missing field: `{0}`")]
+146:    MissingField(String),
+153:pub fn parse(mut data: &[u8]) -> Result<SecurityTxt, SecurityTxtError> {
+188:        .ok_or_else(|| SecurityTxtError::MissingField("name".to_string()))?;
+189:    let project_url = attributes
+190:        .remove("project_url")
+191:        .ok_or_else(|| SecurityTxtError::MissingField("project_url".to_string()))?;
+202:    let contacts: Result<Vec<_>, SecurityTxtError> = attributes
+203:        .remove("contacts")
+204:        .ok_or_else(|| SecurityTxtError::MissingField("contacts".to_string()))?
+208:    let contacts = contacts?;
+217:    let policy = attributes
+218:        .remove("policy")
+219:        .ok_or_else(|| SecurityTxtError::MissingField("policy".to_string()))?;
+229:        project_url,
+235:        contacts,
+239:        policy,

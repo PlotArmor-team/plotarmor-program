@@ -1,0 +1,16 @@
+Tue Sep 29 20:06:51 UTC 2026
+### curl -sS -I -L --max-time 20 https://plotarmor.io
+HTTP/2 200 
+date: Tue, 29 Sep 2026 20:06:50 GMT
+content-type: text/html
+cache-control: no-cache, must-revalidate, max-age=0
+strict-transport-security: max-age=31536000; includeSubDomains
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+set-cookie: __cf_bm=zsXNLfWBuBzcEnLOzSBvJ0iNsb5TP34CAkd.f8uMkSE-1790712410.6243627-1.0.1.1-XP924RyKTeF_ceGcvbTljgFtLz3U1079Wcg4UO8VNWY4nYIuwuLwHf.6hJ9CAJbEF6JpB.py3j6Om0v9e.XLuMN.HtBJUZlMQG.TeYpL9_Re5qE1RW5kzdnAgLvJOMwK; HttpOnly; SameSite=None; Secure; Path=/; Domain=plotarmor.io; Expires=Tue, 29 Sep 2026 20:36:50 GMT
+server: cloudflare
+cf-ray: a42d9c566bc9f96c-PRG
+
+curl exit=0
+### final status/url
+http_code=200 final_url=https://plotarmor.io/ remote_ip=185.158.133.1

@@ -1,0 +1,16 @@
+Tue Sep 29 20:10:06 UTC 2026
+commit 14815bb0c697db772d1a0351bf28bfcfb7d6ecbd, fresh git archive extract at /home/sucka/.sectxt-cold/b, empty target
+cargo-build-sbf 4.0.0
+platform-tools v1.53
+rustc 1.89.0
+platform-tools pin: v1.52  (mode: devnet)
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Finished `release` profile [optimized] target(s) in 4m 46s
+
+real	4m47.995s
+user	11m53.168s
+sys	1m22.866s
+target/deploy/plotarmor.so file_bytes 472440 trimmed_bytes 472425 sha256_trimmed bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2 sha256_full 97880b057e52f474f20bb209f586e708eaf96d5608bcc52403ca62bc396916b7
+Tue Sep 29 20:14:54 UTC 2026

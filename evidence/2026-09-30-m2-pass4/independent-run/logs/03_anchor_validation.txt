@@ -1,0 +1,313 @@
+UTC: 2026-09-29T18:20:41.158260+00:00
+CWD: /home/sucka/plotarmor-program
+ARGV: ['bash', '-c', 'rg -n "find_program_address|ConstraintSeeds" /home/sucka/.cargo/registry/src/*/anchor-syn-1.0.2/src/codegen/accounts/constraints.rs; nl -ba /home/sucka/.cargo/registry/src/*/anchor-lang-1.0.2/src/accounts/account.rs | sed -n "295,335p"; nl -ba /home/sucka/.cargo/registry/src/*/anchor-attribute-account-1.0.2/src/lib.rs | sed -n "110,215p"; nl -ba /home/sucka/.cargo/registry/src/*/anchor-syn-1.0.2/src/codegen/program/handlers.rs | sed -n "105,185p"; nl -ba Cargo.lock | sed -n "240,255p"; nl -ba programs/plotarmor/src/helpers.rs | sed -n "1,120p"']
+509:            // Note that for `#[account(init, seeds)]`, find_program_address has already
+519:                                anchor_lang::error::ErrorCode::ConstraintSeeds
+525:                                anchor_lang::error::ErrorCode::ConstraintSeeds
+534:                                anchor_lang::error::ErrorCode::ConstraintSeeds
+549:                        let (__pda_address, __bump) = Pubkey::find_program_address(
+575:                            Pubkey::find_program_address(__seeds_slice, __program_id);
+586:                                anchor_lang::error::ErrorCode::ConstraintSeeds
+1170:fn generate_constraint_seeds(f: &Field, c: &ConstraintSeedsGroup) -> proc_macro2::TokenStream {
+1196:            // [list], no bump -> find_program_address + store __bump.
+1200:                    let (__pda_address, __bump) = Pubkey::find_program_address(
+1216:                        anchor_lang::error::ErrorCode::ConstraintSeeds
+1221:            // expr, no bump -> find_program_address + store __bump.
+1225:                    Pubkey::find_program_address(__seeds_slice, &#deriving_program_id);
+1237:                    anchor_lang::error::ErrorCode::ConstraintSeeds
+1248:                return Err(anchor_lang::error::Error::from(anchor_lang::error::ErrorCode::ConstraintSeeds).with_account_name(#name_str).with_pubkeys((#name.key(), __pda_address)));
+   295	impl<'a, T: AccountSerialize + AccountDeserialize + Owner + Clone> Account<'a, T> {
+   296	    /// Reloads the account from storage. This is useful, for example, when
+   297	    /// observing side effects after CPI.
+   298	    ///
+   299	    /// This method also re-validates that the program owner has not
+   300	    /// changed since the initial validation
+   301	    pub fn reload(&mut self) -> Result<()> {
+   302	        if self.info.owner != &T::owner() {
+   303	            return Err(Error::from(ErrorCode::AccountOwnedByWrongProgram)
+   304	                .with_pubkeys((*self.info.owner, T::owner())));
+   305	        }
+   306	
+   307	        let mut data: &[u8] = &self.info.try_borrow_data()?;
+   308	        self.account = T::try_deserialize(&mut data)?;
+   309	        Ok(())
+   310	    }
+   311	
+   312	    /// Deserializes the given `info` into a `Account`.
+   313	    #[inline(never)]
+   314	    pub fn try_from(info: &'a AccountInfo<'a>) -> Result<Account<'a, T>> {
+   315	        if info.owner == &system_program::ID && info.lamports() == 0 {
+   316	            return Err(ErrorCode::AccountNotInitialized.into());
+   317	        }
+   318	        if info.owner != &T::owner() {
+   319	            return Err(Error::from(ErrorCode::AccountOwnedByWrongProgram)
+   320	                .with_pubkeys((*info.owner, T::owner())));
+   321	        }
+   322	        let mut data: &[u8] = &info.try_borrow_data()?;
+   323	        Ok(Account::new(info, T::try_deserialize(&mut data)?))
+   324	    }
+   325	
+   326	    /// Deserializes the given `info` into a `Account` without checking
+   327	    /// the account discriminator. Be careful when using this and avoid it if
+   328	    /// possible.
+   329	    #[inline(never)]
+   330	    pub fn try_from_unchecked(info: &'a AccountInfo<'a>) -> Result<Account<'a, T>> {
+   331	        if info.owner == &system_program::ID && info.lamports() == 0 {
+   332	            return Err(ErrorCode::AccountNotInitialized.into());
+   333	        }
+   334	        if info.owner != &T::owner() {
+   335	            return Err(Error::from(ErrorCode::AccountOwnedByWrongProgram)
+   110	    let account_name_str = account_name.to_string();
+   111	    let (impl_gen, type_gen, where_clause) = account_strct.generics.split_for_impl();
+   112	
+   113	    let discriminator = args
+   114	        .overrides
+   115	        .and_then(|ov| ov.discriminator)
+   116	        .unwrap_or_else(|| {
+   117	            // Namespace the discriminator to prevent collisions.
+   118	            let namespace = if namespace.is_empty() {
+   119	                "account"
+   120	            } else {
+   121	                &namespace
+   122	            };
+   123	
+   124	            gen_discriminator(namespace, account_name)
+   125	        });
+   126	    let disc = if account_strct.generics.lt_token.is_some() {
+   127	        quote! { #account_name::#type_gen::DISCRIMINATOR }
+   128	    } else {
+   129	        quote! { #account_name::DISCRIMINATOR }
+   130	    };
+   131	
+   132	    let owner_impl = {
+   133	        if namespace.is_empty() {
+   134	            quote! {
+   135	                #[automatically_derived]
+   136	                impl #impl_gen anchor_lang::Owner for #account_name #type_gen #where_clause {
+   137	                    fn owner() -> Pubkey {
+   138	                        crate::ID
+   139	                    }
+   140	                }
+   141	            }
+   142	        } else {
+   143	            quote! {}
+   144	        }
+   145	    };
+   146	
+   147	    let unsafe_bytemuck_impl = {
+   148	        if unsafe_bytemuck {
+   149	            quote! {
+   150	                #[automatically_derived]
+   151	                unsafe impl #impl_gen anchor_lang::__private::bytemuck::Pod for #account_name #type_gen #where_clause {}
+   152	                #[automatically_derived]
+   153	                unsafe impl #impl_gen anchor_lang::__private::bytemuck::Zeroable for #account_name #type_gen #where_clause {}
+   154	            }
+   155	        } else {
+   156	            quote! {}
+   157	        }
+   158	    };
+   159	
+   160	    let bytemuck_derives = {
+   161	        if !unsafe_bytemuck {
+   162	            quote! {
+   163	                #[zero_copy]
+   164	            }
+   165	        } else {
+   166	            quote! {
+   167	                #[zero_copy(unsafe)]
+   168	            }
+   169	        }
+   170	    };
+   171	
+   172	    proc_macro::TokenStream::from({
+   173	        if is_zero_copy {
+   174	            quote! {
+   175	                #bytemuck_derives
+   176	                #account_strct
+   177	
+   178	                #unsafe_bytemuck_impl
+   179	
+   180	                #[automatically_derived]
+   181	                impl #impl_gen anchor_lang::ZeroCopy for #account_name #type_gen #where_clause {}
+   182	
+   183	                #[automatically_derived]
+   184	                impl #impl_gen anchor_lang::Discriminator for #account_name #type_gen #where_clause {
+   185	                    const DISCRIMINATOR: &'static [u8] = #discriminator;
+   186	                }
+   187	
+   188	                // This trait is useful for clients deserializing accounts.
+   189	                // It's expected on-chain programs deserialize via zero-copy.
+   190	                #[automatically_derived]
+   191	                impl #impl_gen anchor_lang::AccountDeserialize for #account_name #type_gen #where_clause {
+   192	                    fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+   193	                        if buf.len() < #disc.len() {
+   194	                            return Err(anchor_lang::error::ErrorCode::AccountDiscriminatorNotFound.into());
+   195	                        }
+   196	                        let given_disc = &buf[..#disc.len()];
+   197	                        if #disc != given_disc {
+   198	                            return Err(anchor_lang::error!(anchor_lang::error::ErrorCode::AccountDiscriminatorMismatch).with_account_name(#account_name_str));
+   199	                        }
+   200	                        Self::try_deserialize_unchecked(buf)
+   201	                    }
+   202	
+   203	                    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+   204	                        let data: &[u8] = &buf[#disc.len()..];
+   205	                        // Re-interpret raw bytes into the POD data structure.
+   206	                        let account = anchor_lang::__private::bytemuck::from_bytes(data);
+   207	                        // Copy out the bytes into a new, owned data structure.
+   208	                        Ok(*account)
+   209	                    }
+   210	                }
+   211	
+   212	                #owner_impl
+   213	            }
+   214	        } else {
+   215	            let lazy = {
+   105	                ) -> anchor_lang::Result<()> {
+   106	                    #[cfg(not(feature = "no-log-ix-name"))]
+   107	                    anchor_lang::prelude::msg!(#ix_name_log);
+   108	
+   109	                    #param_validation
+   110	                    // Deserialize data.
+   111	                    let ix = instruction::#ix_name::deserialize(&mut &__ix_data[..])
+   112	                        .map_err(|_| anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
+   113	                    let instruction::#variant_arm = ix;
+   114	
+   115	                    // Bump collector.
+   116	                    let mut __bumps = <#accounts_struct_name as anchor_lang::Bumps>::Bumps::default();
+   117	
+   118	                    let mut __reallocs = std::collections::BTreeSet::new();
+   119	
+   120	                    // Deserialize accounts.
+   121	                    let mut __remaining_accounts = __accounts;
+   122	                    let mut __accounts = #accounts_struct_name::try_accounts(
+   123	                        __program_id,
+   124	                        &mut __remaining_accounts,
+   125	                        __ix_data,
+   126	                        &mut __bumps,
+   127	                        &mut __reallocs,
+   128	                    )?;
+   129	
+   130	                    unsafe fn __shrink_lifetime<'from, 'to, T>(value: &'from mut T) -> &'to mut T {
+   131	                        unsafe { ::core::mem::transmute(value) }
+   132	                    }
+   133	
+   134	                    // Invoke user defined handler.
+   135	                    let result = #program_name::#ix_method_name(
+   136	                        anchor_lang::context::Context::new(
+   137	                            __program_id,
+   138	                            // SAFETY: `__shrink_lifetime` is used to *shrink* the lifetime of
+   139	                            // the inner `AccountInfo` from `'info` to the local function lifetime.
+   140	                            // No lifetime is extended by this operation.
+   141	                            // The lifetime is not shrunk automatically as `RefCell` causes `AccountInfo`
+   142	                            // to be invariant.
+   143	                            // This is sound provided the following invariants hold:
+   144	                            // (1) The `'info` lifetime strictly outlives the local function
+   145	                            //     lifetime; therefore, the transmuted references cannot outlive
+   146	                            //     their backing data.
+   147	                            // (2) `AccountInfo` does not implement custom `Drop` logic and does not
+   148	                            //     rely on its lifetime parameter during destruction.
+   149	                            // (3) The `Context` value is dropped before the `__accounts` reference
+   150	                            //     is dropped or otherwise accessed, preventing any use-after-scope.
+   151	                            //
+   152	                            // This lifetime narrowing is required to conform to the `Context`
+   153	                            // struct’s single-lifetime parameterization, which uses a single
+   154	                            // lifetime to keep the API simple and ergonomic.
+   155	                            unsafe {
+   156	                                __shrink_lifetime(&mut __accounts)
+   157	                            },
+   158	                            __remaining_accounts,
+   159	                            __bumps,
+   160	                        ),
+   161	                        #(#ix_arg_names),*
+   162	                    )?;
+   163	
+   164	                    // Maybe set Solana return data.
+   165	                    #maybe_set_return_data
+   166	
+   167	                    // Exit routine.
+   168	                    __accounts.exit(__program_id)
+   169	                }
+   170	            }
+   171	        })
+   172	        .collect();
+   173	
+   174	    quote! {
+   175	        /// Create a private module to not clutter the program's namespace.
+   176	        /// Defines an entrypoint for each individual instruction handler
+   177	        /// wrapper.
+   178	        mod __private {
+   179	            use super::*;
+   180	
+   181	            /// __global mod defines wrapped handlers for global instructions.
+   182	            pub mod __global {
+   183	                use super::*;
+   184	
+   185	                #(#non_inlined_handlers)*
+   240	 "quote",
+   241	 "syn 1.0.109",
+   242	]
+   243	
+   244	[[package]]
+   245	name = "anchor-lang"
+   246	version = "1.0.2"
+   247	source = "registry+https://github.com/rust-lang/crates.io-index"
+   248	checksum = "1bac4de7c9a9a69180798af701e22302cc0ebf2ef683b843706a1b7809454735"
+   249	dependencies = [
+   250	 "anchor-attribute-access-control",
+   251	 "anchor-attribute-account",
+   252	 "anchor-attribute-constant",
+   253	 "anchor-attribute-error",
+   254	 "anchor-attribute-event",
+   255	 "anchor-attribute-program",
+     1	use anchor_lang::prelude::*;
+     2	
+     3	use crate::error::PlotArmorError;
+     4	use crate::modes::AnchorMode;
+     5	use crate::state::RegistryConfig;
+     6	
+     7	// Called first in every anchor-creating handler.
+     8	// On mainnet builds (feature = "mainnet"), Simulated is hardcoded-rejected in compiled code,
+     9	// not via any mutable config account. RegistryConfig gates only UserSigned and MultiParty.
+    10	pub fn assert_mode_allowed(anchor_mode_arg: u8, registry_config: &RegistryConfig) -> Result<()> {
+    11	    let mode = AnchorMode::from_u8(anchor_mode_arg)
+    12	        .map_err(|_| error!(PlotArmorError::AnchorModeNotAllowed))?;
+    13	
+    14	    #[cfg(feature = "mainnet")]
+    15	    require!(mode != AnchorMode::Simulated, PlotArmorError::SimulatedModeRejected);
+    16	
+    17	    // Symmetric environment gate: a build compiled for one network must not
+    18	    // accept an anchor_mode_arg asserting the other network's attestation.
+    19	    // Decided 2026-07-03 in Claude Chat (Option 1): extend the existing
+    20	    // feature-gated rejection pattern rather than leaving this caller-controlled.
+    21	    #[cfg(feature = "mainnet")]
+    22	    require!(
+    23	        mode != AnchorMode::AttestedDevnet,
+    24	        PlotArmorError::AnchorModeNotAllowed
+    25	    );
+    26	    #[cfg(not(feature = "mainnet"))]
+    27	    require!(
+    28	        mode != AnchorMode::AttestedMainnet,
+    29	        PlotArmorError::AnchorModeNotAllowed
+    30	    );
+    31	
+    32	    match mode {
+    33	        AnchorMode::UserSigned => {
+    34	            require!(
+    35	                registry_config.enabled_anchor_modes & (1u16 << 0) != 0,
+    36	                PlotArmorError::AnchorModeNotAllowed
+    37	            );
+    38	        }
+    39	        AnchorMode::MultiParty => {
+    40	            require!(
+    41	                registry_config.enabled_anchor_modes & (1u16 << 1) != 0,
+    42	                PlotArmorError::AnchorModeNotAllowed
+    43	            );
+    44	        }
+    45	        _ => {}
+    46	    }
+    47	
+    48	    Ok(())
+    49	}
+
+EXIT CODE: 0

@@ -1,0 +1,878 @@
+UTC: 2026-09-29T18:22:04.525267+00:00
+CWD: /home/sucka/plotarmor-demo
+ARGV: ['node', '/tmp/m2-pass4-independent/caller-encoding.cjs']
+<ref *1> Error: spawnSync git EPERM
+    at Object.spawnSync (node:internal/child_process:1120:20)
+    at spawnSync (node:child_process:911:24)
+    at execFileSync (node:child_process:954:15)
+    at /tmp/m2-pass4-independent/caller-encoding.cjs:17:231
+    at Object.<anonymous> (/tmp/m2-pass4-independent/caller-encoding.cjs:27:3)
+    at Module._compile (node:internal/modules/cjs/loader:1760:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1480:32)
+    at Module._load (node:internal/modules/cjs/loader:1299:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawnSync git',
+  path: 'git',
+  spawnargs: [
+    '-C',
+    '/home/sucka/plotarmor-demo',
+    'show',
+    'd9da574:src/anchor/plotarmor.json'
+  ],
+  error: [Circular *1],
+  status: 0,
+  signal: null,
+  output: [
+    null,
+    '{\n' +
+      '  "address": "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2",\n' +
+      '  "metadata": {\n' +
+      '    "name": "plotarmor",\n' +
+      '    "version": "0.1.0",\n' +
+      '    "spec": "0.1.0",\n' +
+      '    "description": "Created with Anchor"\n' +
+      '  },\n' +
+      '  "instructions": [\n' +
+      '    {\n' +
+      '      "name": "add_owner",\n' +
+      '      "discriminator": [211, 140, 15, 161, 64, 48, 232, 184],\n' +
+      '      "accounts": [\n' +
+      '        {\n' +
+      '          "name": "registry_config",\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 111, 110, 102, 105, 103]\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "work_claim",\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 108, 97, 105, 109]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim.root_artifact",\n' +
+      '                "account": "WorkClaim"\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim.claimant",\n' +
+      '                "account": "WorkClaim"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "ownership",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [111, 119, 110, 101, 114, 115, 104, 105, 112]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "new_owner_record",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [111, 119, 110, 101, 114]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "ownership"\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "new_owner"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "admin",\n' +
+      '          "writable": true,\n' +
+      '          "signer": true,\n' +
+      '          "relations": ["ownership"]\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "new_owner"\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "system_program",\n' +
+      '          "address": "11111111111111111111111111111111"\n' +
+      '        }\n' +
+      '      ],\n' +
+      '      "args": [\n' +
+      '        {\n' +
+      '          "name": "new_share",\n' +
+      '          "type": "u16"\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "new_role",\n' +
+      '          "type": "u8"\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "new_threshold_shares",\n' +
+      '          "type": "u16"\n' +
+      '        }\n' +
+      '      ]\n' +
+      '    },\n' +
+      '    {\n' +
+      '      "name": "add_version",\n' +
+      '      "discriminator": [167, 42, 0, 24, 83, 109, 61, 248],\n' +
+      '      "accounts": [\n' +
+      '        {\n' +
+      '          "name": "registry_config",\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 111, 110, 102, 105, 103]\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "work_claim",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 108, 97, 105, 109]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim.root_artifact",\n' +
+      '                "account": "WorkClaim"\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim.claimant",\n' +
+      '                "account": "WorkClaim"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "content_artifact",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 111, 110, 116, 101, 110, 116]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "arg",\n' +
+      '                "path": "raw_hash"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "claim_artifact_link",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 108, 97, 105, 109, 95, 97, 114, 116, 105, 102, 97, 99, 116]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim"\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "arg",\n' +
+      '                "path": "link_nonce"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "anchor_record",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [97, 110, 99, 104, 111, 114]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "content_artifact"\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "arg",\n' +
+      '                "path": "anchor_nonce"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "claimant",\n' +
+      '          "writable": true,\n' +
+      '          "signer": true,\n' +
+      '          "relations": ["work_claim"]\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "system_program",\n' +
+      '          "address": "11111111111111111111111111111111"\n' +
+      '        }\n' +
+      '      ],\n' +
+      '      "args": [\n' +
+      '        {\n' +
+      '          "name": "raw_hash",\n' +
+      '          "type": {\n' +
+      '            "array": ["u8", 32]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "content_kind",\n' +
+      '          "type": "u8"\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "link_nonce",\n' +
+      '          "type": {\n' +
+      '            "array": ["u8", 32]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "anchor_nonce",\n' +
+      '          "type": {\n' +
+      '            "array": ["u8", 32]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "anchor_mode_arg",\n' +
+      '          "type": "u8"\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "expected_previous_link",\n' +
+      '          "type": "pubkey"\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "external_ref_hash",\n' +
+      '          "type": {\n' +
+      '            "array": ["u8", 32]\n' +
+      '          }\n' +
+      '        }\n' +
+      '      ]\n' +
+      '    },\n' +
+      '    {\n' +
+      '      "name": "anchor_authorized_contract",\n' +
+      '      "discriminator": [210, 79, 150, 32, 196, 91, 92, 64],\n' +
+      '      "accounts": [\n' +
+      '        {\n' +
+      '          "name": "registry_config",\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 111, 110, 102, 105, 103]\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "work_claim",\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 108, 97, 105, 109]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim.root_artifact",\n' +
+      '                "account": "WorkClaim"\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim.claimant",\n' +
+      '                "account": "WorkClaim"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "ownership",\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [111, 119, 110, 101, 114, 115, 104, 105, 112]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "contract_artifact",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 111, 110, 116, 114, 97, 99, 116, 95, 97, 114, 116, 105, 102, 97, 99, 116]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "arg",\n' +
+      '                "path": "raw_contract_hash"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "authorized_contract_anchor",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [97, 117, 116, 104, 111, 114, 105, 122, 101, 100, 95, 99, 111, 110, 116, 114, 97, 99, 116]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "work_claim"\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "contract_artifact"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "anchor_record",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [97, 110, 99, 104, 111, 114]\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "account",\n' +
+      '                "path": "authorized_contract_anchor"\n' +
+      '              },\n' +
+      '              {\n' +
+      '                "kind": "arg",\n' +
+      '                "path": "anchor_nonce"\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "admin",\n' +
+      '          "writable": true,\n' +
+      '          "signer": true\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "system_program",\n' +
+      '          "address": "11111111111111111111111111111111"\n' +
+      '        }\n' +
+      '      ],\n' +
+      '      "args": [\n' +
+      '        {\n' +
+      '          "name": "raw_contract_hash",\n' +
+      '          "type": {\n' +
+      '            "array": ["u8", 32]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "contract_kind",\n' +
+      '          "type": "u8"\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "anchor_nonce",\n' +
+      '          "type": {\n' +
+      '            "array": ["u8", 32]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "anchor_mode_arg",\n' +
+      '          "type": "u8"\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "external_ref_hash",\n' +
+      '          "type": {\n' +
+      '            "array": ["u8", 32]\n' +
+      '          }\n' +
+      '        }\n' +
+      '      ]\n' +
+      '    },\n' +
+      '    {\n' +
+      '      "name": "anchor_evidence_contract",\n' +
+      '      "discriminator": [5, 43, 187, 2, 36, 176, 229, 86],\n' +
+      '      "accounts": [\n' +
+      '        {\n' +
+      '          "name": "registry_config",\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "const",\n' +
+      '                "value": [99, 111, 110, 102, 105, 103]\n' +
+      '              }\n' +
+      '            ]\n' +
+      '          }\n' +
+      '        },\n' +
+      '        {\n' +
+      '          "name": "contract_artifact",\n' +
+      '          "writable": true,\n' +
+      '          "pda": {\n' +
+      '            "seeds": [\n' +
+      '              {\n' +
+      '                "kind": "cons'... 17888 more characters,
+    ''
+  ],
+  pid: 11,
+  stdout: '{\n' +
+    '  "address": "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2",\n' +
+    '  "metadata": {\n' +
+    '    "name": "plotarmor",\n' +
+    '    "version": "0.1.0",\n' +
+    '    "spec": "0.1.0",\n' +
+    '    "description": "Created with Anchor"\n' +
+    '  },\n' +
+    '  "instructions": [\n' +
+    '    {\n' +
+    '      "name": "add_owner",\n' +
+    '      "discriminator": [211, 140, 15, 161, 64, 48, 232, 184],\n' +
+    '      "accounts": [\n' +
+    '        {\n' +
+    '          "name": "registry_config",\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 111, 110, 102, 105, 103]\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "work_claim",\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 108, 97, 105, 109]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim.root_artifact",\n' +
+    '                "account": "WorkClaim"\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim.claimant",\n' +
+    '                "account": "WorkClaim"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "ownership",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [111, 119, 110, 101, 114, 115, 104, 105, 112]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "new_owner_record",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [111, 119, 110, 101, 114]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "ownership"\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "new_owner"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "admin",\n' +
+    '          "writable": true,\n' +
+    '          "signer": true,\n' +
+    '          "relations": ["ownership"]\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "new_owner"\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "system_program",\n' +
+    '          "address": "11111111111111111111111111111111"\n' +
+    '        }\n' +
+    '      ],\n' +
+    '      "args": [\n' +
+    '        {\n' +
+    '          "name": "new_share",\n' +
+    '          "type": "u16"\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "new_role",\n' +
+    '          "type": "u8"\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "new_threshold_shares",\n' +
+    '          "type": "u16"\n' +
+    '        }\n' +
+    '      ]\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "name": "add_version",\n' +
+    '      "discriminator": [167, 42, 0, 24, 83, 109, 61, 248],\n' +
+    '      "accounts": [\n' +
+    '        {\n' +
+    '          "name": "registry_config",\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 111, 110, 102, 105, 103]\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "work_claim",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 108, 97, 105, 109]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim.root_artifact",\n' +
+    '                "account": "WorkClaim"\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim.claimant",\n' +
+    '                "account": "WorkClaim"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "content_artifact",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 111, 110, 116, 101, 110, 116]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "arg",\n' +
+    '                "path": "raw_hash"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "claim_artifact_link",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 108, 97, 105, 109, 95, 97, 114, 116, 105, 102, 97, 99, 116]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim"\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "arg",\n' +
+    '                "path": "link_nonce"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "anchor_record",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [97, 110, 99, 104, 111, 114]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "content_artifact"\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "arg",\n' +
+    '                "path": "anchor_nonce"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "claimant",\n' +
+    '          "writable": true,\n' +
+    '          "signer": true,\n' +
+    '          "relations": ["work_claim"]\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "system_program",\n' +
+    '          "address": "11111111111111111111111111111111"\n' +
+    '        }\n' +
+    '      ],\n' +
+    '      "args": [\n' +
+    '        {\n' +
+    '          "name": "raw_hash",\n' +
+    '          "type": {\n' +
+    '            "array": ["u8", 32]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "content_kind",\n' +
+    '          "type": "u8"\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "link_nonce",\n' +
+    '          "type": {\n' +
+    '            "array": ["u8", 32]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "anchor_nonce",\n' +
+    '          "type": {\n' +
+    '            "array": ["u8", 32]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "anchor_mode_arg",\n' +
+    '          "type": "u8"\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "expected_previous_link",\n' +
+    '          "type": "pubkey"\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "external_ref_hash",\n' +
+    '          "type": {\n' +
+    '            "array": ["u8", 32]\n' +
+    '          }\n' +
+    '        }\n' +
+    '      ]\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "name": "anchor_authorized_contract",\n' +
+    '      "discriminator": [210, 79, 150, 32, 196, 91, 92, 64],\n' +
+    '      "accounts": [\n' +
+    '        {\n' +
+    '          "name": "registry_config",\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 111, 110, 102, 105, 103]\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "work_claim",\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 108, 97, 105, 109]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim.root_artifact",\n' +
+    '                "account": "WorkClaim"\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim.claimant",\n' +
+    '                "account": "WorkClaim"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "ownership",\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [111, 119, 110, 101, 114, 115, 104, 105, 112]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "contract_artifact",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 111, 110, 116, 114, 97, 99, 116, 95, 97, 114, 116, 105, 102, 97, 99, 116]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "arg",\n' +
+    '                "path": "raw_contract_hash"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "authorized_contract_anchor",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [97, 117, 116, 104, 111, 114, 105, 122, 101, 100, 95, 99, 111, 110, 116, 114, 97, 99, 116]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "work_claim"\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "contract_artifact"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "anchor_record",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [97, 110, 99, 104, 111, 114]\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "account",\n' +
+    '                "path": "authorized_contract_anchor"\n' +
+    '              },\n' +
+    '              {\n' +
+    '                "kind": "arg",\n' +
+    '                "path": "anchor_nonce"\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "admin",\n' +
+    '          "writable": true,\n' +
+    '          "signer": true\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "system_program",\n' +
+    '          "address": "11111111111111111111111111111111"\n' +
+    '        }\n' +
+    '      ],\n' +
+    '      "args": [\n' +
+    '        {\n' +
+    '          "name": "raw_contract_hash",\n' +
+    '          "type": {\n' +
+    '            "array": ["u8", 32]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "contract_kind",\n' +
+    '          "type": "u8"\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "anchor_nonce",\n' +
+    '          "type": {\n' +
+    '            "array": ["u8", 32]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "anchor_mode_arg",\n' +
+    '          "type": "u8"\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "external_ref_hash",\n' +
+    '          "type": {\n' +
+    '            "array": ["u8", 32]\n' +
+    '          }\n' +
+    '        }\n' +
+    '      ]\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "name": "anchor_evidence_contract",\n' +
+    '      "discriminator": [5, 43, 187, 2, 36, 176, 229, 86],\n' +
+    '      "accounts": [\n' +
+    '        {\n' +
+    '          "name": "registry_config",\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "const",\n' +
+    '                "value": [99, 111, 110, 102, 105, 103]\n' +
+    '              }\n' +
+    '            ]\n' +
+    '          }\n' +
+    '        },\n' +
+    '        {\n' +
+    '          "name": "contract_artifact",\n' +
+    '          "writable": true,\n' +
+    '          "pda": {\n' +
+    '            "seeds": [\n' +
+    '              {\n' +
+    '                "kind": "cons'... 17888 more characters,
+  stderr: ''
+}
+
+EXIT CODE: 1

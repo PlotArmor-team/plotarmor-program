@@ -1,0 +1,36 @@
+UTC: 2026-09-29T18:27:30.738859+00:00
+CWD: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+ARGV: ['cargo', 'test', '--locked', '--offline', '--test', 'sign_contract_tests', 'paused_registry_rejects_sign_contract', '--', '--exact', '--nocapture']
+   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+warning: field `payer` is never read
+  --> programs/plotarmor/tests/common/mod.rs:28:9
+   |
+26 | pub struct TestContext {
+   |            ----------- field in this struct
+27 |     pub svm: LiteSVM,
+28 |     pub payer: Keypair,
+   |         ^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `plotarmor` (test "sign_contract_tests") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.83s
+     Running tests/sign_contract_tests.rs (target/debug/deps/sign_contract_tests-2738082cbb34a9c5)
+
+running 1 test
+
+thread 'paused_registry_rejects_sign_contract' (312) panicked at programs/plotarmor/tests/sign_contract_tests.rs:427:10:
+sign_contract must be rejected while the registry is paused: TransactionMetadata { signature: 282tYmoRYBFayPZ31jbCGgX5i7DP2Zux8wEz9TK168jUnyHwTyDNoAgpp8BynCtgnyRHpKpR34XSaRoX8sCkhx7a, logs: ["Program 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 invoke [1]", "Program log: Instruction: SignContract", "Program 11111111111111111111111111111111 invoke [2]", "Program 11111111111111111111111111111111 success", "Program 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 consumed 14214 of 200000 compute units", "Program 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 success"], inner_instructions: [[InnerInstruction { instruction: CompiledInstruction { program_id_index: 2, accounts: [0, 1], data: [0, 0, 0, 0, 176, 113, 26, 0, 0, 0, 0, 0, 121, 0, 0, 0, 0, 0, 0, 0, 39, 255, 226, 183, 89, 161, 245, 200, 40, 74, 140, 185, 151, 155, 85, 44, 107, 139, 148, 137, 190, 13, 172, 225, 144, 207, 69, 18, 56, 13, 8, 11] }, stack_height: 2 }]], compute_units_consumed: 14214, return_data: TransactionReturnData { program_id: 11111111111111111111111111111111, data: [] }, fee: 5000 }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test paused_registry_rejects_sign_contract ... FAILED
+
+failures:
+
+failures:
+    paused_registry_rejects_sign_contract
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.49s
+
+error: test failed, to rerun pass `--test sign_contract_tests`
+
+EXIT CODE: 101

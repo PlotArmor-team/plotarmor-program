@@ -1,0 +1,10 @@
+--- 7c267e9/sign_contract.rs
++++ scratch-mutant/sign_contract.rs
+@@ -73,7 +73,6 @@
+     content_hash: [u8; 32],
+ ) -> Result<()> {
+     // 1. Reject if paused. First check, matching the other five instructions.
+-    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+ 
+     // 2. The client's asserted content hash must match the on-chain artifact.
+     require!(

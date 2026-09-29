@@ -1,0 +1,7 @@
+UTC: 2026-09-29T18:23:40.583707+00:00
+CWD: /home/sucka/plotarmor-demo
+ARGV: ['git', 'ls-remote', 'origin', 'refs/heads/main', 'refs/heads/feat/wallet-bindings', 'refs/heads/fix/sign-contract-registry-config', 'refs/heads/feat/notifications']
+5aaff08fc87819b5f27148df5c37cf5f7317a878	refs/heads/feat/wallet-bindings
+34fed7c55b601173fac0a3572fe0442dc8d09f91	refs/heads/main
+
+EXIT CODE: 0

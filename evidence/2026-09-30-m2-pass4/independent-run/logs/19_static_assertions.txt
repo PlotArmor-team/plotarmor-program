@@ -1,0 +1,45 @@
+UTC: 2026-09-29T18:30:23.224880+00:00
+CWD: /home/sucka/plotarmor-program
+ARGV: ['python3', '/tmp/m2-pass4-independent/static_checks.py']
+add_owner.rs:9 '#[account(\n        seeds = [b"config"],\n        bump,\n    )]\n    pub registry_config: Account<\'info, RegistryConfig>,' MATCH
+add_version.rs:18 '#[account(\n        seeds = [b"config"],\n        bump,\n    )]\n    pub registry_config: Account<\'info, RegistryConfig>,' MATCH
+anchor_authorized_contract.rs:18 '#[account(\n        seeds = [b"config"],\n        bump,\n    )]\n    pub registry_config: Account<\'info, RegistryConfig>,' MATCH
+anchor_evidence_contract.rs:17 '#[account(\n        seeds = [b"config"],\n        bump,\n    )]\n    pub registry_config: Account<\'info, RegistryConfig>,' MATCH
+register_work_claim.rs:23 '#[account(\n        seeds = [b"config"],\n        bump,\n    )]\n    pub registry_config: Account<\'info, RegistryConfig>,' MATCH
+sign_contract.rs:14 '#[account(\n        seeds = [b"config"],\n        bump,\n    )]\n    pub registry_config: Account<\'info, RegistryConfig>,' MATCH
+/home/sucka/plotarmor-program/target/idl/plotarmor.json ORDER ['registry_config', 'contract_artifact', 'contract_signature', 'signer', 'system_program']
+Paused error: {'code': 6008, 'name': 'Paused', 'msg': 'Program is paused'}
+/home/sucka/plotarmor-demo/src/anchor/plotarmor.json ORDER ['registry_config', 'contract_artifact', 'contract_signature', 'signer', 'system_program']
+Paused error: {'code': 6008, 'name': 'Paused', 'msg': 'Program is paused'}
+Full IDLs JSON equality: True
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/scripts/devnet_sign_contract_test.ts:155: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/scripts/devnet_sign_contract_adversarial_test.ts:127: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/scripts/devnet_sign_contract_adversarial_test.ts:155: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/scripts/devnet_sign_contract_adversarial_test.ts:168: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/scripts/devnet_sign_contract_adversarial_test.ts:198: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/tests/plotarmor.ts:561: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/tests/plotarmor.ts:1103: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/tests/plotarmor.ts:1126: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/tests/plotarmor.ts:1138: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch/tests/plotarmor.ts:1163: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo/.m2-pass4-scratch signContract builders: 10
+/home/sucka/plotarmor-demo/src/ContractsApp.tsx:1202: accounts=['registryConfig', 'contractArtifact', 'contractSignature', 'signer', 'systemProgram']
+/home/sucka/plotarmor-demo signContract builders: 1
+/home/sucka/plotarmor-kora signContract builders: 0
+DEVNET CONFIG verified owner, length, discriminator; schema_version= 1 enabled_anchor_modes= 0 paused= 0
+All 44 archived tracked files restored byte-for-byte to 7c267e9.
+COLD ARTIFACT placeholder: UNSET-PLACEHOLDER-DO-NOT-DEPLOY@example.invalid offset= 421383
+COLD ARTIFACT placeholder: UNSET-PLACEHOLDER-DO-NOT-DEPLOY offset= 421383
+Source repositories statuses:
+/home/sucka/plotarmor-program ?? evidence/
+
+/home/sucka/plotarmor-demo ?? .m2-pass4-scratch/
+?? evidence/2026-09-24-wallet-switch/
+
+/home/sucka/plotarmor-kora  M README.md
+?? evidence/
+?? scripts/verify_stateful_signing.mjs
+?? scripts/verify_stateful_signing.test.mjs
+
+
+EXIT CODE: 0

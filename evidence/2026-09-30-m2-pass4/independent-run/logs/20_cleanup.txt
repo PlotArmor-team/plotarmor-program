@@ -1,0 +1,14 @@
+Removed audit-created scratch directory: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+Exists after cleanup: False
+
+$ git -C /home/sucka/plotarmor-program status --short
+?? evidence/
+
+$ git -C /home/sucka/plotarmor-demo status --short
+?? evidence/2026-09-24-wallet-switch/
+
+$ git -C /home/sucka/plotarmor-kora status --short
+ M README.md
+?? evidence/
+?? scripts/verify_stateful_signing.mjs
+?? scripts/verify_stateful_signing.test.mjs

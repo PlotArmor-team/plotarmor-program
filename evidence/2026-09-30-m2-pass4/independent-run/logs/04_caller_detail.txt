@@ -1,0 +1,438 @@
+UTC: 2026-09-29T18:21:04.191346+00:00
+CWD: /home/sucka/plotarmor-program
+ARGV: ['bash', '-c', 'git -C /home/sucka/plotarmor-demo branch -avv; git -C /home/sucka/plotarmor-demo branch -r --contains d9da574; nl -ba /home/sucka/plotarmor-kora/scripts/verify_stateful_signing.mjs | sed -n "1,68p"; nl -ba /home/sucka/plotarmor-kora/README.md | sed -n "325,355p;550,570p"; rg -n -C 2 "signContract|sign_contract" /home/sucka/plotarmor-kora --glob "!.git/**" --glob "!evidence/**"; nl -ba /home/sucka/.cargo/registry/src/*/anchor-syn-1.0.2/src/codegen/accounts/constraints.rs | sed -n "1170,1220p"; nl -ba /home/sucka/.cargo/registry/src/*/anchor-attribute-account-1.0.2/src/lib.rs | sed -n "55,110p"; nl -ba /home/sucka/plotarmor-demo/src/anchor/plotarmor.ts | sed -n "735,810p"; git ls-files target; git diff 7c267e9^ 7c267e9 -- programs/plotarmor/src; cat evidence/2026-09-30-m2-pass4/06a_devnet_program_state.txt']
+* feat/notifications                  312c043 Record overview fact-check evidence for 2026-09-25
+  feat/wallet-bindings                5aaff08 [origin/feat/wallet-bindings] Add session-bound wallet identity verification
+  fix/sign-contract-registry-config   d9da574 Add registry_config to client sign_contract call, sync IDL to program source
+  main                                34fed7c [origin/main] Align history failure messages and add browser verification
+  remotes/origin/HEAD                 -> origin/main
+  remotes/origin/feat/wallet-bindings 5aaff08 Add session-bound wallet identity verification
+  remotes/origin/main                 34fed7c Align history failure messages and add browser verification
+     1	#!/usr/bin/env node
+     2	// Devnet only. Setup broadcasts an ordinary-wallet registration. Probes never broadcast.
+     3	import assert from 'node:assert/strict';
+     4	import { createHash, randomUUID } from 'node:crypto';
+     5	import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+     6	import { createRequire } from 'node:module';
+     7	import { pathToFileURL } from 'node:url';
+     8	import { dirname } from 'node:path';
+     9	import { hmac, inspectSignedTransaction } from './verify_live_sign_transaction.mjs';
+    10	import { buildRegistrationProbe } from './verify_register_work_claim.mjs';
+    11	import { PROGRAM, DEVNET_GENESIS_HASH } from './verify_plotarmor_sign_transaction.mjs';
+    12	
+    13	const require = createRequire(new URL('../../plotarmor-program/package.json', import.meta.url));
+    14	const { PublicKey, Transaction, TransactionInstruction, Keypair } = require('@solana/web3.js');
+    15	const { BorshInstructionCoder, BorshAccountsCoder } = require('@coral-xyz/anchor');
+    16	const idlBytes = readFileSync(new URL('../../plotarmor-program/target/idl/plotarmor.json', import.meta.url));
+    17	const idl = JSON.parse(idlBytes);
+    18	const coder = new BorshInstructionCoder(idl);
+    19	const accountsCoder = new BorshAccountsCoder(idl);
+    20	const system = '11111111111111111111111111111111';
+    21	const lighthouse = 'L2TExMFKdjpN9kozasaurPirfHy9P8sbXoAN1qA3S95';
+    22	const koraUrl = 'https://plotarmor-kora-devnet.onrender.com';
+    23	const devnetUrl = 'https://api.devnet.solana.com';
+    24	const sha = value => createHash('sha256').update(value).digest();
+    25	const pk = value => new PublicKey(value);
+    26	const pda = (...seeds) => PublicKey.findProgramAddressSync(seeds.map(s => typeof s === 'string' ? Buffer.from(s) : s), pk(PROGRAM))[0].toBase58();
+    27	const layouts = {
+    28	  add_version: [['registry_config',0,0],['work_claim',1,0],['content_artifact',1,0],['claim_artifact_link',1,0],['anchor_record',1,0],['claimant',1,1],['system_program',0,0]],
+    29	  add_owner: [['registry_config',0,0],['work_claim',0,0],['ownership',1,0],['new_owner_record',1,0],['admin',1,1],['new_owner',0,0],['system_program',0,0]],
+    30	  anchor_authorized_contract: [['registry_config',0,0],['work_claim',0,0],['ownership',0,0],['contract_artifact',1,0],['authorized_contract_anchor',1,0],['anchor_record',1,0],['admin',1,1],['system_program',0,0]],
+    31	};
+    32	
+    33	export function buildStatefulProbe(name, payer, authority, blockhash, fixture, intent, newOwner) {
+    34	  assert.equal(idl.address, PROGRAM);
+    35	  assert.notEqual(payer, authority, 'Rent payer must differ from Kora');
+    36	  assert.ok(intent && layouts[name]);
+    37	  const layout = layouts[name];
+    38	  const definition = idl.instructions.find(i => i.name === name);
+    39	  assert.deepEqual(definition.accounts.map(a => [a.name, +!!a.writable, +!!a.signer]), layout);
+    40	  const raw = sha(`${intent}:${name}:content`), link = sha(`${intent}:${name}:link`), nonce = sha(`${intent}:${name}:anchor`);
+    41	  const a = { registry_config: pda('config'), work_claim: fixture.work_claim,
+    42	    ownership: fixture.ownership, claimant: authority, admin: authority, system_program: system };
+    43	  let args;
+    44	  if (name === 'add_version') {
+    45	    a.content_artifact = pda('content', raw);
+    46	    a.claim_artifact_link = pda('claim_artifact', pk(a.work_claim).toBuffer(), link);
+    47	    a.anchor_record = pda('anchor', pk(a.content_artifact).toBuffer(), nonce);
+    48	    args = { raw_hash: [...raw], content_kind: 0, link_nonce: [...link], anchor_nonce: [...nonce],
+    49	      anchor_mode_arg: 1, expected_previous_link: pk(fixture.latest_link), external_ref_hash: Array(32).fill(0) };
+    50	  } else if (name === 'add_owner') {
+    51	    assert.notEqual(newOwner, authority);
+    52	    assert.notEqual(newOwner, payer, 'Do not attribute synthetic ownership to Kora');
+    53	    a.new_owner = newOwner;
+    54	    a.new_owner_record = pda('owner', pk(a.ownership).toBuffer(), pk(newOwner).toBuffer());
+    55	    args = { new_share: 1, new_role: 0, new_threshold_shares: 1 };
+    56	  } else {
+    57	    a.contract_artifact = pda('contract_artifact', raw);
+    58	    a.authorized_contract_anchor = pda('authorized_contract', pk(a.work_claim).toBuffer(), pk(a.contract_artifact).toBuffer());
+    59	    a.anchor_record = pda('anchor', pk(a.authorized_contract_anchor).toBuffer(), nonce);
+    60	    args = { raw_contract_hash: [...raw], contract_kind: 0, anchor_nonce: [...nonce], anchor_mode_arg: 1, external_ref_hash: Array(32).fill(0) };
+    61	  }
+    62	  const instruction = new TransactionInstruction({ programId: pk(PROGRAM), data: coder.encode(name, args),
+    63	    keys: layout.map(([key,w,s]) => ({ pubkey: pk(a[key]), isWritable: !!w, isSigner: !!s })) });
+    64	  const transaction = new Transaction({ feePayer: pk(payer), recentBlockhash: blockhash }).add(instruction);
+    65	  return { transaction, accounts: Object.fromEntries(layout.map(([key]) => [key,a[key]])), args };
+    66	}
+    67	
+    68	export function verifyReturned(result, payer, originalWire, authority) {
+   325	
+   326	### Genuine PlotArmor signing probe (no broadcast)
+   327	
+   328	The human subsequently confirmed wrong-HMAC HTTP 401 and rejection of a
+   329	System-only transaction by `require_one_of_programs`. Those checks do not yet
+   330	establish successful PlotArmor signing.
+   331	
+   332	[scripts/verify_plotarmor_sign_transaction.mjs](scripts/verify_plotarmor_sign_transaction.mjs)
+   333	uses `anchor_evidence_contract`. Read-only inspection of the sibling
+   334	`../plotarmor-program/target/idl/plotarmor.json` and all seven instruction account
+   335	structs found:
+   336	
+   337	| Instruction | Accounts | Existing state or authority needed |
+   338	| --- | --- | --- |
+   339	| `anchor_evidence_contract` | 6 | RegistryConfig only; funded anchorer |
+   340	| `register_work_claim` | 9 | RegistryConfig only; funded claimant |
+   341	| `sign_contract` | 5 | RegistryConfig and existing ContractArtifact |
+   342	| `add_version` | 7 | RegistryConfig and existing claimant-owned WorkClaim |
+   343	| `add_owner` | 7 | RegistryConfig, WorkClaim, Ownership, matching admin |
+   344	| `anchor_authorized_contract` | 8 | RegistryConfig, WorkClaim, Ownership, matching admin |
+   345	| `init_registry_config` | 5 | Upgrade authority; singleton must not already exist |
+   346	
+   347	Evidence anchoring has fewer accounts than registration while requiring no
+   348	existing user records. Its argument order is `raw_contract_hash: [u8;32]`,
+   349	`contract_kind: u8`, `anchor_nonce: [u8;32]`, `anchor_mode_arg: u8`,
+   350	`asserted_work_claim: Pubkey`, `external_ref_hash: [u8;32]`. The discriminator is
+   351	`[5,43,187,2,36,176,229,86]`. Account order and PDA seeds are:
+   352	
+   353	1. RegistryConfig: `["config"]`, readonly.
+   354	2. ContractArtifact: `["contract_artifact", raw_contract_hash]`, writable.
+   355	3. EvidenceAnchor: `["evidence", anchorer, contract_artifact]`, writable.
+   550	key bytes, seed phrase, container environment, or unscreened logs. Deployment to
+   551	Render remains a separate human action after review and secret setup.
+   552	
+   553	## Verification record
+   554	
+   555	**Update, 2026-09-17:** live probes for `add_version`, `add_owner`, and
+   556	`anchor_authorized_contract` passed on their first attempts, along with a fresh
+   557	`register_work_claim` signing probe. All four include verified Kora signatures,
+   558	preserved PlotArmor instructions, Lighthouse assertions, authority signatures and
+   559	successful fully signed devnet simulations. This run produced **4 qualifying live
+   560	passes**. Distinct instruction coverage is now **5/6**, including the historical
+   561	evidence-anchor pass; `sign_contract` remains unprobed and its current client shape
+   562	requires M2 deployment alignment. Exactly one ordinary-wallet registration was
+   563	broadcast for setup; no Kora-signed transaction was broadcast. See the
+   564	[raw-artifact report](evidence/2026-09-17-stateful-probes-001/REPORT.md) for the setup
+   565	signature, per-instruction requests/responses, simulation outputs and rent deltas.
+   566	
+   567	The record below is the historical pre-2026-09-17 baseline. Its 2-of-4 count and
+   568	no-setup-broadcast statement are superseded by the update above; untested controls
+   569	and the historical evidence-anchor status are not upgraded by these new probes.
+   570	
+/home/sucka/plotarmor-kora/README.md-339-| `anchor_evidence_contract` | 6 | RegistryConfig only; funded anchorer |
+/home/sucka/plotarmor-kora/README.md-340-| `register_work_claim` | 9 | RegistryConfig only; funded claimant |
+/home/sucka/plotarmor-kora/README.md:341:| `sign_contract` | 5 | RegistryConfig and existing ContractArtifact |
+/home/sucka/plotarmor-kora/README.md-342-| `add_version` | 7 | RegistryConfig and existing claimant-owned WorkClaim |
+/home/sucka/plotarmor-kora/README.md-343-| `add_owner` | 7 | RegistryConfig, WorkClaim, Ownership, matching admin |
+--
+/home/sucka/plotarmor-kora/README.md-559-successful fully signed devnet simulations. This run produced **4 qualifying live
+/home/sucka/plotarmor-kora/README.md-560-passes**. Distinct instruction coverage is now **5/6**, including the historical
+/home/sucka/plotarmor-kora/README.md:561:evidence-anchor pass; `sign_contract` remains unprobed and its current client shape
+/home/sucka/plotarmor-kora/README.md-562-requires M2 deployment alignment. Exactly one ordinary-wallet registration was
+/home/sucka/plotarmor-kora/README.md-563-broadcast for setup; no Kora-signed transaction was broadcast. See the
+--
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1079-    },
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1080-    {
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json:1081:      "name": "sign_contract",
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1082-      "discriminator": [
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1083-        145,
+--
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-23-
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-24-The account structs confirm RegistryConfig is already first in all three shapes.
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md:25:The M2 commit 7c267e9 changes sign_contract only among program instructions.
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-26-Rent payer is claimant for add_version and admin for add_owner and
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-27-anchor_authorized_contract. These probes do not depend on the M2 redeploy.
+--
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-79-
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-80-Full six-instruction coverage still needs these three live passes plus
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md:81:sign_contract coverage, with its current five-account shape requiring M2
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-82-deployment alignment. Existing registration/evidence signing passes remain
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-83-historical; registration has not been refreshed by this blocked run.
+--
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-65-
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-66-Historical plus current evidence now covers **5 of 6 application instructions**.
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md:67:sign_contract remains unprobed through Kora; its current five-account client
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-68-shape needs the pending M2 deployment alignment. anchor_evidence_contract retains
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-69-its historical pass and was not refreshed here. Thus four shapes have fresh
+--
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1079-    },
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1080-    {
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json:1081:      "name": "sign_contract",
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1082-      "discriminator": [
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1083-        145,
+--
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1079-    },
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1080-    {
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json:1081:      "name": "sign_contract",
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1082-      "discriminator": [
+/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1083-        145,
+  1170	fn generate_constraint_seeds(f: &Field, c: &ConstraintSeedsGroup) -> proc_macro2::TokenStream {
+  1171	    if c.is_init {
+  1172	        // Note that for `#[account(init, seeds)]`, the seed generation and checks is checked in
+  1173	        // the init constraint find_pda/validate_pda block, so we don't do anything here and
+  1174	        // return nothing!
+  1175	        quote! {}
+  1176	    } else {
+  1177	        let name = &f.ident;
+  1178	        let name_str = name.to_string();
+  1179	
+  1180	        let deriving_program_id = c
+  1181	            .program_seed
+  1182	            .clone()
+  1183	            // If they specified a seeds::program to use when deriving the PDA, use it.
+  1184	            .map(|program_id| quote! { #program_id.key() })
+  1185	            // Otherwise fall back to the current program's program_id.
+  1186	            .unwrap_or(quote! { __program_id });
+  1187	        // Convenience: how we store the bump so the caller can access it later.
+  1188	        let bump_store = if f.is_optional {
+  1189	            quote!(Some(__bump))
+  1190	        } else {
+  1191	            quote!(__bump)
+  1192	        };
+  1193	
+  1194	        // Build the PDA.
+  1195	        let define_pda = match (&c.seeds, &c.bump) {
+  1196	            // [list], no bump -> find_program_address + store __bump.
+  1197	            (SeedsExpr::List(list), None) => {
+  1198	                let maybe_seeds_plus_comma = (!list.is_empty()).then(|| quote! { #list, });
+  1199	                quote! {
+  1200	                    let (__pda_address, __bump) = Pubkey::find_program_address(
+  1201	                        &[ #maybe_seeds_plus_comma ],
+  1202	                        &#deriving_program_id,
+  1203	                    );
+  1204	                    __bumps.#name = #bump_store;
+  1205	                }
+  1206	            }
+  1207	
+  1208	            // [list], explicit bump -> create_program_address with list + bump.
+  1209	            (SeedsExpr::List(list), Some(b)) => {
+  1210	                let maybe_seeds_plus_comma = (!list.is_empty()).then(|| quote! { #list, });
+  1211	                quote! {
+  1212	                    let __pda_address = Pubkey::create_program_address(
+  1213	                        &[ #maybe_seeds_plus_comma &[#b][..] ],
+  1214	                        &#deriving_program_id,
+  1215	                    ).map_err(|_| anchor_lang::error::Error::from(
+  1216	                        anchor_lang::error::ErrorCode::ConstraintSeeds
+  1217	                    ).with_account_name(#name_str))?;
+  1218	                }
+  1219	            }
+  1220	
+    55	///     - `discriminator = MY_DISC`
+    56	///     - `discriminator = get_disc(...)`
+    57	///
+    58	/// # Zero Copy Deserialization
+    59	///
+    60	/// **WARNING**: Zero copy deserialization is an experimental feature. It's
+    61	/// recommended to use it only when necessary, i.e., when you have extremely
+    62	/// large accounts that cannot be Borsh deserialized without hitting stack or
+    63	/// heap limits.
+    64	///
+    65	/// ## Usage
+    66	///
+    67	/// To enable zero-copy-deserialization, one can pass in the `zero_copy`
+    68	/// argument to the macro as follows:
+    69	///
+    70	/// ```ignore
+    71	/// #[account(zero_copy)]
+    72	/// ```
+    73	///
+    74	/// This can be used to conveniently implement
+    75	/// [`ZeroCopy`](./trait.ZeroCopy.html) so that the account can be used
+    76	/// with [`AccountLoader`](./accounts/account_loader/struct.AccountLoader.html).
+    77	///
+    78	/// Other than being more efficient, the most salient benefit this provides is
+    79	/// the ability to define account types larger than the max stack or heap size.
+    80	/// When using borsh, the account has to be copied and deserialized into a new
+    81	/// data structure and thus is constrained by stack and heap limits imposed by
+    82	/// the BPF VM. With zero copy deserialization, all bytes from the account's
+    83	/// backing `RefCell<&mut [u8]>` are simply re-interpreted as a reference to
+    84	/// the data structure. No allocations or copies necessary. Hence the ability
+    85	/// to get around stack and heap limitations.
+    86	///
+    87	/// To facilitate this, all fields in an account must be constrained to be
+    88	/// "plain old  data", i.e., they must implement
+    89	/// [`Pod`](https://docs.rs/bytemuck/latest/bytemuck/trait.Pod.html). Please review the
+    90	/// [`safety`](https://docs.rs/bytemuck/latest/bytemuck/trait.Pod.html#safety)
+    91	/// section before using.
+    92	///
+    93	/// Using `zero_copy` requires adding the following dependency to your `Cargo.toml` file:
+    94	///
+    95	/// ```toml
+    96	/// bytemuck = { version = "1.17", features = ["derive", "min_const_generics"] }
+    97	/// ```
+    98	#[proc_macro_attribute]
+    99	pub fn account(
+   100	    args: proc_macro::TokenStream,
+   101	    input: proc_macro::TokenStream,
+   102	) -> proc_macro::TokenStream {
+   103	    let args = parse_macro_input!(args as AccountArgs);
+   104	    let namespace = args.namespace.unwrap_or_default();
+   105	    let is_zero_copy = args.zero_copy.is_some();
+   106	    let unsafe_bytemuck = args.zero_copy.unwrap_or_default();
+   107	
+   108	    let account_strct = parse_macro_input!(input as syn::ItemStruct);
+   109	    let account_name = &account_strct.ident;
+   110	    let account_name_str = account_name.to_string();
+   735	          };
+   736	        },
+   737	      ];
+   738	    },
+   739	    {
+   740	      name: "signContract";
+   741	      discriminator: [145, 83, 234, 177, 104, 87, 183, 156];
+   742	      accounts: [
+   743	        {
+   744	          name: "registryConfig";
+   745	          pda: {
+   746	            seeds: [
+   747	              {
+   748	                kind: "const";
+   749	                value: [99, 111, 110, 102, 105, 103];
+   750	              },
+   751	            ];
+   752	          };
+   753	        },
+   754	        {
+   755	          name: "contractArtifact";
+   756	          pda: {
+   757	            seeds: [
+   758	              {
+   759	                kind: "const";
+   760	                value: [99, 111, 110, 116, 114, 97, 99, 116, 95, 97, 114, 116, 105, 102, 97, 99, 116];
+   761	              },
+   762	              {
+   763	                kind: "account";
+   764	                path: "contract_artifact.raw_hash";
+   765	                account: "contractArtifact";
+   766	              },
+   767	            ];
+   768	          };
+   769	        },
+   770	        {
+   771	          name: "contractSignature";
+   772	          writable: true;
+   773	          pda: {
+   774	            seeds: [
+   775	              {
+   776	                kind: "const";
+   777	                value: [115, 105, 103, 110, 97, 116, 117, 114, 101];
+   778	              },
+   779	              {
+   780	                kind: "account";
+   781	                path: "contractArtifact";
+   782	              },
+   783	              {
+   784	                kind: "account";
+   785	                path: "signer";
+   786	              },
+   787	            ];
+   788	          };
+   789	        },
+   790	        {
+   791	          name: "signer";
+   792	          writable: true;
+   793	          signer: true;
+   794	        },
+   795	        {
+   796	          name: "systemProgram";
+   797	          address: "11111111111111111111111111111111";
+   798	        },
+   799	      ];
+   800	      args: [
+   801	        {
+   802	          name: "contentHash";
+   803	          type: {
+   804	            array: ["u8", 32];
+   805	          };
+   806	        },
+   807	      ];
+   808	    },
+   809	  ];
+   810	  accounts: [
+diff --git a/programs/plotarmor/src/instructions/sign_contract.rs b/programs/plotarmor/src/instructions/sign_contract.rs
+index 8dace66..b786233 100644
+--- a/programs/plotarmor/src/instructions/sign_contract.rs
++++ b/programs/plotarmor/src/instructions/sign_contract.rs
+@@ -1,11 +1,22 @@
+ use anchor_lang::prelude::*;
+ 
+ use crate::error::PlotArmorError;
+-use crate::state::{ContractArtifact, ContractSignature};
++use crate::state::{ContractArtifact, ContractSignature, RegistryConfig};
+ 
+ #[derive(Accounts)]
+ #[instruction(content_hash: [u8; 32])]
+ pub struct SignContract<'info> {
++    // Added 2026-09-04 (audit M2). sign_contract was previously the ONLY instruction
++    // taking no RegistryConfig, so it could not honour the paused flag and sat outside
++    // the kill-switch surface the other five respect. Same shape as the other five:
++    // Account (not mut), const seed, paused checked in the handler. This does NOT add a
++    // pause setter; the kill switch itself stays deferred (Known v1 limitations, item C).
++    #[account(
++        seeds = [b"config"],
++        bump,
++    )]
++    pub registry_config: Account<'info, RegistryConfig>,
++
+     // The contract being signed. Must already exist on-chain; ContractArtifact
+     // is never init'd here (sign_contract does not stand alone -- see spec §Design decisions #3).
+     // Seeds re-derived from the account's OWN stored raw_hash (not the client's
+@@ -61,6 +72,10 @@ pub fn handler(
+     ctx: Context<SignContract>,
+     content_hash: [u8; 32],
+ ) -> Result<()> {
++    // 1. Reject if paused. First check, matching the other five instructions.
++    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
++
++    // 2. The client's asserted content hash must match the on-chain artifact.
+     require!(
+         content_hash == ctx.accounts.contract_artifact.raw_hash,
+         PlotArmorError::ContentHashMismatch
+Tue Sep 29 18:12:34 UTC 2026
+solana-cli 4.0.1 (src:e4e3aa49; feat:6ff76655, client:Agave)
+### solana program show (devnet)
+
+Program Id: 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2
+Owner: BPFLoaderUpgradeab1e11111111111111111111111
+ProgramData Address: Dr8S95D7bHGBrd6gFSAommQjBNH1qcBMJpofe9ooLRpL
+Authority: EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
+Last Deployed In Slot: 476301346
+Data Length: 471960 (0x73398) bytes
+Balance: 3.28604568 SOL
+
+### RegistryConfig PDA
+RegistryConfig PDA (seeds ["config"]): BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG
+BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG
+### account on devnet
+{
+  "pubkey": "BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG",
+  "account": {
+    "lamports": 1197120,
+    "data": [
+      "F3YK9q3n85zMFOLqP7ntSZlPw/SBeZl+kzpo9JlQnVKUOnKMk9XSKgEAAAA=",
+      "base64"
+    ],
+    "owner": "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2",
+    "executable": false,
+    "rentEpoch": 18446744073709551615,
+    "space": 44
+  }
+}
+### decoded RegistryConfig
+len 44
+discriminator [23, 118, 10, 246, 173, 231, 243, 156] expected sha256('account:RegistryConfig')[:8] = [23, 118, 10, 246, 173, 231, 243, 156]
+authority EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
+schema_version 1
+enabled_anchor_modes 0
+paused 0
+
+EXIT CODE: 0

@@ -1,0 +1,19 @@
+UTC: 2026-09-29T18:29:29.802593+00:00
+CWD: /home/sucka/plotarmor-program
+ARGV: ['solana', 'account', 'BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG', '--url', 'https://api.devnet.solana.com', '--output', 'json']
+{
+  "pubkey": "BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG",
+  "account": {
+    "lamports": 1197120,
+    "data": [
+      "F3YK9q3n85zMFOLqP7ntSZlPw/SBeZl+kzpo9JlQnVKUOnKMk9XSKgEAAAA=",
+      "base64"
+    ],
+    "owner": "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2",
+    "executable": false,
+    "rentEpoch": 18446744073709551615,
+    "space": 44
+  }
+}
+
+EXIT CODE: 0

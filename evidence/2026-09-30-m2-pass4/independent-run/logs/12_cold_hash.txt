@@ -1,0 +1,20 @@
+UTC: 2026-09-29T18:26:19.908841+00:00
+CWD: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+ARGV: ['python3', '/tmp/m2-pass4-independent/hash.py']
+Artifact: /home/sucka/plotarmor-demo/.m2-pass4-scratch/target/deploy/plotarmor.so 
+Full length: 472280 
+Full SHA256: 27998e6f6437e7998bf35fffb65cde8a8599cf541fcb01fba509baafbc22e231 
+Trim method: bytes.rstrip(b"\0")
+Trimmed length: 472265 
+Trimmed SHA256: 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
+Expected: 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6 
+MATCH: True
+Cargo.lock equals exact commit: True sha256 1944f68bcfce259ec18e9e44e909ac296fbad38d74b1f775da8992abc1a93dd9
+scripts/build.sh equals exact commit: True sha256 fc3cd03a2cce856c51372925ca080ea80fa3a122cbc58e9c6cc97cfb8b333e71
+rust-toolchain.toml equals exact commit: True sha256 adc25f21b6be6b37e9ab9b32b4e141e9043bf83059e89e20d5a4fc51a9470b64
+Anchor.toml equals exact commit: True sha256 fb5af2288ec3a0b1b6b5f57cbd14002edf37664e7e3854104bfd93731a789511
+programs/plotarmor/src/instructions/sign_contract.rs equals exact commit: True sha256 ac0468aa6b4810ab1ea7c50ad9eb8cff0df6c7ac96c9334a12e874f30111bfac
+SBF pin stamp: v1.52
+
+
+EXIT CODE: 0

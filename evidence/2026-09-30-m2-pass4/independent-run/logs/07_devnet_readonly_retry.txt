@@ -1,0 +1,14 @@
+UTC: 2026-09-29T18:27:29.643881+00:00
+CWD: /home/sucka/plotarmor-program
+ARGV: ['solana', 'program', 'show', '3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2', '--url', 'https://api.devnet.solana.com', '--output', 'json']
+{
+  "programId": "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2",
+  "owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+  "programdataAddress": "Dr8S95D7bHGBrd6gFSAommQjBNH1qcBMJpofe9ooLRpL",
+  "authority": "EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd",
+  "lastDeploySlot": 476301346,
+  "dataLen": 471960,
+  "lamports": 3286045680
+}
+
+EXIT CODE: 0

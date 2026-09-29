@@ -1,0 +1,162 @@
+UTC: 2026-09-29T18:19:02.939772+00:00
+CWD: /home/sucka/plotarmor-program
+ARGV: ['bash', '-c', 'date -u; git status --short; git rev-parse HEAD; git diff 7c267e9 HEAD -- programs scripts/build.sh Cargo.lock Anchor.toml rust-toolchain.toml; git show --format=fuller --stat 7c267e9; cat rust-toolchain.toml Anchor.toml; bash scripts/build.sh --check; rustc --version; cargo --version; solana --version; git -C /home/sucka/plotarmor-demo status --short; git -C /home/sucka/plotarmor-demo rev-parse HEAD; git -C /home/sucka/plotarmor-kora status --short; git -C /home/sucka/plotarmor-kora rev-parse HEAD; rg --files --hidden -g AGENTS.md -g "!node_modules" -g "!.git" -g "!target" -g "!.m2-pass4-scratch" /home/sucka/plotarmor-program /home/sucka/plotarmor-demo /home/sucka/plotarmor-kora']
+Tue Sep 29 18:19:02 UTC 2026
+?? evidence/
+7c2b54d15872af17cd9de3d9c30d7ee9f6ff5f29
+diff --git a/programs/plotarmor/src/instructions/sign_contract.rs b/programs/plotarmor/src/instructions/sign_contract.rs
+index b786233..9e27aa6 100644
+--- a/programs/plotarmor/src/instructions/sign_contract.rs
++++ b/programs/plotarmor/src/instructions/sign_contract.rs
+@@ -72,7 +72,12 @@ pub fn handler(
+     ctx: Context<SignContract>,
+     content_hash: [u8; 32],
+ ) -> Result<()> {
+-    // 1. Reject if paused. First check, matching the other five instructions.
++    // 1. Reject if paused. The account CONSTRAINT matches the other five instructions
++    // that read RegistryConfig; handler ORDERING does not, and is not meant to. The
++    // four anchoring instructions run assert_mode_allowed first and check paused
++    // second; add_owner and sign_contract take no anchor_mode_arg, so paused is
++    // simply their first check. Only the paused-vs-mode order differs, and it is
++    // unobservable here because there is no mode check to order against.
+     require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+ 
+     // 2. The client's asserted content hash must match the on-chain artifact.
+commit 7c267e9689c0d335194f0f73fe4388c670b8509a
+Author:     MJ-Frictionless-NTWRK <info@milanjandik.com>
+AuthorDate: Fri Sep 4 14:04:30 2026 +0200
+Commit:     MJ-Frictionless-NTWRK <info@milanjandik.com>
+CommitDate: Fri Sep 4 14:04:30 2026 +0200
+
+    fix: bring sign_contract under the paused flag (audit M2)
+    
+    BREAKING CLIENT CHANGE, deliberately taken on devnet rather than after mainnet.
+    sign_contract gains registry_config as its FIRST account and rejects with
+    Paused (6008) when registry_config.paused is true.
+    
+    WHY. sign_contract was the only one of the six instructions taking no
+    RegistryConfig, so it could not honour the paused flag and sat entirely outside the
+    kill-switch surface the other five respect. A paused program would have kept
+    accepting contract signatures. Not exploitable today, since paused has no setter,
+    but the fix only gets more expensive as callers accumulate.
+    
+    SHAPE. Copied verbatim from anchor_evidence_contract.rs rather than invented:
+    Account (not mut), seeds = [b"config"], bump, first in the accounts struct; the
+    require!(!registry_config.paused, Paused) as the first check in the handler.
+    
+    SIDE EFFECT, stated plainly: sign_contract now requires RegistryConfig to EXIST,
+    not just to be unpaused. That is unreachable in practice. sign_contract requires a
+    pre-existing ContractArtifact, and only anchor_evidence_contract and
+    anchor_authorized_contract can create one; both already require RegistryConfig. So
+    there is no state where a signable contract exists but the config does not.
+    
+    NOT A KILL SWITCH. This adds no setter. Known v1 limitation C stands: paused can
+    still never be set to true in production. Only the coverage was made uniform, and
+    limitation C now records that explicitly.
+    
+    WHAT CHANGED.
+      sign_contract.rs          the account and the check
+      sign_contract_tests.rs    registry_config derived inside the existing
+                                sign_contract_instruction helper (const-seeded
+                                singleton, like contract_signature already was, so all
+                                7 callers are untouched), plus a new test
+                                paused_registry_rejects_sign_contract using the
+                                established happy_paths.rs technique of serializing
+                                paused = true directly into the account under LiteSVM
+      tests/plotarmor.ts        5 call sites
+      devnet_sign_contract_test.ts            1 call site
+      devnet_sign_contract_adversarial_test.ts 4 call sites
+      CLAUDE.md                 redeploy-pending banner on the devnet script inventory,
+                                the checker coverage gap, the sign_contract instruction
+                                entry, and the limitation C adjacency
+    All 10 TS edits are single-line registryConfig insertions; nothing else altered.
+    
+    The new test cannot pass for the wrong reason: it supplies the CORRECT content_hash,
+    so Paused is the only thing that can reject it. It also asserts no ContractSignature
+    is left behind.
+    
+    DEVNET SCRIPTS ARE NOW AHEAD OF THE DEPLOYED PROGRAM. devnet_sign_contract_test.ts
+    and devnet_sign_contract_adversarial_test.ts pass registry_config, which the deployed
+    binary does not accept. They will fail until a redeploy, which is expected and was
+    approved. Recorded at the top of the devnet script inventory so nobody "fixes" them
+    by removing the account.
+    
+    CHECKER GAP RECORDED, NOT FIXED. verify_calls.py checks argument counts;
+    check_integrity.py adds a structural check for .accountsStrict( and a terminator.
+    Neither inspects the CONTENTS of the accounts block, so both reported PASS against
+    the un-updated call sites even though all 10 were broken. Do not read a green run of
+    those two as evidence that account lists are correct.
+    
+    Verification, labelled per the CLAUDE.md standard, 3 of 4 passes:
+      pass 1  cargo test (default)                    55/55  (was 54)
+      pass 2  cargo test --features mainnet           55/55  (was 54)
+      pass 3  anchor test (local validator, Mocha)    34/34  (unchanged count, but now
+              exercising the new 5-account instruction end to end on a real validator)
+      pass 4  NOT DONE. No independent re-audit, and no live devnet check is possible
+              until the program is redeployed.
+    Rust per-build 54 -> 55. Combined per-build 89.
+    verify_calls.py, check_integrity.py, test_checkers_negative.py all green.
+    Style: 0 em-dashes added, 0 uses of the forbidden word.
+    
+    LANE 2 HANDOFF (plotarmor-demo, NOT touched here). Exactly one call site:
+    src/ContractsApp.tsx:1198, which uses .accountsStrict() and so will not auto-resolve.
+    It needs: regenerate src/anchor/plotarmor.json and plotarmor.ts from target/, add
+      const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
+    (the same derivation already present in that file at lines 786 and 1277), and add
+    registryConfig to the .accountsStrict({...}) block. Blocked on the redeploy.
+    
+    Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+    Claude-Session: https://claude.ai/code/session_01FDrqMsm7hBfWEJnBwQMCeN
+
+ CLAUDE.md                                          | 40 ++++++++++++-
+ .../plotarmor/src/instructions/sign_contract.rs    | 17 +++++-
+ programs/plotarmor/tests/sign_contract_tests.rs    | 65 ++++++++++++++++++++++
+ scripts/devnet_sign_contract_adversarial_test.ts   |  4 ++
+ scripts/devnet_sign_contract_test.ts               |  1 +
+ tests/plotarmor.ts                                 |  5 ++
+ 6 files changed, 130 insertions(+), 2 deletions(-)
+[toolchain]
+channel = "1.96.0"
+components = ["rustfmt","clippy"]
+profile = "minimal"
+[toolchain]
+package_manager = "yarn"
+anchor_version = "1.0.1"
+solana_version = "4.0.1"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+plotarmor = "3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn ts-mocha -p ./tsconfig.json -t 1000000 'tests/**/*.ts'"
+
+[hooks]
+pin (scripts/build.sh)   : v1.52
+anchor_version (Anchor.toml): 1.0.1
+anchor-cli installed     : anchor-cli 1.0.1
+cargo-build-sbf default  : platform-tools v1.53
+rustup sbf toolchain now : 1.89.0-sbpf-solana-v1.52
+
+The rustup line reflects whichever path ran last; it is not the pin.
+A cold build is the only way to confirm what a path actually used.
+rustc 1.96.0 (ac68faa20 2026-05-25)
+cargo 1.96.0 (30a34c682 2026-05-25)
+solana-cli 4.0.1 (src:e4e3aa49; feat:6ff76655, client:Agave)
+?? .m2-pass4-scratch/
+?? evidence/2026-09-24-wallet-switch/
+312c043b91f95d7a57b83cc7098e479fa0e5b11a
+ M README.md
+?? evidence/
+?? scripts/verify_stateful_signing.mjs
+?? scripts/verify_stateful_signing.test.mjs
+6de622fe5aa687dc5448135026eb2c94af547ce2
+
+EXIT CODE: 1

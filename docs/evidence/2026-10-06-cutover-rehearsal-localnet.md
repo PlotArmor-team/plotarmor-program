@@ -525,3 +525,194 @@ Cutover plan: pass 1 was the read-only on-chain and IDL work in the prior sessio
 (a rehearsal on a local validator seeded from devnet). It is not a live devnet check. Two more
 independent passes are needed before the plan or the new binary can be called verified, for
 example an independent re-audit and the real devnet run with post-checks.
+
+## Addendum 2: rehearsal of --buffer resume, abandon with close, and --use-rpc (local validator)
+
+Fresh local validator, same seeding as above (program, authority, 11 account clones, devnet
+feature set), ledger deleted afterwards. The deploy command is the one in the runbook after
+commit c79fb69, with the local URL in place of `$DEVNET_RPC_URL`: guard script, `--buffer`,
+`--no-auto-extend --use-rpc --max-sign-attempts 20`. The buffer keypairs are throwaway files in a
+scratch directory. "Kill" means `kill -9` on the whole deploy process group shortly after the buffer
+account appears on chain, to imitate a crash or a dropped connection.
+
+LIMITS: on a local validator `--use-rpc` only proves the flag is accepted and the deploy completes
+through it. It does not show behaviour under devnet rate limits or against Helius. The kill point
+is timing based, so how much of the upload landed is measured, not chosen.
+
+```
+$ solana program extend 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 10240 -u http://127.0.0.1:8899; solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports
+
+Extended Program Id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 by 10240 bytes
+
+5329290451 lamports
+[exit 0]
+```
+
+```
+$ scripts/guard_deploy_artifact.sh; echo guard-exit=$?
+artifact OK: target/deploy/plotarmor.so trimmed sha256 bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
+guard-exit=0
+[exit 0]
+```
+### Scenario B: partial upload, then abandon with solana program close
+
+```
+$ solana-keygen new -o /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json --no-bip39-passphrase --silent && solana address -k /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json
+Wrote new keypair to /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json
+HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9
+[exit 0]
+```
+
+```
+$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports
+5329290451 lamports
+[exit 0]
+```
+
+```
+$ /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json 1
+buffer address: HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9
+deploy killed after buffer appeared (+1s)
+/tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh: line 28: 10148 Killed                     setsid bash -c "scripts/guard_deploy_artifact.sh && solana program deploy target/deploy/plotarmor.so   --program-id $P --upgrade-authority ~/.config/solana/id.json --buffer $KEY   --no-auto-extend --use-rpc --max-sign-attempts 20 -u $L" > /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/deploy-partial.log 2>&1
+--- deploy log so far:
+artifact OK: target/deploy/plotarmor.so trimmed sha256 bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
+[exit 0]
+```
+
+```
+$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program dump HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.dump -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/bufstat.py /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.dump target/deploy/plotarmor.so; solana program show HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 -u http://127.0.0.1:8899 2>&1 | head -n 8
+2039463971 lamports
+
+Buffer Address                               | Authority                                    | Balance
+HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 | EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd | 3.28938648 SOL
+
+buffer dump bytes 472440 program bytes 472440
+non-zero 1000-byte chunks written: 87 of 473 (18.4%)
+PARTIAL upload
+
+Buffer Address: HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9
+Authority: EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
+Balance: 3.28938648 SOL
+Data Length: 472440 (0x73578) bytes
+[exit 0]
+```
+
+```
+$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program close HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 -u http://127.0.0.1:8899; solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana account HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 -u http://127.0.0.1:8899 2>&1 | head -n 2
+2039463971 lamports
+
+Buffer Address                               | Authority                                    | Balance
+HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 | EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd | 3.28938648 SOL
+
+5328845451 lamports
+
+Buffer Address                               | Authority                                    | Balance
+
+Error: AccountNotFound: pubkey=HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9
+[exit 0]
+```
+### Scenario A: partial upload, then resume with the identical command
+
+```
+$ solana-keygen new -o /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json --no-bip39-passphrase --silent && solana address -k /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json; solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports
+Wrote new keypair to /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json
+G9KiYYVNSkoaJSFDZR32yicgsFqiDTFzyR3myBvqSJJA
+5328845451 lamports
+[exit 0]
+```
+
+```
+$ /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json 1 2>&1 | grep -v Killed
+buffer address: G9KiYYVNSkoaJSFDZR32yicgsFqiDTFzyR3myBvqSJJA
+deploy killed after buffer appeared (+1s)
+--- deploy log so far:
+artifact OK: target/deploy/plotarmor.so trimmed sha256 bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
+[exit 0]
+```
+
+```
+$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program dump G9KiYYVNSkoaJSFDZR32yicgsFqiDTFzyR3myBvqSJJA /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.dump -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/bufstat.py /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.dump target/deploy/plotarmor.so; solana program show  -u http://127.0.0.1:8899 2>/dev/null | grep -i -E 'slot|data length'
+2038988971 lamports
+
+Buffer Address                               | Authority                                    | Balance
+G9KiYYVNSkoaJSFDZR32yicgsFqiDTFzyR3myBvqSJJA | EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd | 3.28938648 SOL
+
+buffer dump bytes 472440 program bytes 472440
+non-zero 1000-byte chunks written: 93 of 473 (19.7%)
+PARTIAL upload
+[exit 1]
+```
+
+```
+$ scripts/guard_deploy_artifact.sh && solana program deploy target/deploy/plotarmor.so --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 --upgrade-authority ~/.config/solana/id.json --buffer /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json --no-auto-extend --use-rpc --max-sign-attempts 20 -u http://127.0.0.1:8899
+artifact OK: target/deploy/plotarmor.so trimmed sha256 bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
+Program Id: 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2
+
+Signature: qD6xYfHwjGDVAAkHmw1GBsAp7rpmS1XnxsxJGXbxPCkXKyziQhFN9tTXMkcekPsHjdWaAioJDKEa6HUrvqMfgac
+[exit 0]
+```
+
+```
+$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u http://127.0.0.1:8899; solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/final.so -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/verify_bytes.py /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/final.so | head -n 4
+5326495451 lamports
+
+Buffer Address                               | Authority                                    | Balance
+
+
+Program Id: 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2
+Owner: BPFLoaderUpgradeab1e11111111111111111111111
+ProgramData Address: Dr8S95D7bHGBrd6gFSAommQjBNH1qcBMJpofe9ooLRpL
+Authority: EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
+Last Deployed In Slot: 171
+Data Length: 482200 (0x75b98) bytes
+Balance: 3.35731608 SOL
+
+dump length 482200 trimmed 472425
+trimmed sha256 bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
+expected       bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
+begin marker at 421297 end marker at 421653
+[exit 0]
+```
+
+### Addendum 2 results
+
+| check | result | label |
+|---|---|---|
+| Guard script passes the audited artifact before deploy | passes, trimmed sha256 bcea64bb...c4f2 | [cmd] |
+| Deploy with `--buffer`, `--no-auto-extend --use-rpc --max-sign-attempts 20` accepted by solana-cli 4.0.1 | yes, full deploy completed through it (scenario A resume) | [cmd] |
+| Killed deploy leaves a funded partial buffer, listed by `solana program show --buffers` | yes: 87 of 473 non-zero chunks (18.4%) in scenario B, 93 of 473 (19.7%) in A; buffer held 3.28938648 SOL (local rent) | [cmd] |
+| Program unchanged while the buffer is partial | yes, Data Length 482,200 and slot unchanged until the resume | [cmd] |
+| Abandon: `solana program close <buffer>` | buffer gone, rent returned: balance +3,289,386,480 (rent) - 5,000 (fee) | [cmd] |
+| Total cost of the abandoned attempt | 445,000 lamports in fees | [cmd] |
+| Resume: same command, same `--buffer` keypair | completed, upgrade landed (slot 171), buffer consumed, `--buffers` list empty | [cmd] |
+| Resume cost vs a full run | 1,880,000 lamports (376 transactions) against 2,350,000 (470) for the full run in the main rehearsal: chunks already written were not paid for again | [cmd] |
+| Upgraded bytes after the resumed deploy | trimmed sha256 bcea64bb...c4f2, security.txt fields as before | [cmd] |
+
+Notes:
+- `solana-keygen new` prints the seed phrase unless `--silent` is given. The runbook now includes
+  `--silent` for the buffer keypairs.
+- The kill is timing based (kill -9 one second after the buffer appears). The same-command resume
+  is shown to continue and skip written chunks, not to survive every possible interruption point
+  (for example a kill during the final upgrade instruction was not tried).
+- Not shown: behaviour against devnet rate limits or Helius, which is the actual reason for
+  `--use-rpc`. Local confirms in about 250 ms, so no transaction expired and `--max-sign-attempts`
+  never came into play.
+
+## Addendum 3: committed binary in bc729e9 is the clean build
+
+`evidence/2026-09-30-m2-pass4/independent-run/plotarmor-7c267e9.so` was compared with a fresh build
+of 7c267e9 (git worktree at that commit, fresh CARGO_TARGET_DIR on the main disk,
+`cargo build-sbf --tools-version v1.52 --manifest-path programs/plotarmor/Cargo.toml`, cold build
+4m17s) [cmd]:
+
+| file | bytes | trimmed bytes | trimmed sha256 |
+|---|---|---|---|
+| fresh build of 7c267e9 | 472,280 | 472,265 | 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6 |
+| committed plotarmor-7c267e9.so | 472,280 | 472,265 | 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6 |
+
+The whole-file sha256 of both starts 27998e6f6437e799, equal to the SHA256SUMS entry
+27998e6f6437e7998bf35fffb65cde8a8599cf541fcb01fba509baafbc22e231. The worktree source contains the
+pause check (`require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused)` at
+sign_contract.rs line 76) that the mutation removes, so the committed binary is the CLEAN build,
+not the mutant. One pass: the build is one cold build with one toolchain on one machine.
+The worktree and its target directory were removed afterwards.

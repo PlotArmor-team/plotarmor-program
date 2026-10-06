@@ -107,6 +107,8 @@ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u devnet        # e
 solana rent 482245 -u devnet            # expect 2.45045484 SOL (5,080 lamports per byte)
 ```
 
+If the slot changed, someone else deployed. Stop and re-dump before doing anything.
+
 Rent re-check: devnet rent was 6,960 lamports per byte in July and 5,080 on 2026-10-06. SIMD-0437
 stages 3 to 5 (2,575, 1,322 and 696 lamports per byte) were still inactive on devnet that day
 (`solana feature status -u devnet`). If the `solana rent` line above prints anything other than
@@ -135,8 +137,6 @@ The guard script was tested 2026-10-06 against: the real artifact (passes), one 
 non-zero byte, one flipped byte, a missing file (all exit 1, and a chained deploy does not run),
 and a zero-padded copy (passes, because the compare is on the trimmed hash). [test]
 If the hash differs, stop. Do not edit the expected value to make it pass.
-
-If the slot changed, someone else deployed. Stop and re-dump before doing anything.
 
 ## Step 1: stage the app (so the window is minutes)
 

@@ -347,10 +347,18 @@ NOTE: installer pulled newer versions than the white paper (paper specifies Sola
 Anchor 0.32.1). Verify via the Solana MCP that no API change affects the canon before building.
 TS client: @coral-xyz/anchor + @solana/web3.js (or @solana/kit), wallet-adapter.
 Tests: two-layer suite.
-  Layer 1 — Rust/LiteSVM: `cargo test` runs 52 tests total per build: 1 unit test in
-    src/lib.rs, 11 in happy_paths.rs, 33 in security_tests.rs (one of the two build-specific
-    AttestedMainnet/AttestedDevnet cross-environment tests is active per build, see Finding 1
-    in Known v1 limitations), and 7 in sign_contract_tests.rs (added 2026-07-15). Fast, no
+  Layer 1 — Rust/LiteSVM: `cargo test` runs 55 tests total per build: 1 unit test in
+    src/lib.rs, 11 in happy_paths.rs, 35 in security_tests.rs (37 #[test] attributes, 4 of
+    them feature-gated in two pairs, so 35 are active per build; the AttestedMainnet/
+    AttestedDevnet cross-environment tests are build-specific, see Finding 1 in Known v1
+    limitations), and 8 in sign_contract_tests.rs (7 added 2026-07-15, plus the paused-registry
+    test added with the M2 fix 2026-09-04). Corrected 2026-10-06: this line previously said 52
+    (33 in security_tests.rs, 7 in sign_contract_tests.rs), stale since the 2026-09-04 audit
+    commits (b83427a, d41d230, 7c267e9) added 2 tests to security_tests.rs and 1 to
+    sign_contract_tests.rs. The 52/52 figures
+    in the dated entries below were true on their dates and are left as written. Per-file
+    counts confirmed by `cargo test` (default build) on 2026-10-06 in two separate sessions;
+    the `--features mainnet` 55/55 figure comes from the earlier session only. Fast, no
     validator needed. `cargo test --features mainnet` additionally requires a mainnet-featured
     .so at target/deploy-mainnet/plotarmor.so — see programs/plotarmor/tests/common/mod.rs.
     Live-verified 2026-07-22: both the default (devnet) and `--features mainnet` builds ran

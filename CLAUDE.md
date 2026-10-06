@@ -331,6 +331,10 @@ Error codes 6000-6011: AlreadyInitialized(6000), StaleLineageHead(6001), AnchorM
 Reserved codes (6006, 6007) are unused in v1 — do not remove them, they hold their slot.
 
 ## Cost baseline (reference, $90/SOL; confirm on devnet)
+STALE as of 2026-10-06: every dollar and lamport figure in this section, and the cost table in
+AUDITOR_BRIEF.md, predates the SIMD-0437 rent reductions. Devnet rent was 5,080 lamports per byte on
+2026-10-06 against 6,960 in July, and SIMD-0437 stages 3 to 5 were still inactive then. Which stage
+produced 5,080 was not checked. Re-measure before quoting any of these figures.
 register ~$0.88, add-version ~$0.39, evidence-anchor ~$0.39, authorized-anchor ~$0.37,
 re-anchor ~$0.13, add-co-owner ~$0.13, RegistryConfig ~$0.11 one-time,
 sign_contract ~$0.1564 (added 2026-07-15, measured 2026-07-22).
@@ -559,15 +563,25 @@ no compute. It fits inside
 the existing ProgramData allocation with roughly 17KB spare, so it needs no
 `solana program extend` and no additional rent.
 
-  BLOCKING: contacts and policy are UNRESOLVED PLACEHOLDERS pointing at the RFC 2606
-  .invalid TLD, chosen deliberately so a deploy fails review rather than shipping a
-  security contact nobody reads. THIS BINARY MUST NOT BE DEPLOYED until Milan supplies a
-  real monitored security contact and a policy URL. No SECURITY.md exists in this repo yet.
-  project_url and source_code are the literal string "private" because
+  UPDATE 2026-10-06: the "fits inside the existing allocation, needs no extend" statement above
+  is true only for 0debdaa against 09c5bfc. The current build (f34bfae, which also carries the M2
+  change and the longer policy text) is 472,440 bytes (472,425 trimmed) against 471,960 bytes
+  allocated, so the upgrade needs an extend. See docs/CUTOVER_2026-10.md. [cmd]
+
+  RESOLVED 2026-09-29, commit 14815bb: the .invalid placeholders and the deploy blocker that went
+  with them are cleared. The security_txt! block now sets name PlotArmor, project_url
+  https://plotarmor.io, contacts email:info@plotarmor.io, a free-text policy (report privately to
+  info@plotarmor.io, acknowledgement within 5 business days, do not test accounts or data you do
+  not own, devnet demo MVP) and source_code "private". SECURITY.md exists at the repo root with
+  the same text; keep it and lib.rs in sync. The fields were read back from a built f34bfae .so
+  and from the dumped program after a local-validator upgrade, 2026-10-06. [cmd]
+  Still true: the DEPLOYED program (09c5bfc) has no security.txt at all. It arrives only with the
+  devnet cutover, which has not been executed and remains gated on Milan approving
+  docs/CUTOVER_2026-10.md. source_code stays "private" while
   github.com/MJ-Frictionless-NTWRK/plotarmor-program is a private repo (confirmed 404
-  unauthenticated 2026-09-03). source_revision, source_release and auditors are
-  deliberately omitted rather than filled with provisional values; source_revision in
-  particular would go stale silently on every deploy and become misleading evidence.
+  unauthenticated 2026-09-03). source_revision, source_release and auditors are deliberately
+  omitted rather than filled with provisional values; source_revision in particular would go
+  stale silently on every deploy and become misleading evidence.
 
 VERIFIED BUILDS are not yet possible here and are not merely unrun. Blockers, all confirmed
 2026-09-03: docker is not installed on this machine; solana-verify is not installed; the

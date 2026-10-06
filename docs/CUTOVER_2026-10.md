@@ -98,13 +98,43 @@ copy in ~/plotarmor-rollback/. [cmd]
 
 ```bash
 cd ~/plotarmor-program
-git rev-parse HEAD                      # expect f34bfae5f20d31fabd39c1d7c73140ce9994d846
+git rev-parse HEAD                      # a docs-only descendant of f34bfae is fine, source must match (next line)
+git diff --quiet f34bfae HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts rust-toolchain.toml && echo "source identical to f34bfae"
 git status --short                      # expect empty
-sha256sum target/deploy/plotarmor.so    # expect 97880b05...16b7 (rebuild with scripts/build.sh --anchor if not)
 solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u devnet   # Last Deployed In Slot must still be 476301346
 solana address -k ~/.config/solana/id.json   # expect EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
 solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u devnet        # expect > 3 SOL
+solana rent 482245 -u devnet            # expect 2.45045484 SOL (5,080 lamports per byte)
 ```
+
+Rent re-check: devnet rent was 6,960 lamports per byte in July and 5,080 on 2026-10-06. SIMD-0437
+stages 3 to 5 (2,575, 1,322 and 696 lamports per byte) were still inactive on devnet that day
+(`solana feature status -u devnet`). If the `solana rent` line above prints anything other than
+2.45045484 SOL, the rent rate changed: recompute "Size and cost" (extend top-up, buffer rent,
+spill, balances) before going on. [cmd]
+
+The source check replaces an earlier "HEAD must equal f34bfae" line, which stopped being true
+once documentation commits landed on top. The program source, Cargo files and build script are
+unchanged since f34bfae. [cmd: git diff --quiet, 2026-10-06]
+
+### Build fresh, then gate on the artifact hash
+
+Do not trust whatever sits in `target/deploy`. Delete it, rebuild with the pinned wrapper, and let
+the guard refuse anything that is not the audited build. A warm rebuild is not a reproducibility
+test (CLAUDE.md), so the hash gate is what proves the bytes, not the build log:
+
+```bash
+rm -f target/deploy/plotarmor.so
+scripts/build.sh --anchor                 # platform-tools v1.52, stamps and clears stale compiler output
+                                          # (a cold pinned build of 7c267e9 took 4m17s here, 2026-10-06)
+scripts/guard_deploy_artifact.sh          # exit 1 and prints both hashes unless the trimmed sha256 is
+                                          # bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
+```
+
+The guard script was tested 2026-10-06 against: the real artifact (passes), one appended
+non-zero byte, one flipped byte, a missing file (all exit 1, and a chained deploy does not run),
+and a zero-padded copy (passes, because the compare is on the trimmed hash). [test]
+If the hash differs, stop. Do not edit the expected value to make it pass.
 
 If the slot changed, someone else deployed. Stop and re-dump before doing anything.
 
@@ -142,7 +172,7 @@ Generate the buffer keypair BEFORE the deploy and keep it outside the repo. Pass
 
 ```bash
 umask 077
-solana-keygen new -o ~/plotarmor-rollback/buffer-f34bfae.json --no-bip39-passphrase   # refuses to overwrite
+solana-keygen new -o ~/plotarmor-rollback/buffer-f34bfae.json --no-bip39-passphrase --silent   # refuses to overwrite; --silent keeps the seed phrase off the screen
 solana address -k ~/plotarmor-rollback/buffer-f34bfae.json    # record the buffer address
 ```
 
@@ -152,7 +182,7 @@ Then extend, check, and deploy:
 cd ~/plotarmor-program
 solana program extend 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 10240 -u "$DEVNET_RPC_URL"
 solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u "$DEVNET_RPC_URL"    # Data Length 482200 expected (ProgramData 482,245 bytes)
-solana program deploy target/deploy/plotarmor.so \
+scripts/guard_deploy_artifact.sh && solana program deploy target/deploy/plotarmor.so \
   --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 \
   --upgrade-authority ~/.config/solana/id.json \
   --buffer ~/plotarmor-rollback/buffer-f34bfae.json \
@@ -163,8 +193,10 @@ Flags, from `solana program deploy --help` on solana-cli 4.0.1 [cmd]: `--use-rpc
 write transactions to the configured RPC instead of validator TPUs. `--max-sign-attempts`
 re-signs and resends transactions still unconfirmed after the blockhash expires (the value 20
 is a choice, not a measured need). `--buffer` takes the buffer signer and is documented as the
-way to resume a failed deploy. The `--buffer` resume and the `--use-rpc` path were NOT
-rehearsed on localnet. [inferred]
+way to resume a failed deploy. The `--buffer` resume, the abandon-and-close path and the
+`--use-rpc` flag were rehearsed on a local validator (evidence file, Addendum 2): a killed
+deploy resumed with the identical command, and close returned the buffer rent. Behaviour under
+devnet or Helius rate limits was not rehearsed. [cmd]
 
 Use 10240, not 480: see "Extend: exact numbers".
 
@@ -179,9 +211,10 @@ solana program show --buffers -u "$DEVNET_RPC_URL"     # lists buffers whose aut
 ```
 
 - Resume: run the SAME `solana program deploy ...` command again, with the same `--buffer`
-  keypair. It continues the upload into that buffer. [inferred from the --buffer help text]
+  keypair. It continues the upload into that buffer and skips chunks already written. [cmd:
+  local rehearsal, resume cost 1,880,000 lamports against 2,350,000 for a full run]
 - Abandon: `solana program close <BUFFER_ADDRESS> -u "$DEVNET_RPC_URL"` returns the buffer rent
-  to the default keypair (the authority). Confirm the balance afterwards.
+  to the default keypair (the authority). Confirm the balance afterwards. [cmd: local rehearsal]
 - Never run `solana program close --buffers` casually: it closes every buffer matching the
   authority, including any unrelated one.
 
@@ -220,7 +253,8 @@ Program (restores the exact 09c5bfc bytes; the dump is padded, deploy accepts a 
 than the allocation):
 
 ```bash
-solana-keygen new -o ~/plotarmor-rollback/buffer-rollback.json --no-bip39-passphrase
+solana-keygen new -o ~/plotarmor-rollback/buffer-rollback.json --no-bip39-passphrase --silent
+echo "7d43bcb222c6e71d8cfe77db2fe3a48dc82704573873f04ef0c8d144de877235  $HOME/plotarmor-rollback/deployed-09c5bfc-slot476301346.so" | sha256sum -c - && \
 solana program deploy ~/plotarmor-rollback/deployed-09c5bfc-slot476301346.so \
   --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 \
   --upgrade-authority ~/.config/solana/id.json \

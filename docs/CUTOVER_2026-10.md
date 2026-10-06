@@ -2,7 +2,9 @@
 
 Nothing in this file has been run against a cluster. Every command below is a plan.
 Verification label for each fact: [cmd] command output, [idl] IDL diff, [test] test run,
-[inferred] reasoned but not confirmed. Audit pass count for the cutover itself: 0 of 4.
+[inferred] reasoned but not confirmed. Audit pass count for the cutover itself: 2 of 4
+(pass 1: read-only derivation in the prior session; pass 2: local-validator rehearsal,
+docs/evidence/2026-10-06-cutover-rehearsal-localnet.md). Neither pass touched devnet.
 
 ## What changes on chain
 
@@ -121,18 +123,67 @@ contract_artifact. There is no client that works with both. [inferred from accou
 
 ## Step 2: extend, then upgrade (this opens the window)
 
+Use a dedicated devnet RPC for every write in this step, not the public endpoint. The deploy
+sends about 470 write transactions (measured in the rehearsal: authority paid 2,350,000
+lamports in fees), and a public or shared RPC can rate limit or drop some of them. Whether
+the Helius plan in use tolerates 470 writes in a burst is NOT known. [inferred]
+
+Set the URL without printing it. Never run `solana config get`, `echo "$DEVNET_RPC_URL"` or
+any `-v` command in this window, because they print the RPC URL including the API key:
+
 ```bash
-cd ~/plotarmor-program
-solana program extend 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 10240 -u devnet
-solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u devnet    # Data Length 482200 expected (ProgramData 482,245 bytes)
-solana program deploy target/deploy/plotarmor.so \
-  --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 \
-  --upgrade-authority ~/.config/solana/id.json --no-auto-extend -u devnet
+read -rs DEVNET_RPC_URL && export DEVNET_RPC_URL     # paste the Helius devnet URL, press Enter
 ```
 
-Use 10240, not 480: see "Extend: exact numbers". If the deploy fails after the buffer is
-written, the buffer still holds about 2.4 SOL. Resume with `--buffer <keypair>` or close it with
-`solana program close <buffer> -u devnet`.
+The existing devnet scripts read the same variable name, so Step 4 reuses it.
+
+Generate the buffer keypair BEFORE the deploy and keep it outside the repo. Passing it with
+`--buffer` makes a partial upload resumable with the identical command:
+
+```bash
+umask 077
+solana-keygen new -o ~/plotarmor-rollback/buffer-f34bfae.json --no-bip39-passphrase   # refuses to overwrite
+solana address -k ~/plotarmor-rollback/buffer-f34bfae.json    # record the buffer address
+```
+
+Then extend, check, and deploy:
+
+```bash
+cd ~/plotarmor-program
+solana program extend 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 10240 -u "$DEVNET_RPC_URL"
+solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u "$DEVNET_RPC_URL"    # Data Length 482200 expected (ProgramData 482,245 bytes)
+solana program deploy target/deploy/plotarmor.so \
+  --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 \
+  --upgrade-authority ~/.config/solana/id.json \
+  --buffer ~/plotarmor-rollback/buffer-f34bfae.json \
+  --no-auto-extend --use-rpc --max-sign-attempts 20 -u "$DEVNET_RPC_URL"
+```
+
+Flags, from `solana program deploy --help` on solana-cli 4.0.1 [cmd]: `--use-rpc` sends the
+write transactions to the configured RPC instead of validator TPUs. `--max-sign-attempts`
+re-signs and resends transactions still unconfirmed after the blockhash expires (the value 20
+is a choice, not a measured need). `--buffer` takes the buffer signer and is documented as the
+way to resume a failed deploy. The `--buffer` resume and the `--use-rpc` path were NOT
+rehearsed on localnet. [inferred]
+
+Use 10240, not 480: see "Extend: exact numbers".
+
+### If the deploy stops partway
+
+The buffer is funded (about 2.4 SOL, 2,400,833,400 lamports) and stays locked until it is
+resumed or closed. The program is NOT changed until the final upgrade instruction lands, so
+the live app keeps working on the old program meanwhile.
+
+```bash
+solana program show --buffers -u "$DEVNET_RPC_URL"     # lists buffers whose authority is the default keypair
+```
+
+- Resume: run the SAME `solana program deploy ...` command again, with the same `--buffer`
+  keypair. It continues the upload into that buffer. [inferred from the --buffer help text]
+- Abandon: `solana program close <BUFFER_ADDRESS> -u "$DEVNET_RPC_URL"` returns the buffer rent
+  to the default keypair (the authority). Confirm the balance afterwards.
+- Never run `solana program close --buffers` casually: it closes every buffer matching the
+  authority, including any unrelated one.
 
 ## Step 3: close the window immediately
 
@@ -169,10 +220,20 @@ Program (restores the exact 09c5bfc bytes; the dump is padded, deploy accepts a 
 than the allocation):
 
 ```bash
+solana-keygen new -o ~/plotarmor-rollback/buffer-rollback.json --no-bip39-passphrase
 solana program deploy ~/plotarmor-rollback/deployed-09c5bfc-slot476301346.so \
   --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 \
-  --upgrade-authority ~/.config/solana/id.json -u devnet
+  --upgrade-authority ~/.config/solana/id.json \
+  --buffer ~/plotarmor-rollback/buffer-rollback.json \
+  --no-auto-extend --use-rpc --max-sign-attempts 20 -u "$DEVNET_RPC_URL"
 ```
+
+The same partial-upload recovery as in Step 2 applies, with the rollback buffer keypair.
+
+After a rollback the program account stays extended: `solana program show` reports Data Length
+482,200, not the original 471,960, because ProgramData does not shrink. This is harmless. The
+rollback restores the exact 09c5bfc bytes (trimmed sha256 5663e20f...3fb5), and the extra
+space is simply unused. [cmd: local rehearsal, docs/evidence/2026-10-06-cutover-rehearsal-localnet.md]
 
 Then revert the app: instant-rollback the Vercel deployment to the previous production build,
 and revert the merge commit on plotarmor-demo main. Program and app must be rolled back together

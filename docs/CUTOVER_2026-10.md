@@ -1,0 +1,187 @@
+# Devnet cutover: program 09c5bfc -> f34bfae (prepared 2026-10-06, NOT EXECUTED)
+
+Nothing in this file has been run against a cluster. Every command below is a plan.
+Verification label for each fact: [cmd] command output, [idl] IDL diff, [test] test run,
+[inferred] reasoned but not confirmed. Audit pass count for the cutover itself: 0 of 4.
+
+## What changes on chain
+
+- Only `sign_contract` changes: it now takes `registry_config` as its FIRST account (read-only,
+  not signer) and rejects with Paused (6008) when paused. [idl]
+- The other 6 instructions: discriminators, args and account lists identical. [idl]
+- All account types: field layout identical, account discriminators identical, errors,
+  events and constants identical. state.rs untouched between the two commits. [idl] [cmd: git diff]
+- `register_work_claim` is UNCHANGED, so the Kora sponsored script and app registration need
+  no change. [idl]
+- security.txt is added (.rodata only). [cmd: marker found in new .so, absent in deployed dump]
+- Existing devnet accounts: 617 program-owned accounts, all 11 discriminators are the same set
+  and layouts are unchanged, so nothing fails to deserialize. [cmd: getProgramAccounts, idl]
+- RegistryConfig PDA `BpsMTsw9uxmmgmy1iVjgwaLfoyKMGuoisyBQ8sTrxvmG` exists, owner is the program,
+  44 bytes, authority EjeeFw3F..., schema 1, enabled_anchor_modes 0, paused false. No init step
+  needed. [cmd]
+
+## Artifacts (kept outside the repo in ~/plotarmor-rollback/)
+
+| file | sha256 (whole file) | note |
+|---|---|---|
+| deployed-09c5bfc-slot476301346.so | 7d43bcb2...7235 | dump of live program, 471,960 bytes. Trimmed sha256 5663e20f...3fb5 equals a fresh v1.52 build of 09c5bfc [cmd] |
+| new-f34bfae.so | 97880b05...16b7 | HEAD build, 472,440 bytes, trimmed 472,425, trimmed sha256 bcea64bb...c4f2 |
+
+Built with `scripts/build.sh --anchor` (platform-tools v1.52). The cargo-path build of HEAD was
+not re-run this session, so cross-path equality at HEAD is not re-confirmed here.
+
+## Size and cost (re-derived from command output 2026-10-06, all `-u devnet`; nothing sent)
+
+Live rent rate is 5,080 lamports per byte (rent for N data bytes = (128 + N) * 5080). The
+current ProgramData was funded at the older 6,960 rate, so it holds more than the minimum.
+
+| item | data bytes | lamports | SOL | source |
+|---|---|---|---|---|
+| ProgramData now (45 header + 471,960 program) | 472,005 | 3,286,045,680 held | 3.28604568 | [cmd: solana account] |
+| rent minimum, ProgramData now | 472,005 | 2,398,435,640 | 2.39843564 | [cmd: solana rent 472005] |
+| rent minimum, exact fit (45 + 472,440) | 472,485 | 2,400,874,040 | 2.40087404 | [cmd: solana rent 472485; same via getMinimumBalanceForRentExemption on api.devnet.solana.com] |
+| rent minimum, after extend +10,240 | 482,245 | 2,450,454,840 | 2.45045484 | [cmd: solana rent 482245] |
+| upgrade buffer (37 header + 472,440) | 472,477 | 2,400,833,400 | 2.40083340 | [cmd: solana rent 472477] |
+
+New `target/deploy/plotarmor.so` is 472,440 bytes, sha256 97880b05...16b7, identical to the
+copy in ~/plotarmor-rollback/. [cmd]
+
+### Extend: exact numbers
+
+- Needed minimum growth is 480 bytes (472,440 - 471,960). Use **+10,240** instead.
+  `solana-loader-v3-interface` 6.1.1 (the version in this repo's Cargo.lock, read from
+  ~/.cargo/registry) defines `MINIMUM_EXTEND_PROGRAM_BYTES = 10_240` and documents that, once
+  the SIMD-0431 feature gate is active, `additional_bytes` must be at least 10 KiB. [cmd: grep of
+  source] Whether that gate is active on devnet was NOT determined: `solana feature status -u
+  devnet` does not list it. So 480 may be rejected and 10,240 is valid either way. The July
+  extend also used +10,240 (CLAUDE.md). [cmd] [inferred: gate status]
+- After extend: ProgramData account 482,245 bytes, `solana program show` Data Length 482,200.
+- Lamports the extend costs: **0 for rent**, plus the 5,000 lamport signature fee (one
+  signature, payer = authority). Reason: held 3,286,045,680 >= required 2,450,454,840, and the
+  loader pays only `max(min_balance(new_len) - balance, 0)` (solana-bpf-loader-program 3.1.14
+  `common_extend_program`, `required_payment`). [cmd: source read] [inferred: not exercised on
+  chain, no simulation was run]
+- Does this CLI extend automatically? Yes by default: `solana-cli 4.0.1` lists
+  `--no-auto-extend` ("Don't automatically extend the program's data account size") on
+  `solana program deploy`, which implies auto-extend is the default. [cmd: --help] [inferred:
+  behavior not exercised]. The runbook still runs `solana program extend` explicitly, as
+  requested, and passes `--no-auto-extend` to the deploy so no implicit extend can happen.
+
+### Buffer, upgrade refund and fees
+
+- Buffer rent: **2,400,833,400 lamports (2.40083340 SOL)**. The earlier "about 2.4 SOL" figure
+  was right, now exact. [cmd]
+- The upgrade does not only refund the buffer. The loader sets ProgramData to the rent minimum
+  for its new length and spills everything else to the spill account (the payer, here the
+  authority). With ProgramData at 482,245 bytes:
+  spill = 3,286,045,680 (ProgramData) + 2,400,833,400 (buffer) - 2,450,454,840 (new minimum)
+  = 3,236,424,240 lamports. Net to authority after paying the buffer: +835,590,840 lamports
+  (+0.83559084 SOL), before fees. [cmd: source read, arithmetic] [inferred: not exercised on
+  chain; spill address = payer is the CLI default, not confirmed]
+- Fees: about 475 write transactions at 5,000 lamports (one signature each, roughly 1 KB of
+  program data per write) plus buffer create, extend and upgrade, about 0.0025 SOL total.
+  [inferred: chunk size not measured; no compute-unit price is set, so no priority fee]
+- Peak SOL needed at once: buffer 2.40083340 + fees about 0.0025 = about 2.4034 SOL.
+  Authority holds 5.400565851 SOL [cmd], so margin is about 3.0 SOL at peak. Expected balance
+  after the upgrade is about 6.236 SOL (5.400565851 + 0.83559084 - fees). [inferred]
+- Local key `~/.config/solana/id.json` resolves to EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd,
+  the upgrade authority. [cmd: solana address -k]
+
+## Blocking item before any real deploy
+
+- [ ] Milan approves this plan. security.txt now carries real contact info (info@plotarmor.io)
+  per f34bfae, so the old placeholder blocker is cleared. [cmd: parsed fields]
+
+## Step 0: pre-checks (all read-only)
+
+```bash
+cd ~/plotarmor-program
+git rev-parse HEAD                      # expect f34bfae5f20d31fabd39c1d7c73140ce9994d846
+git status --short                      # expect empty
+sha256sum target/deploy/plotarmor.so    # expect 97880b05...16b7 (rebuild with scripts/build.sh --anchor if not)
+solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u devnet   # Last Deployed In Slot must still be 476301346
+solana address -k ~/.config/solana/id.json   # expect EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
+solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u devnet        # expect > 3 SOL
+```
+
+If the slot changed, someone else deployed. Stop and re-dump before doing anything.
+
+## Step 1: stage the app (so the window is minutes)
+
+The new account list is not backward compatible: the old program would read registry_config as
+contract_artifact. There is no client that works with both. [inferred from account order]
+
+- [ ] Rebase `d9da574` onto the new SaaS UI branch. Re-run `grep -rn "signContract"` in
+      plotarmor-demo and confirm every call site passes `registryConfig` (verify_calls.py does
+      NOT check account contents, see CLAUDE.md coverage gap).
+- [ ] Build it as a Vercel preview, NOT promoted to production. Keep the deployment id/URL ready.
+- [ ] Copy the new IDL: `cp target/idl/plotarmor.json` and `target/types/plotarmor.ts` into
+      plotarmor-demo `src/anchor/` (already in the branch if d9da574 includes them; diff them).
+- [ ] Do not merge to main yet. Main auto-deploys to production.
+
+## Step 2: extend, then upgrade (this opens the window)
+
+```bash
+cd ~/plotarmor-program
+solana program extend 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 10240 -u devnet
+solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u devnet    # Data Length 482200 expected (ProgramData 482,245 bytes)
+solana program deploy target/deploy/plotarmor.so \
+  --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 \
+  --upgrade-authority ~/.config/solana/id.json --no-auto-extend -u devnet
+```
+
+Use 10240, not 480: see "Extend: exact numbers". If the deploy fails after the buffer is
+written, the buffer still holds about 2.4 SOL. Resume with `--buffer <keypair>` or close it with
+`solana program close <buffer> -u devnet`.
+
+## Step 3: close the window immediately
+
+Window = time between the deploy confirming and the app going live. Only `sign_contract` is
+broken in the live app during it. Registration, add_version and anchors keep working. [idl]
+
+- [ ] Merge the app branch to main, or promote the staged Vercel deployment (instant, no rebuild).
+      Target: under 5 minutes. Promote first, merge after, to avoid a rebuild delay. [inferred]
+- [ ] Have the Kora script owner confirm no change is required (register_work_claim unchanged).
+
+## Step 4: post-checks
+
+```bash
+solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u devnet   # new slot, authority unchanged, length 482200; ProgramData balance 2.45045484 SOL; authority about 6.236 SOL
+solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/post.so -u devnet
+python3 -I -c "import hashlib;print(hashlib.sha256(open('/tmp/post.so','rb').read().rstrip(b'\0')).hexdigest())"
+# expect bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
+```
+
+- [ ] Read security.txt back from the dumped bytes (marker `=======BEGIN SECURITY.TXT V1=======`),
+      expect name PlotArmor, contacts email:info@plotarmor.io, source_code private.
+- [ ] Live register: `node_modules/.bin/ts-node --transpile-only scripts/devnet_register_test.ts`
+- [ ] Live sign_contract: `scripts/devnet_sign_contract_test.ts`, then the adversarial one
+      `scripts/devnet_sign_contract_adversarial_test.ts` (both already use the new account list).
+- [ ] One manual sign in the live web app.
+- [ ] Update CLAUDE.md deploy history and the "REDEPLOY PENDING" note. Do this in a separate
+      approved commit.
+
+Pass count after a clean run of this section: 1 live check. Do not call it verified until 4.
+
+## Rollback
+
+Program (restores the exact 09c5bfc bytes; the dump is padded, deploy accepts a file smaller
+than the allocation):
+
+```bash
+solana program deploy ~/plotarmor-rollback/deployed-09c5bfc-slot476301346.so \
+  --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 \
+  --upgrade-authority ~/.config/solana/id.json -u devnet
+```
+
+Then revert the app: instant-rollback the Vercel deployment to the previous production build,
+and revert the merge commit on plotarmor-demo main. Program and app must be rolled back together
+for the same reason they must be cut over together. After rollback, security.txt disappears and
+sign_contract returns to the old four-account list.
+
+## Notes
+
+- Verified build badge: `anchor build --verifiable` was NOT run. Docker is not installed here
+  and solana-verify is not installed. [cmd: command not found] Remote verification is mainnet-only
+  and needs a public repo, so it is not started.
+- No Rust was changed in this task, so program_autofixer was not needed.

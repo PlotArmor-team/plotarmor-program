@@ -85,7 +85,9 @@ copy in ~/plotarmor-rollback/. [cmd]
   [inferred: chunk size not measured; no compute-unit price is set, so no priority fee]
 - Peak SOL needed at once: buffer 2.40083340 + fees about 0.0025 = about 2.4034 SOL.
   Authority holds 5.400565851 SOL [cmd], so margin is about 3.0 SOL at peak. Expected balance
-  after the upgrade is about 6.236 SOL (5.400565851 + 0.83559084 - fees). [inferred]
+  after the upgrade and estimated fees is about 6.2337 SOL
+  (5.400565851 + 0.83559084 - 0.0025 = 6.233656691 SOL). The actual balance depends on
+  upload fees and retries. [inferred]
 - Local key `~/.config/solana/id.json` resolves to EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd,
   the upgrade authority. [cmd: solana address -k]
 
@@ -99,7 +101,7 @@ copy in ~/plotarmor-rollback/. [cmd]
 ```bash
 cd ~/plotarmor-program
 git rev-parse HEAD                      # a docs-only descendant of f34bfae is fine, source must match (next line)
-git diff --quiet f34bfae HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts rust-toolchain.toml && echo "source identical to f34bfae"
+git diff --quiet f34bfae HEAD -- programs/ Cargo.toml Cargo.lock Anchor.toml rust-toolchain rust-toolchain.toml && echo "source identical to f34bfae"
 git status --short                      # expect empty
 solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u devnet   # Last Deployed In Slot must still be 476301346
 solana address -k ~/.config/solana/id.json   # expect EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd
@@ -116,8 +118,9 @@ stages 3 to 5 (2,575, 1,322 and 696 lamports per byte) were still inactive on de
 spill, balances) before going on. [cmd]
 
 The source check replaces an earlier "HEAD must equal f34bfae" line, which stopped being true
-once documentation commits landed on top. The program source, Cargo files and build script are
-unchanged since f34bfae. [cmd: git diff --quiet, 2026-10-06]
+once documentation commits landed on top. It compares only program source, Cargo files,
+Anchor.toml and rust-toolchain files (if present), excluding scripts and documentation.
+These inputs are unchanged since f34bfae. [cmd: git diff --quiet, exit 0, 2026-10-07]
 
 ### Build fresh, then gate on the artifact hash
 
@@ -230,7 +233,7 @@ broken in the live app during it. Registration, add_version and anchors keep wor
 ## Step 4: post-checks
 
 ```bash
-solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u devnet   # new slot, authority unchanged, length 482200; ProgramData balance 2.45045484 SOL; authority about 6.236 SOL
+solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u devnet   # new slot, authority unchanged, length 482200; ProgramData balance 2.45045484 SOL; authority about 6.2337 SOL after estimated fees, depending on upload fees and retries
 solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/post.so -u devnet
 python3 -I -c "import hashlib;print(hashlib.sha256(open('/tmp/post.so','rb').read().rstrip(b'\0')).hexdigest())"
 # expect bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2

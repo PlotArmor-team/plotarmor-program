@@ -1,10 +1,10 @@
 Tue Sep 29 20:07:58 UTC 2026
 ### repo build via scripts/build.sh (devnet), then hash; must equal cold builds
 platform-tools pin: v1.52  (mode: devnet)
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 9.82s
 target/deploy/plotarmor.so file_bytes 472440 trimmed_bytes 472425 sha256_trimmed bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2 sha256_full 97880b057e52f474f20bb209f586e708eaf96d5608bcc52403ca62bc396916b7
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |

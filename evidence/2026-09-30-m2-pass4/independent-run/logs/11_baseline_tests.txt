@@ -1,5 +1,5 @@
 UTC: 2026-09-29T18:20:39.632559+00:00
-CWD: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+CWD: /home/<usr>/plotarmor-demo/.m2-pass4-scratch
 ARGV: ['cargo', 'test', '--locked', '--offline']
    Compiling proc-macro2 v1.0.106
    Compiling quote v1.0.45
@@ -318,7 +318,7 @@ ARGV: ['cargo', 'test', '--locked', '--offline']
    Compiling solana-compute-budget-instruction v3.1.14
    Compiling solana-zk-token-proof-program v3.1.14
    Compiling solana-zk-elgamal-proof-program v3.1.14
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
    Compiling solana-builtins v3.1.14
    Compiling litesvm v0.10.0
 error: couldn't read `programs/plotarmor/tests/common/../../../../target/deploy/plotarmor.so`: No such file or directory (os error 2)

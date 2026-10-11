@@ -1,7 +1,7 @@
 Tue Sep 29 18:49:52 UTC 2026
 ### CONTROL: 7c267e9 program unmodified; 6 scratch tests appended to test file only
 target/deploy/plotarmor.so bytes 472280 sha256_trimmed 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
-   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/.m2-pass4-claude-scratch/src/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |

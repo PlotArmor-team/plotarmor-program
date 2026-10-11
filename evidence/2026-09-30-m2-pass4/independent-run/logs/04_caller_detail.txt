@@ -1,6 +1,6 @@
 UTC: 2026-09-29T18:21:04.191346+00:00
-CWD: /home/sucka/plotarmor-program
-ARGV: ['bash', '-c', 'git -C /home/sucka/plotarmor-demo branch -avv; git -C /home/sucka/plotarmor-demo branch -r --contains d9da574; nl -ba /home/sucka/plotarmor-kora/scripts/verify_stateful_signing.mjs | sed -n "1,68p"; nl -ba /home/sucka/plotarmor-kora/README.md | sed -n "325,355p;550,570p"; rg -n -C 2 "signContract|sign_contract" /home/sucka/plotarmor-kora --glob "!.git/**" --glob "!evidence/**"; nl -ba /home/sucka/.cargo/registry/src/*/anchor-syn-1.0.2/src/codegen/accounts/constraints.rs | sed -n "1170,1220p"; nl -ba /home/sucka/.cargo/registry/src/*/anchor-attribute-account-1.0.2/src/lib.rs | sed -n "55,110p"; nl -ba /home/sucka/plotarmor-demo/src/anchor/plotarmor.ts | sed -n "735,810p"; git ls-files target; git diff 7c267e9^ 7c267e9 -- programs/plotarmor/src; cat evidence/2026-09-30-m2-pass4/06a_devnet_program_state.txt']
+CWD: /home/<usr>/plotarmor-program
+ARGV: ['bash', '-c', 'git -C /home/<usr>/plotarmor-demo branch -avv; git -C /home/<usr>/plotarmor-demo branch -r --contains d9da574; nl -ba /home/<usr>/plotarmor-kora/scripts/verify_stateful_signing.mjs | sed -n "1,68p"; nl -ba /home/<usr>/plotarmor-kora/README.md | sed -n "325,355p;550,570p"; rg -n -C 2 "signContract|sign_contract" /home/<usr>/plotarmor-kora --glob "!.git/**" --glob "!evidence/**"; nl -ba /home/<usr>/.cargo/registry/src/*/anchor-syn-1.0.2/src/codegen/accounts/constraints.rs | sed -n "1170,1220p"; nl -ba /home/<usr>/.cargo/registry/src/*/anchor-attribute-account-1.0.2/src/lib.rs | sed -n "55,110p"; nl -ba /home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts | sed -n "735,810p"; git ls-files target; git diff 7c267e9^ 7c267e9 -- programs/plotarmor/src; cat evidence/2026-09-30-m2-pass4/06a_devnet_program_state.txt']
 * feat/notifications                  312c043 Record overview fact-check evidence for 2026-09-25
   feat/wallet-bindings                5aaff08 [origin/feat/wallet-bindings] Add session-bound wallet identity verification
   fix/sign-contract-registry-config   d9da574 Add registry_config to client sign_contract call, sync IDL to program source
@@ -128,53 +128,53 @@ ARGV: ['bash', '-c', 'git -C /home/sucka/plotarmor-demo branch -avv; git -C /hom
    568	no-setup-broadcast statement are superseded by the update above; untested controls
    569	and the historical evidence-anchor status are not upgraded by these new probes.
    570	
-/home/sucka/plotarmor-kora/README.md-339-| `anchor_evidence_contract` | 6 | RegistryConfig only; funded anchorer |
-/home/sucka/plotarmor-kora/README.md-340-| `register_work_claim` | 9 | RegistryConfig only; funded claimant |
-/home/sucka/plotarmor-kora/README.md:341:| `sign_contract` | 5 | RegistryConfig and existing ContractArtifact |
-/home/sucka/plotarmor-kora/README.md-342-| `add_version` | 7 | RegistryConfig and existing claimant-owned WorkClaim |
-/home/sucka/plotarmor-kora/README.md-343-| `add_owner` | 7 | RegistryConfig, WorkClaim, Ownership, matching admin |
+/home/<usr>/plotarmor-kora/README.md-339-| `anchor_evidence_contract` | 6 | RegistryConfig only; funded anchorer |
+/home/<usr>/plotarmor-kora/README.md-340-| `register_work_claim` | 9 | RegistryConfig only; funded claimant |
+/home/<usr>/plotarmor-kora/README.md:341:| `sign_contract` | 5 | RegistryConfig and existing ContractArtifact |
+/home/<usr>/plotarmor-kora/README.md-342-| `add_version` | 7 | RegistryConfig and existing claimant-owned WorkClaim |
+/home/<usr>/plotarmor-kora/README.md-343-| `add_owner` | 7 | RegistryConfig, WorkClaim, Ownership, matching admin |
 --
-/home/sucka/plotarmor-kora/README.md-559-successful fully signed devnet simulations. This run produced **4 qualifying live
-/home/sucka/plotarmor-kora/README.md-560-passes**. Distinct instruction coverage is now **5/6**, including the historical
-/home/sucka/plotarmor-kora/README.md:561:evidence-anchor pass; `sign_contract` remains unprobed and its current client shape
-/home/sucka/plotarmor-kora/README.md-562-requires M2 deployment alignment. Exactly one ordinary-wallet registration was
-/home/sucka/plotarmor-kora/README.md-563-broadcast for setup; no Kora-signed transaction was broadcast. See the
+/home/<usr>/plotarmor-kora/README.md-559-successful fully signed devnet simulations. This run produced **4 qualifying live
+/home/<usr>/plotarmor-kora/README.md-560-passes**. Distinct instruction coverage is now **5/6**, including the historical
+/home/<usr>/plotarmor-kora/README.md:561:evidence-anchor pass; `sign_contract` remains unprobed and its current client shape
+/home/<usr>/plotarmor-kora/README.md-562-requires M2 deployment alignment. Exactly one ordinary-wallet registration was
+/home/<usr>/plotarmor-kora/README.md-563-broadcast for setup; no Kora-signed transaction was broadcast. See the
 --
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1079-    },
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1080-    {
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json:1081:      "name": "sign_contract",
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1082-      "discriminator": [
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1083-        145,
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1079-    },
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1080-    {
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json:1081:      "name": "sign_contract",
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1082-      "discriminator": [
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/idl.json-1083-        145,
 --
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-23-
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-24-The account structs confirm RegistryConfig is already first in all three shapes.
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md:25:The M2 commit 7c267e9 changes sign_contract only among program instructions.
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-26-Rent payer is claimant for add_version and admin for add_owner and
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-27-anchor_authorized_contract. These probes do not depend on the M2 redeploy.
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-23-
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-24-The account structs confirm RegistryConfig is already first in all three shapes.
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md:25:The M2 commit 7c267e9 changes sign_contract only among program instructions.
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-26-Rent payer is claimant for add_version and admin for add_owner and
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-27-anchor_authorized_contract. These probes do not depend on the M2 redeploy.
 --
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-79-
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-80-Full six-instruction coverage still needs these three live passes plus
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md:81:sign_contract coverage, with its current five-account shape requiring M2
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-82-deployment alignment. Existing registration/evidence signing passes remain
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-83-historical; registration has not been refreshed by this blocked run.
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-79-
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-80-Full six-instruction coverage still needs these three live passes plus
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md:81:sign_contract coverage, with its current five-account shape requiring M2
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-82-deployment alignment. Existing registration/evidence signing passes remain
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-readiness/REPORT.md-83-historical; registration has not been refreshed by this blocked run.
 --
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-65-
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-66-Historical plus current evidence now covers **5 of 6 application instructions**.
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md:67:sign_contract remains unprobed through Kora; its current five-account client
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-68-shape needs the pending M2 deployment alignment. anchor_evidence_contract retains
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-69-its historical pass and was not refreshed here. Thus four shapes have fresh
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-65-
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-66-Historical plus current evidence now covers **5 of 6 application instructions**.
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md:67:sign_contract remains unprobed through Kora; its current five-account client
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-68-shape needs the pending M2 deployment alignment. anchor_evidence_contract retains
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/REPORT.md-69-its historical pass and was not refreshed here. Thus four shapes have fresh
 --
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1079-    },
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1080-    {
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json:1081:      "name": "sign_contract",
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1082-      "discriminator": [
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1083-        145,
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1079-    },
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1080-    {
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json:1081:      "name": "sign_contract",
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1082-      "discriminator": [
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-probes-001/idl.json-1083-        145,
 --
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1079-    },
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1080-    {
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json:1081:      "name": "sign_contract",
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1082-      "discriminator": [
-/home/sucka/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1083-        145,
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1079-    },
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1080-    {
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json:1081:      "name": "sign_contract",
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1082-      "discriminator": [
+/home/<usr>/plotarmor-kora/evidence/2026-09-17-stateful-setup-001/idl.json-1083-        145,
   1170	fn generate_constraint_seeds(f: &Field, c: &ConstraintSeedsGroup) -> proc_macro2::TokenStream {
   1171	    if c.is_init {
   1172	        // Note that for `#[account(init, seeds)]`, the seed generation and checks is checked in

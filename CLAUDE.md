@@ -814,7 +814,7 @@ no reconstructable record of it ever actually running. No tool named program_aut
 discoverable in this project's toolset, and this project directory (plotarmor-program) has
 no MCP server configured at all (empty mcpServers entry). A real Solana MCP server
 (solana-mcp / solana-mcp-server, https://mcp.solana.com/mcp) is configured for two sibling
-project paths (/home/sucka/plotarmor, /home/sucka/plotarmor/plotarmor), but that is a
+project paths (/home/<usr>/plotarmor, /home/<usr>/plotarmor/plotarmor), but that is a
 different project directory, was not connected in the session that investigated this, and
 there is no evidence a tool called program_autofixer exists on it or was ever invoked. Per
 this file's own Verification standard, do not treat the sentence below as a completed audit
@@ -875,7 +875,7 @@ security" all returned "No matching deferred tools found" in the interactive ses
 including after a full session restart. Byte-for-byte config comparison across all three
 project directories ruled out scope/setup: this project's entry
 (`{"type": "http", "url": "https://mcp.solana.com/mcp"}` under key "solana-mcp") is
-structurally identical to /home/sucka/plotarmor's working entry -- not a config mistake.
+structurally identical to /home/<usr>/plotarmor's working entry -- not a config mistake.
 
 Running `claude -p "..." --debug --debug-file <path>` (one-shot, non-interactive) surfaced
 the actual mechanism: Claude Code loads a baseline pool of "deferred tools" at process start

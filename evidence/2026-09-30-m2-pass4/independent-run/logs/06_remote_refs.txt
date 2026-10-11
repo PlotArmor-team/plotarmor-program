@@ -1,5 +1,5 @@
 UTC: 2026-09-29T18:22:04.554202+00:00
-CWD: /home/sucka/plotarmor-demo
+CWD: /home/<usr>/plotarmor-demo
 ARGV: ['git', 'ls-remote', 'origin', 'refs/heads/main', 'refs/heads/feat/wallet-bindings', 'refs/heads/fix/sign-contract-registry-config', 'refs/heads/feat/notifications']
 fatal: unable to access 'https://github.com/PlotArmor-team/plotarmor-demo.git/': Could not resolve host: github.com
 

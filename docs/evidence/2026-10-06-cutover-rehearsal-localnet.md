@@ -81,7 +81,7 @@ $ git rev-parse HEAD; git status --short; sha256sum target/deploy/plotarmor.so; 
 1e1771f8eaf26f91ff9acfc574987230b59a3508
 ?? docs/evidence/
 97880b057e52f474f20bb209f586e708eaf96d5608bcc52403ca62bc396916b7  target/deploy/plotarmor.so
--rwxr-xr-x 1 sucka sucka 472440 Oct  6 14:23 target/deploy/plotarmor.so
+-rwxr-xr-x 1 <usr> <usr> 472440 Oct  6 14:23 target/deploy/plotarmor.so
 [exit 0]
 ```
 
@@ -125,8 +125,8 @@ Rent-exempt minimum: 2.4008334 SOL
 
 ```
 $ DEVNET_RPC_URL=http://127.0.0.1:8899 timeout 300 node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_test.ts 2>&1 | tail -n 25 | cut -c1-300
-    at translateError (/home/sucka/plotarmor-program/node_modules/@coral-xyz/anchor/src/error.ts:277:35)
-    at MethodsBuilder.rpc [as _rpcFn] (/home/sucka/plotarmor-program/node_modules/@coral-xyz/anchor/src/program/namespace/rpc.ts:35:29)
+    at translateError (/home/<usr>/plotarmor-program/node_modules/@coral-xyz/anchor/src/error.ts:277:35)
+    at MethodsBuilder.rpc [as _rpcFn] (/home/<usr>/plotarmor-program/node_modules/@coral-xyz/anchor/src/program/namespace/rpc.ts:35:29)
     at processTicksAndRejections (node:internal/process/task_queues:105:5) {
   errorLogs: [
     'Program log: AnchorError caused by account: contract_artifact. Error Code: AccountDiscriminatorMismatch. Error Number: 3002. Error Message: Account discriminator did not match what was expected.'
@@ -218,8 +218,8 @@ ProgramData lamports 3357316080 data_len 482245
 ### Post-upgrade byte check and security.txt (parsed from the dumped upgraded program)
 
 ```
-$ solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/post.so -u http://127.0.0.1:8899 && python3 -I /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/verify_bytes.py /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/post.so
-Wrote program to /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/post.so
+$ solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/post.so -u http://127.0.0.1:8899 && python3 -I /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/verify_bytes.py /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/post.so
+Wrote program to /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/post.so
 dump length 482200 trimmed 472425
 trimmed sha256 bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
 expected       bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
@@ -350,7 +350,7 @@ ALL GREEN
 ### Post-check: deserialize the 11 cloned accounts with the NEW IDL (target/idl/plotarmor.json)
 
 ```
-$ NODE_PATH=$HOME/plotarmor-program/node_modules node_modules/.bin/ts-node --transpile-only --compiler-options '{"module":"commonjs","esModuleInterop":true}' /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/deser.ts /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/clones.json 2>&1 | cut -c1-330
+$ NODE_PATH=$HOME/plotarmor-program/node_modules node_modules/.bin/ts-node --transpile-only --compiler-options '{"module":"commonjs","esModuleInterop":true}' /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/deser.ts /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/clones.json 2>&1 | cut -c1-330
 OK   AnchorRecord               1aAF123RsFRKBhUb2YjnYbezp5JmPrN6dFjuxR9GrJE {"anchoredObject":"YxwaHa1bpJXysDXwJ9Ty2yDBvThAuZYwjq5a8VN4qnW","anchoredObjectKind":2,"anchorMode":1,"createdAt":"1784063650","externalRefHash":"[32 items]"}
 OK   ClaimArtifactLink          AfFLNFjgfuyKofq7W9rzozQAYZxiya6k8Y3FChxDoek {"workClaim":"97Ye6jq5WHfrVGDL8X8fz1jjzgGQHoSA3mzAS1cLD8j4","contentArtifact":"6zpCKWVZfcsnc2LUuctYt6w4hniifGnFKEaXBdBjRKVb","previousLink":"Gk2KNMZr7cvYjvR6TBSoHNFUK8ajLW1XodvtELnEWaWM","createdAt":"1781621847"}
 OK   OwnerRecord                6oGyQzMJTmJTkTHKNZRrTSoSDBX849X3KfDHTsEQEdT {"ownership":"J6bwjwMuFg1eQFvwSAab1sy5AL8SRW27f9VcQFQGHqUx","owner":"9VkT9u8vkVDM7mopqUi1Md8JwH698v7QcYYM9GBJf8Qf","share":30,"role":1}
@@ -414,7 +414,7 @@ ProgramData lamports 3357316080
 
 ```
 $ sha256sum ~/plotarmor-rollback/deployed-09c5bfc-slot476301346.so; solana program deploy ~/plotarmor-rollback/deployed-09c5bfc-slot476301346.so --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 --upgrade-authority ~/.config/solana/id.json -u http://127.0.0.1:8899
-7d43bcb222c6e71d8cfe77db2fe3a48dc82704573873f04ef0c8d144de877235  /home/sucka/plotarmor-rollback/deployed-09c5bfc-slot476301346.so
+7d43bcb222c6e71d8cfe77db2fe3a48dc82704573873f04ef0c8d144de877235  /home/<usr>/plotarmor-rollback/deployed-09c5bfc-slot476301346.so
 Program Id: 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2
 
 Signature: ZiR2LivXq1TmiyUaDcR3KwYR5UBzkyVtXui6uEWJufmghrH4Qdq9Ka6QVT7LfQLfijsgK3k94zh7ny4WZZ8cnrp
@@ -422,7 +422,7 @@ Signature: ZiR2LivXq1TmiyUaDcR3KwYR5UBzkyVtXui6uEWJufmghrH4Qdq9Ka6QVT7LfQLfijsgK
 ```
 
 ```
-$ solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u http://127.0.0.1:8899; solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/rolled.so -u http://127.0.0.1:8899 && python3 -I -c "import hashlib;b=open('/tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/rolled.so','rb').read().rstrip(b'\0');print('trimmed',len(b),hashlib.sha256(b).hexdigest());print('expect 5663e20f992914ad1a2671888fd3062a36df69ecc6ac81ee1318f9e702bc3fb5');print('security.txt marker present:', b'=======BEGIN SECURITY.TXT V1=======' in b)"
+$ solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u http://127.0.0.1:8899; solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/rolled.so -u http://127.0.0.1:8899 && python3 -I -c "import hashlib;b=open('/tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/rolled.so','rb').read().rstrip(b'\0');print('trimmed',len(b),hashlib.sha256(b).hexdigest());print('expect 5663e20f992914ad1a2671888fd3062a36df69ecc6ac81ee1318f9e702bc3fb5');print('security.txt marker present:', b'=======BEGIN SECURITY.TXT V1=======' in b)"
 
 Program Id: 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2
 Owner: BPFLoaderUpgradeab1e11111111111111111111111
@@ -432,7 +432,7 @@ Last Deployed In Slot: 410
 Data Length: 482200 (0x75b98) bytes
 Balance: 3.35731608 SOL
 
-Wrote program to /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/rolled.so
+Wrote program to /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/rolled.so
 trimmed 470257 5663e20f992914ad1a2671888fd3062a36df69ecc6ac81ee1318f9e702bc3fb5
 expect 5663e20f992914ad1a2671888fd3062a36df69ecc6ac81ee1318f9e702bc3fb5
 security.txt marker present: False
@@ -557,8 +557,8 @@ guard-exit=0
 ### Scenario B: partial upload, then abandon with solana program close
 
 ```
-$ solana-keygen new -o /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json --no-bip39-passphrase --silent && solana address -k /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json
-Wrote new keypair to /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json
+$ solana-keygen new -o /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json --no-bip39-passphrase --silent && solana address -k /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json
+Wrote new keypair to /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json
 HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9
 [exit 0]
 ```
@@ -570,17 +570,17 @@ $ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.
 ```
 
 ```
-$ /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json 1
+$ /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.json 1
 buffer address: HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9
 deploy killed after buffer appeared (+1s)
-/tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh: line 28: 10148 Killed                     setsid bash -c "scripts/guard_deploy_artifact.sh && solana program deploy target/deploy/plotarmor.so   --program-id $P --upgrade-authority ~/.config/solana/id.json --buffer $KEY   --no-auto-extend --use-rpc --max-sign-attempts 20 -u $L" > /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/deploy-partial.log 2>&1
+/tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh: line 28: 10148 Killed                     setsid bash -c "scripts/guard_deploy_artifact.sh && solana program deploy target/deploy/plotarmor.so   --program-id $P --upgrade-authority ~/.config/solana/id.json --buffer $KEY   --no-auto-extend --use-rpc --max-sign-attempts 20 -u $L" > /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/deploy-partial.log 2>&1
 --- deploy log so far:
 artifact OK: target/deploy/plotarmor.so trimmed sha256 bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
 [exit 0]
 ```
 
 ```
-$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program dump HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.dump -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/bufstat.py /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.dump target/deploy/plotarmor.so; solana program show HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 -u http://127.0.0.1:8899 2>&1 | head -n 8
+$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program dump HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.dump -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/bufstat.py /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-b.dump target/deploy/plotarmor.so; solana program show HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9 -u http://127.0.0.1:8899 2>&1 | head -n 8
 2039463971 lamports
 
 Buffer Address                               | Authority                                    | Balance
@@ -614,15 +614,15 @@ Error: AccountNotFound: pubkey=HSA5HWVRt8qLrvYG1qeyF1j3iQwURSVec7WXqsdKtyo9
 ### Scenario A: partial upload, then resume with the identical command
 
 ```
-$ solana-keygen new -o /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json --no-bip39-passphrase --silent && solana address -k /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json; solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports
-Wrote new keypair to /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json
+$ solana-keygen new -o /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json --no-bip39-passphrase --silent && solana address -k /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json; solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports
+Wrote new keypair to /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json
 G9KiYYVNSkoaJSFDZR32yicgsFqiDTFzyR3myBvqSJJA
 5328845451 lamports
 [exit 0]
 ```
 
 ```
-$ /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json 1 2>&1 | grep -v Killed
+$ /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/partial.sh /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json 1 2>&1 | grep -v Killed
 buffer address: G9KiYYVNSkoaJSFDZR32yicgsFqiDTFzyR3myBvqSJJA
 deploy killed after buffer appeared (+1s)
 --- deploy log so far:
@@ -631,7 +631,7 @@ artifact OK: target/deploy/plotarmor.so trimmed sha256 bcea64bb938e94abf423ff0b5
 ```
 
 ```
-$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program dump G9KiYYVNSkoaJSFDZR32yicgsFqiDTFzyR3myBvqSJJA /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.dump -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/bufstat.py /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.dump target/deploy/plotarmor.so; solana program show  -u http://127.0.0.1:8899 2>/dev/null | grep -i -E 'slot|data length'
+$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program dump G9KiYYVNSkoaJSFDZR32yicgsFqiDTFzyR3myBvqSJJA /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.dump -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/bufstat.py /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.dump target/deploy/plotarmor.so; solana program show  -u http://127.0.0.1:8899 2>/dev/null | grep -i -E 'slot|data length'
 2038988971 lamports
 
 Buffer Address                               | Authority                                    | Balance
@@ -644,7 +644,7 @@ PARTIAL upload
 ```
 
 ```
-$ scripts/guard_deploy_artifact.sh && solana program deploy target/deploy/plotarmor.so --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 --upgrade-authority ~/.config/solana/id.json --buffer /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json --no-auto-extend --use-rpc --max-sign-attempts 20 -u http://127.0.0.1:8899
+$ scripts/guard_deploy_artifact.sh && solana program deploy target/deploy/plotarmor.so --program-id 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 --upgrade-authority ~/.config/solana/id.json --buffer /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/buf-a.json --no-auto-extend --use-rpc --max-sign-attempts 20 -u http://127.0.0.1:8899
 artifact OK: target/deploy/plotarmor.so trimmed sha256 bcea64bb938e94abf423ff0b5d286069e28e3835660fcb077e8d40996573c4f2
 Program Id: 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2
 
@@ -653,7 +653,7 @@ Signature: qD6xYfHwjGDVAAkHmw1GBsAp7rpmS1XnxsxJGXbxPCkXKyziQhFN9tTXMkcekPsHjdWaA
 ```
 
 ```
-$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u http://127.0.0.1:8899; solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/final.so -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/verify_bytes.py /tmp/claude-1000/-home-sucka-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/final.so | head -n 4
+$ solana balance EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd -u http://127.0.0.1:8899 --lamports; solana program show --buffers -u http://127.0.0.1:8899; solana program show 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 -u http://127.0.0.1:8899; solana program dump 3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2 /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/final.so -u http://127.0.0.1:8899 >/dev/null && python3 -I /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/verify_bytes.py /tmp/claude-1000/-home-<usr>-plotarmor-program/df3dc9e2-961a-4750-abc1-a723e965a5da/scratchpad/final.so | head -n 4
 5326495451 lamports
 
 Buffer Address                               | Authority                                    | Balance

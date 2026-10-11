@@ -187,7 +187,7 @@ cd .cutover-pass3/old && NO_DNA=1 anchor build --ignore-keys
    Compiling anchor-attribute-constant v1.0.2
    Compiling anchor-attribute-program v1.0.2
    Compiling anchor-lang v1.0.2
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/.cutover-pass3/old/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/.cutover-pass3/old/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 29m 50s
    Compiling proc-macro2 v1.0.106
    Compiling quote v1.0.45
@@ -517,13 +517,13 @@ cd .cutover-pass3/old && NO_DNA=1 anchor build --ignore-keys
    Compiling solana-zk-elgamal-proof-program v3.1.14
    Compiling solana-zk-token-proof-program v3.1.14
    Compiling solana-builtins v3.1.14
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/.cutover-pass3/old/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/.cutover-pass3/old/programs/plotarmor)
    Compiling litesvm v0.10.0
     Finished `test` profile [unoptimized + debuginfo] target(s) in 25m 47s
-     Running unittests src/lib.rs (/home/sucka/plotarmor-program/.cutover-pass3/old/target/debug/deps/plotarmor-5e8b59803e9d03e3)
-     Running tests/happy_paths.rs (/home/sucka/plotarmor-program/.cutover-pass3/old/target/debug/deps/happy_paths-128f2fa5165339af)
-     Running tests/security_tests.rs (/home/sucka/plotarmor-program/.cutover-pass3/old/target/debug/deps/security_tests-18d9b6115db5dbf1)
-     Running tests/sign_contract_tests.rs (/home/sucka/plotarmor-program/.cutover-pass3/old/target/debug/deps/sign_contract_tests-6f0d255ef284f87d)
+     Running unittests src/lib.rs (/home/<usr>/plotarmor-program/.cutover-pass3/old/target/debug/deps/plotarmor-5e8b59803e9d03e3)
+     Running tests/happy_paths.rs (/home/<usr>/plotarmor-program/.cutover-pass3/old/target/debug/deps/happy_paths-128f2fa5165339af)
+     Running tests/security_tests.rs (/home/<usr>/plotarmor-program/.cutover-pass3/old/target/debug/deps/security_tests-18d9b6115db5dbf1)
+     Running tests/sign_contract_tests.rs (/home/<usr>/plotarmor-program/.cutover-pass3/old/target/debug/deps/sign_contract_tests-6f0d255ef284f87d)
 
 exit_code=0
 ````
@@ -547,7 +547,7 @@ exit_code=0
 ````
 
 ````bash
-git diff --stat 09c5bfc HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts; git diff 09c5bfc HEAD -- programs/plotarmor/src; git diff --exit-code 09c5bfc HEAD -- programs/plotarmor/src/instructions/register_work_claim.rs programs/plotarmor/src/instructions/add_version.rs programs/plotarmor/src/state.rs programs/plotarmor/src/utils.rs; git diff --exit-code f34bfae HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts/build.sh; cat programs/plotarmor/src/instructions/init_registry_config.rs; rg -n "required_payment|spill|MINIMUM_EXTEND_PROGRAM_BYTES" /home/sucka/.cargo/registry/src/*/solana-bpf-loader-program-3.1.14/src/lib.rs /home/sucka/.cargo/registry/src/*/solana-loader-v3-interface-6.1.1/src/instruction.rs
+git diff --stat 09c5bfc HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts; git diff 09c5bfc HEAD -- programs/plotarmor/src; git diff --exit-code 09c5bfc HEAD -- programs/plotarmor/src/instructions/register_work_claim.rs programs/plotarmor/src/instructions/add_version.rs programs/plotarmor/src/state.rs programs/plotarmor/src/utils.rs; git diff --exit-code f34bfae HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts/build.sh; cat programs/plotarmor/src/instructions/init_registry_config.rs; rg -n "required_payment|spill|MINIMUM_EXTEND_PROGRAM_BYTES" /home/<usr>/.cargo/registry/src/*/solana-bpf-loader-program-3.1.14/src/lib.rs /home/<usr>/.cargo/registry/src/*/solana-loader-v3-interface-6.1.1/src/instruction.rs
 ````
 ````text
  Anchor.toml                                        |   2 +
@@ -679,26 +679,26 @@ pub fn handler(ctx: Context<InitRegistryConfig>) -> Result<()> {
     config.paused = false;
     Ok(())
 }
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:18:pub const MINIMUM_EXTEND_PROGRAM_BYTES: u32 = 10_240;
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:110:    /// will be transferred to the spill account, leaving the Buffer account
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:119:    ///   3. `[writable]` The spill account.
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:154:    /// must be at least [`MINIMUM_EXTEND_PROGRAM_BYTES`] (10 KiB).
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:156:    /// within [`MINIMUM_EXTEND_PROGRAM_BYTES`] of the max permitted
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:308:    spill_address: &Pubkey,
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:318:            AccountMeta::new(*spill_address, false),
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:469:/// [`MINIMUM_EXTEND_PROGRAM_BYTES`] unless the account is near the
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:820:            // Fund ProgramData to rent-exemption, spill the rest
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:822:            let mut spill = instruction_context.try_borrow_instruction_account(3)?;
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:823:            spill.checked_add_lamports(
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:1362:    let required_payment = {
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:1374:    if required_payment > 0 {
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:1379:            system_instruction::transfer(&payer_key, &programdata_key, required_payment),
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2331:            let spill_address = Pubkey::new_unique();
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2377:            let spill_account = AccountSharedData::new(0, 0, &Pubkey::new_unique());
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2388:                (spill_address, spill_account),
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2410:                    pubkey: spill_address,
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2549:        // Case: Buffer account and spill account alias
-/home/sucka/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2564:        // Case: Programdata account and spill account alias
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:18:pub const MINIMUM_EXTEND_PROGRAM_BYTES: u32 = 10_240;
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:110:    /// will be transferred to the spill account, leaving the Buffer account
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:119:    ///   3. `[writable]` The spill account.
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:154:    /// must be at least [`MINIMUM_EXTEND_PROGRAM_BYTES`] (10 KiB).
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:156:    /// within [`MINIMUM_EXTEND_PROGRAM_BYTES`] of the max permitted
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:308:    spill_address: &Pubkey,
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:318:            AccountMeta::new(*spill_address, false),
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-loader-v3-interface-6.1.1/src/instruction.rs:469:/// [`MINIMUM_EXTEND_PROGRAM_BYTES`] unless the account is near the
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:820:            // Fund ProgramData to rent-exemption, spill the rest
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:822:            let mut spill = instruction_context.try_borrow_instruction_account(3)?;
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:823:            spill.checked_add_lamports(
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:1362:    let required_payment = {
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:1374:    if required_payment > 0 {
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:1379:            system_instruction::transfer(&payer_key, &programdata_key, required_payment),
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2331:            let spill_address = Pubkey::new_unique();
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2377:            let spill_account = AccountSharedData::new(0, 0, &Pubkey::new_unique());
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2388:                (spill_address, spill_account),
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2410:                    pubkey: spill_address,
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2549:        // Case: Buffer account and spill account alias
+/home/<usr>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-bpf-loader-program-3.1.14/src/lib.rs:2564:        // Case: Programdata account and spill account alias
 
 exit_code=0
 ````
@@ -707,7 +707,7 @@ exit_code=0
 cat /tmp/pass3-chain.cjs; node /tmp/pass3-chain.cjs
 ````
 ````text
-const {PublicKey}=require('/home/sucka/plotarmor-program/node_modules/@solana/web3.js');
+const {PublicKey}=require('/home/<usr>/plotarmor-program/node_modules/@solana/web3.js');
 const {createHash}=require('crypto');
 const fs=require('fs');
 const rpcUrl='https://api.devnet.solana.com';
@@ -765,7 +765,7 @@ exit_code=0
 ````
 
 ````bash
-sed -n "808,836p;1356,1386p" /home/sucka/.cargo/registry/src/*/solana-bpf-loader-program-3.1.14/src/lib.rs; sed -n "10,23p;140,166p" /home/sucka/.cargo/registry/src/*/solana-loader-v3-interface-6.1.1/src/instruction.rs; rg -n "tools_version|platform-tools" /home/sucka/.cargo/registry/src/*/anchor-cli-1.0.1/src/lib.rs | head -30; git diff --quiet f34bfae HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts rust-toolchain.toml; printf "runbook_source_precheck_exit=%s\n" "$?"; git diff --name-only f34bfae HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts rust-toolchain.toml
+sed -n "808,836p;1356,1386p" /home/<usr>/.cargo/registry/src/*/solana-bpf-loader-program-3.1.14/src/lib.rs; sed -n "10,23p;140,166p" /home/<usr>/.cargo/registry/src/*/solana-loader-v3-interface-6.1.1/src/instruction.rs; rg -n "tools_version|platform-tools" /home/<usr>/.cargo/registry/src/*/anchor-cli-1.0.1/src/lib.rs | head -30; git diff --quiet f34bfae HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts rust-toolchain.toml; printf "runbook_source_precheck_exit=%s\n" "$?"; git diff --name-only f34bfae HEAD -- programs Cargo.toml Cargo.lock Anchor.toml scripts rust-toolchain.toml
 ````
 ````text
                 let src_slice = buffer
@@ -869,7 +869,7 @@ pub const MINIMUM_EXTEND_PROGRAM_BYTES: u32 = 10_240;
     /// # Account references
     ///   0. `[writable]` The ProgramData account.
     ///   1. `[writable]` The ProgramData account's associated Program account.
-rg: /home/sucka/.cargo/registry/src/*/anchor-cli-1.0.1/src/lib.rs: IO error for operation on /home/sucka/.cargo/registry/src/*/anchor-cli-1.0.1/src/lib.rs: No such file or directory (os error 2)
+rg: /home/<usr>/.cargo/registry/src/*/anchor-cli-1.0.1/src/lib.rs: IO error for operation on /home/<usr>/.cargo/registry/src/*/anchor-cli-1.0.1/src/lib.rs: No such file or directory (os error 2)
 runbook_source_precheck_exit=1
 scripts/guard_deploy_artifact.sh
 
@@ -993,7 +993,7 @@ platform-tools pin: v1.52  (mode: anchor)
    Compiling anchor-attribute-error v1.0.2
    Compiling anchor-attribute-program v1.0.2
    Compiling anchor-lang v1.0.2
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/.cutover-pass3/head/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/.cutover-pass3/head/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 43m 04s
    Compiling proc-macro2 v1.0.106
    Compiling quote v1.0.45
@@ -1322,15 +1322,15 @@ platform-tools pin: v1.52  (mode: anchor)
    Compiling solana-zk-elgamal-proof-program v3.1.14
    Compiling ansi_term v0.12.1
    Compiling solana-security-txt v1.1.3
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/.cutover-pass3/head/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/.cutover-pass3/head/programs/plotarmor)
    Compiling solana-zk-token-proof-program v3.1.14
    Compiling solana-builtins v3.1.14
    Compiling litesvm v0.10.0
     Finished `test` profile [unoptimized + debuginfo] target(s) in 23m 31s
-     Running unittests src/lib.rs (/home/sucka/plotarmor-program/.cutover-pass3/head/target/debug/deps/plotarmor-d5140aaaa4041b11)
-     Running tests/happy_paths.rs (/home/sucka/plotarmor-program/.cutover-pass3/head/target/debug/deps/happy_paths-4beb9126c1ce0080)
-     Running tests/security_tests.rs (/home/sucka/plotarmor-program/.cutover-pass3/head/target/debug/deps/security_tests-ad5cac0c007edf49)
-     Running tests/sign_contract_tests.rs (/home/sucka/plotarmor-program/.cutover-pass3/head/target/debug/deps/sign_contract_tests-0a71df0c6bdccafb)
+     Running unittests src/lib.rs (/home/<usr>/plotarmor-program/.cutover-pass3/head/target/debug/deps/plotarmor-d5140aaaa4041b11)
+     Running tests/happy_paths.rs (/home/<usr>/plotarmor-program/.cutover-pass3/head/target/debug/deps/happy_paths-4beb9126c1ce0080)
+     Running tests/security_tests.rs (/home/<usr>/plotarmor-program/.cutover-pass3/head/target/debug/deps/security_tests-ad5cac0c007edf49)
+     Running tests/sign_contract_tests.rs (/home/<usr>/plotarmor-program/.cutover-pass3/head/target/debug/deps/sign_contract_tests-0a71df0c6bdccafb)
 
 exit_code=0
 ````
@@ -1363,7 +1363,7 @@ exit_code=0
 cat /tmp/pass3-fee.cjs; node /tmp/pass3-fee.cjs
 ````
 ````text
-const {Connection,PublicKey,Transaction,SystemProgram}=require('/home/sucka/plotarmor-program/node_modules/@solana/web3.js');
+const {Connection,PublicKey,Transaction,SystemProgram}=require('/home/<usr>/plotarmor-program/node_modules/@solana/web3.js');
 (async()=>{const c=new Connection('https://api.devnet.solana.com','finalized');const a=new PublicKey('EjeeFw3Ft856o9Ek2VWti6aAco9RXxGUyeLk96dPSWzd');const {blockhash}=await c.getLatestBlockhash();const t=new Transaction({feePayer:a,recentBlockhash:blockhash}).add(SystemProgram.transfer({fromPubkey:a,toPubkey:a,lamports:0}));const m=t.compileMessage();console.log('Unsigned message required signatures:',m.header.numRequiredSignatures);console.log('getFeeForMessage:',JSON.stringify(await c.getFeeForMessage(m,'finalized')));console.log('No signing, simulation or submission performed. Actual upgrade total fees depend on upload transactions and retries.');})().catch(e=>{console.error(e);process.exitCode=1});
 Unsigned message required signatures: 1
 getFeeForMessage: {"context":{"apiVersion":"4.4.0-beta.0","slot":508408291},"value":5000}
@@ -1373,7 +1373,7 @@ exit_code=0
 ````
 
 ````bash
-NO_DNA=1 cargo build-sbf --version; /home/sucka/.cache/solana/v1.52/platform-tools/rust/bin/rustc --version; readlink /home/sucka/.rustup/toolchains/sbpf; git show 09c5bfc:programs/plotarmor/src/lib.rs | sed -n "30,160p"; sed -n "55,180p" programs/plotarmor/src/lib.rs; sed -n "50,100p" docs/CUTOVER_2026-10.md
+NO_DNA=1 cargo build-sbf --version; /home/<usr>/.cache/solana/v1.52/platform-tools/rust/bin/rustc --version; readlink /home/<usr>/.rustup/toolchains/sbpf; git show 09c5bfc:programs/plotarmor/src/lib.rs | sed -n "30,160p"; sed -n "55,180p" programs/plotarmor/src/lib.rs; sed -n "50,100p" docs/CUTOVER_2026-10.md
 ````
 ````text
 cargo-build-sbf 4.0.0
@@ -1812,25 +1812,25 @@ exit_code=0
 ````
 
 ````bash
-cd .cutover-pass3/old && CARGO_TARGET_DIR=/home/sucka/plotarmor-program/target NO_DNA=1 anchor idl build -o /tmp/pass3-old-idl.json
+cd .cutover-pass3/old && CARGO_TARGET_DIR=/home/<usr>/plotarmor-program/target NO_DNA=1 anchor idl build -o /tmp/pass3-old-idl.json
 ````
 ````text
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/.cutover-pass3/old/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/.cutover-pass3/old/programs/plotarmor)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 6m 48s
-     Running unittests src/lib.rs (/home/sucka/plotarmor-program/target/debug/deps/plotarmor-5e8b59803e9d03e3)
-     Running tests/happy_paths.rs (/home/sucka/plotarmor-program/target/debug/deps/happy_paths-128f2fa5165339af)
-     Running tests/security_tests.rs (/home/sucka/plotarmor-program/target/debug/deps/security_tests-18d9b6115db5dbf1)
-     Running tests/sign_contract_tests.rs (/home/sucka/plotarmor-program/target/debug/deps/sign_contract_tests-6f0d255ef284f87d)
+     Running unittests src/lib.rs (/home/<usr>/plotarmor-program/target/debug/deps/plotarmor-5e8b59803e9d03e3)
+     Running tests/happy_paths.rs (/home/<usr>/plotarmor-program/target/debug/deps/happy_paths-128f2fa5165339af)
+     Running tests/security_tests.rs (/home/<usr>/plotarmor-program/target/debug/deps/security_tests-18d9b6115db5dbf1)
+     Running tests/sign_contract_tests.rs (/home/<usr>/plotarmor-program/target/debug/deps/sign_contract_tests-6f0d255ef284f87d)
 
 exit_code=0
 ````
 
 ````bash
-cd .cutover-pass3/head && CARGO_TARGET_DIR=/home/sucka/plotarmor-program/target NO_DNA=1 anchor idl build -o /tmp/pass3-head-idl.json
+cd .cutover-pass3/head && CARGO_TARGET_DIR=/home/<usr>/plotarmor-program/target NO_DNA=1 anchor idl build -o /tmp/pass3-head-idl.json
 ````
 ````text
     Blocking waiting for file lock on build directory
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/.cutover-pass3/head/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/.cutover-pass3/head/programs/plotarmor)
 error: couldn't read `programs/plotarmor/tests/common/../../../../target/deploy/plotarmor.so`: No such file or directory (os error 2)
   --> programs/plotarmor/tests/common/mod.rs:51:9
    |
@@ -1856,7 +1856,7 @@ cat /tmp/pass3-compare.py; python3 /tmp/pass3-compare.py; scripts/guard_deploy_a
 ````
 ````text
 import json,pathlib,hashlib,difflib,subprocess
-root=pathlib.Path('/home/sucka/plotarmor-program')
+root=pathlib.Path('/home/<usr>/plotarmor-program')
 a=json.loads((root/'.cutover-pass3/old/target/idl/plotarmor.json').read_text());b=json.loads((root/'.cutover-pass3/head/target/idl/plotarmor.json').read_text())
 print('IDL whole-document unified diff:')
 print(''.join(difflib.unified_diff(json.dumps(a,indent=2,sort_keys=True).splitlines(True),json.dumps(b,indent=2,sort_keys=True).splitlines(True),fromfile='09c5bfc generated IDL',tofile='HEAD generated IDL')))

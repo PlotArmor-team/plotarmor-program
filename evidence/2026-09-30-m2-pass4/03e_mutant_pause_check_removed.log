@@ -3,11 +3,11 @@ Tue Sep 29 18:50:01 UTC 2026
 76d75
 <     require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
 platform-tools pin: v1.52  (mode: devnet)
-   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/.m2-pass4-claude-scratch/src/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 11.90s
 target/deploy/plotarmor.so bytes 471792 sha256_trimmed 3cc388f514e7da09da6662b884773bfb0a0f0547236511dc2146799b8f405e30
 (must differ from 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6)
-   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/.m2-pass4-claude-scratch/src/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |

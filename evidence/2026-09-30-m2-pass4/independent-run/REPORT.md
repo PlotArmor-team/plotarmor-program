@@ -113,7 +113,7 @@ Kora has **no sign_contract instruction builder** in either tracked scripts or t
 
 ## 5. Exact cold build
 
-A fresh `git archive 7c267e9` was extracted to `/home/sucka/plotarmor-demo/.m2-pass4-scratch` with **no target directory**. Existing dependency downloads/toolchain installations were reused, but no compiled target artifacts were copied. Build command:
+A fresh `git archive 7c267e9` was extracted to `/home/<usr>/plotarmor-demo/.m2-pass4-scratch` with **no target directory**. Existing dependency downloads/toolchain installations were reused, but no compiled target artifacts were copied. Build command:
 
 ```text
 NO_DNA=1 bash scripts/build.sh -- --locked --offline

@@ -1,8 +1,8 @@
 UTC: 2026-09-29T18:27:18.807591+00:00
-CWD: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+CWD: /home/<usr>/plotarmor-demo/.m2-pass4-scratch
 ARGV: ['bash', 'scripts/build.sh', '--', '--locked', '--offline']
 platform-tools pin: v1.52  (mode: devnet)
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 9.93s
 
 EXIT CODE: 0

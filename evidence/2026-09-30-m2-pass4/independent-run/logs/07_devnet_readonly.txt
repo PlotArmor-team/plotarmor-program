@@ -1,5 +1,5 @@
 UTC: 2026-09-29T18:27:19.794764+00:00
-CWD: /home/sucka/plotarmor-program
+CWD: /home/<usr>/plotarmor-program
 ARGV: ['solana', 'program', 'show', '3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2', '--url', 'https://api.devnet.solana.com', '--output', 'json']
 Error: AccountNotFound: pubkey=3h9CzV9MJDeD5yjhVhdE6cupuXVRnLW1Cu6P14EJBKv2: error sending request for url (https://api.devnet.solana.com/)
 

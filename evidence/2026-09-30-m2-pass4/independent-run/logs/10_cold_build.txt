@@ -1,5 +1,5 @@
 UTC: 2026-09-29T18:18:45.118227+00:00
-CWD: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+CWD: /home/<usr>/plotarmor-demo/.m2-pass4-scratch
 ARGV: ['bash', 'scripts/build.sh', '--', '--locked', '--offline']
 platform-tools pin: v1.52  (mode: devnet)
    Compiling proc-macro2 v1.0.106
@@ -114,7 +114,7 @@ platform-tools pin: v1.52  (mode: devnet)
    Compiling anchor-attribute-account v1.0.2
    Compiling anchor-attribute-program v1.0.2
    Compiling anchor-lang v1.0.2
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 6m 31s
 
 EXIT CODE: 0

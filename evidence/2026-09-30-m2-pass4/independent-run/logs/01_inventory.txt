@@ -1,6 +1,6 @@
 UTC: 2026-09-29T18:19:02.939772+00:00
-CWD: /home/sucka/plotarmor-program
-ARGV: ['bash', '-c', 'date -u; git status --short; git rev-parse HEAD; git diff 7c267e9 HEAD -- programs scripts/build.sh Cargo.lock Anchor.toml rust-toolchain.toml; git show --format=fuller --stat 7c267e9; cat rust-toolchain.toml Anchor.toml; bash scripts/build.sh --check; rustc --version; cargo --version; solana --version; git -C /home/sucka/plotarmor-demo status --short; git -C /home/sucka/plotarmor-demo rev-parse HEAD; git -C /home/sucka/plotarmor-kora status --short; git -C /home/sucka/plotarmor-kora rev-parse HEAD; rg --files --hidden -g AGENTS.md -g "!node_modules" -g "!.git" -g "!target" -g "!.m2-pass4-scratch" /home/sucka/plotarmor-program /home/sucka/plotarmor-demo /home/sucka/plotarmor-kora']
+CWD: /home/<usr>/plotarmor-program
+ARGV: ['bash', '-c', 'date -u; git status --short; git rev-parse HEAD; git diff 7c267e9 HEAD -- programs scripts/build.sh Cargo.lock Anchor.toml rust-toolchain.toml; git show --format=fuller --stat 7c267e9; cat rust-toolchain.toml Anchor.toml; bash scripts/build.sh --check; rustc --version; cargo --version; solana --version; git -C /home/<usr>/plotarmor-demo status --short; git -C /home/<usr>/plotarmor-demo rev-parse HEAD; git -C /home/<usr>/plotarmor-kora status --short; git -C /home/<usr>/plotarmor-kora rev-parse HEAD; rg --files --hidden -g AGENTS.md -g "!node_modules" -g "!.git" -g "!target" -g "!.m2-pass4-scratch" /home/<usr>/plotarmor-program /home/<usr>/plotarmor-demo /home/<usr>/plotarmor-kora']
 Tue Sep 29 18:19:02 UTC 2026
 ?? evidence/
 7c2b54d15872af17cd9de3d9c30d7ee9f6ff5f29

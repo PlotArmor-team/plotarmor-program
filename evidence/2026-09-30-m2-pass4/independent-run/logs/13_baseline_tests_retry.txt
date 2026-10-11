@@ -1,7 +1,7 @@
 UTC: 2026-09-29T18:26:20.114872+00:00
-CWD: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+CWD: /home/<usr>/plotarmor-demo/.m2-pass4-scratch
 ARGV: ['cargo', 'test', '--locked', '--offline']
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |

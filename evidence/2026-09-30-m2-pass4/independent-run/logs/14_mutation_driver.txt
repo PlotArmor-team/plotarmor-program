@@ -1,5 +1,5 @@
 UTC: 2026-09-29T18:27:18.575132+00:00
-CWD: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+CWD: /home/<usr>/plotarmor-demo/.m2-pass4-scratch
 ARGV: ['python3', '/tmp/m2-pass4-independent/mutation.py']
 --- 7c267e9/sign_contract.rs
 +++ scratch-mutant/sign_contract.rs
@@ -13,11 +13,11 @@ ARGV: ['python3', '/tmp/m2-pass4-independent/mutation.py']
      require!(
 
 platform-tools pin: v1.52  (mode: devnet)
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 9.93s
 EXIT CODE: 0
 MUTANT SO SHA256 trimmed: 3cc388f514e7da09da6662b884773bfb0a0f0547236511dc2146799b8f405e30
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |
@@ -51,11 +51,11 @@ error: test failed, to rerun pass `--test sign_contract_tests`
 EXIT CODE: 101
 CONFIRMED mutation killed: regression reached expect_err but transaction succeeded.
 platform-tools pin: v1.52  (mode: devnet)
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 9.03s
 EXIT CODE: 0
 RESTORED SO byte-for-byte equals cold baseline; mutant overwritten.
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |
@@ -77,7 +77,7 @@ test paused_registry_rejects_sign_contract ... ok
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.53s
 
 EXIT CODE: 0
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |

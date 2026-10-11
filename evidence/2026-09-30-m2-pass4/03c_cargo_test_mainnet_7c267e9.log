@@ -1,10 +1,10 @@
 Tue Sep 29 18:48:55 UTC 2026
 platform-tools pin: v1.52  (mode: mainnet)
-   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/.m2-pass4-claude-scratch/src/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 17.74s
 target/deploy-mainnet/plotarmor.so bytes 472784 sha256_trimmed 9c25499000bdadc25f285e7a8a4c45e8878bfbd11bec9c69b1d5031f7015cbb1
 target/deploy/plotarmor.so bytes 472280 sha256_trimmed 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
-   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/.m2-pass4-claude-scratch/src/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |

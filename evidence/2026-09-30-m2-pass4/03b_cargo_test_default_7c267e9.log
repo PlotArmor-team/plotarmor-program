@@ -315,7 +315,7 @@ target/deploy/plotarmor.so bytes 472280 sha256_trimmed 789f64d7a2f6ece13e6000528
    Compiling solana-native-token v3.0.0
    Compiling ansi_term v0.12.1
    Compiling anchor-lang v1.0.2
-   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/.m2-pass4-claude-scratch/src/programs/plotarmor)
    Compiling solana-zk-elgamal-proof-program v3.1.14
    Compiling solana-zk-token-proof-program v3.1.14
    Compiling solana-builtins v3.1.14

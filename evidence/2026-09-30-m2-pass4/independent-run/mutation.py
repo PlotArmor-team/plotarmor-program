@@ -1,11 +1,11 @@
 from pathlib import Path
 import subprocess,hashlib,difflib
-S=Path('/home/sucka/plotarmor-demo/.m2-pass4-scratch');E=Path('/tmp/m2-pass4-independent');P=S/'programs/plotarmor/src/instructions/sign_contract.rs';T=S/'programs/plotarmor/tests/sign_contract_tests.rs'
+S=Path('/home/<usr>/plotarmor-demo/.m2-pass4-scratch');E=Path('/tmp/m2-pass4-independent');P=S/'programs/plotarmor/src/instructions/sign_contract.rs';T=S/'programs/plotarmor/tests/sign_contract_tests.rs'
 def run(name,*cmd):
  return subprocess.call(['python3',str(E/'run.py'),name,str(S),*cmd])
 original=P.read_text(); tests=T.read_text();baseline=(E/'baseline.so').read_bytes()
-assert P.read_bytes()==subprocess.check_output(['git','-C','/home/sucka/plotarmor-program','show','7c267e9:programs/plotarmor/src/instructions/sign_contract.rs'])
-assert tests==subprocess.check_output(['git','-C','/home/sucka/plotarmor-program','show','7c267e9:programs/plotarmor/tests/sign_contract_tests.rs'],text=True)
+assert P.read_bytes()==subprocess.check_output(['git','-C','/home/<usr>/plotarmor-program','show','7c267e9:programs/plotarmor/src/instructions/sign_contract.rs'])
+assert tests==subprocess.check_output(['git','-C','/home/<usr>/plotarmor-program','show','7c267e9:programs/plotarmor/tests/sign_contract_tests.rs'],text=True)
 line='    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);\n'
 assert original.count(line)==1
 try:

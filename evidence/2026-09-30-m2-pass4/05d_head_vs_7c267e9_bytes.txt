@@ -3,8 +3,8 @@
  59429 114 121
  59957 117 124
 ### sign_contract.rs line of the Paused/ContentHashMismatch require! in each tree
-/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-7c267e9/programs/plotarmor/src/instructions/sign_contract.rs:76:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
-/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-7c267e9/programs/plotarmor/src/instructions/sign_contract.rs:79:    require!(
-/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/programs/plotarmor/src/instructions/sign_contract.rs:81:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
-/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/programs/plotarmor/src/instructions/sign_contract.rs:84:    require!(
+/tmp/claude-1000/-home-<usr>-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-7c267e9/programs/plotarmor/src/instructions/sign_contract.rs:76:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+/tmp/claude-1000/-home-<usr>-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-7c267e9/programs/plotarmor/src/instructions/sign_contract.rs:79:    require!(
+/tmp/claude-1000/-home-<usr>-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/programs/plotarmor/src/instructions/sign_contract.rs:81:    require!(!ctx.accounts.registry_config.paused, PlotArmorError::Paused);
+/tmp/claude-1000/-home-<usr>-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/programs/plotarmor/src/instructions/sign_contract.rs:84:    require!(
 Interpretation: octal 114->121 is decimal 76->81 and 117->124 is 79->84, the require! source line numbers Anchor embeds in the error origin. Comment-only change at 7a3dc0b shifted them. No logic difference. A redeploy built from HEAD will NOT hash to 789f64d7...; it hashes to 33577f6b...

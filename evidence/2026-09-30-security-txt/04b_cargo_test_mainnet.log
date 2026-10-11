@@ -1,9 +1,9 @@
 Tue Sep 29 20:08:41 UTC 2026
 platform-tools pin: v1.52  (mode: mainnet)
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 10.27s
 target/deploy-mainnet/plotarmor.so file_bytes 472944 trimmed_bytes 472929 sha256_trimmed 79a7d1cd2430af06018f654df2acd161db4001eba9a25b575c294d7e1e28b56e sha256_full 82b12f4ebc4d6334a57d146f2bab78f77fd4fe6cff981fb581961c087242a3c2
-   Compiling plotarmor v0.1.0 (/home/sucka/plotarmor-program/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/plotarmor-program/programs/plotarmor)
 warning: field `payer` is never read
   --> programs/plotarmor/tests/common/mod.rs:28:9
    |

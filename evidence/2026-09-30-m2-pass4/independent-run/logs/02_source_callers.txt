@@ -1,8 +1,8 @@
 UTC: 2026-09-29T18:19:45.872166+00:00
-CWD: /home/sucka/plotarmor-program
+CWD: /home/<usr>/plotarmor-program
 ARGV: ['python3', '/tmp/m2-pass4-independent/inspect.py']
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/add_owner.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/add_owner.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: use crate::error::PlotArmorError;
@@ -94,7 +94,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instru
 89:     Ok(())
 90: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/add_version.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/add_version.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: use crate::error::PlotArmorError;
@@ -228,7 +228,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instru
 131:     Ok(())
 132: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/anchor_authorized_contract.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/anchor_authorized_contract.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: use crate::error::PlotArmorError;
@@ -355,7 +355,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instru
 124:     Ok(())
 125: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/anchor_evidence_contract.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/anchor_evidence_contract.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: use crate::error::PlotArmorError;
@@ -462,7 +462,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instru
 104:     Ok(())
 105: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/init_registry_config.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/init_registry_config.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: use crate::error::PlotArmorError;
@@ -501,7 +501,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instru
 36:     Ok(())
 37: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/register_work_claim.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/register_work_claim.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: use crate::error::PlotArmorError;
@@ -682,7 +682,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instru
 178:     Ok(())
 179: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/sign_contract.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instructions/sign_contract.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: use crate::error::PlotArmorError;
@@ -778,7 +778,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/instru
 93:     Ok(())
 94: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/state.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/state.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: // RegistryConfig — ["config"] — deploy-time singleton, ~44 bytes
@@ -941,7 +941,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/state.
 160:     pub const LEN: usize = 8 + 32 + 1 + 1 + 8 + 32;
 161: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/error.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/error.rs
 1: use anchor_lang::prelude::*;
 2: 
 3: #[error_code]
@@ -979,7 +979,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/error.
 35:     //   once the custody-model decision (Decision 5) lands.
 36: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/lib.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/lib.rs
 1: pub mod constants;
 2: pub mod error;
 3: pub mod helpers;
@@ -1149,7 +1149,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/src/lib.rs
 167:     }
 168: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/tests/common/mod.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/tests/common/mod.rs
 1: use {
 2:     anchor_lang::{
 3:         prelude::Pubkey,
@@ -1264,7 +1264,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/tests/comm
 112:     T::try_deserialize(&mut account.data.as_slice()).unwrap()
 113: }
 
-FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/tests/sign_contract_tests.rs
+FILE: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/tests/sign_contract_tests.rs
 382: // Audit M2, closed 2026-09-04. Until then sign_contract was the ONLY instruction
 383: // taking no RegistryConfig, so it could not honour the paused flag and a paused
 384: // program would have kept accepting signatures. It now carries the account and the
@@ -1326,7 +1326,7 @@ FILE: /home/sucka/plotarmor-demo/.m2-pass4-scratch/programs/plotarmor/tests/sign
 440: }
 
 IDL SIGN_CONTRACT:
-/home/sucka/plotarmor-program/target/idl/plotarmor.json {
+/home/<usr>/plotarmor-program/target/idl/plotarmor.json {
   "name": "sign_contract",
   "discriminator": [
     145,
@@ -1444,7 +1444,7 @@ IDL SIGN_CONTRACT:
   ]
 }
 
-FILE: /home/sucka/plotarmor-program/target/idl/plotarmor.json
+FILE: /home/<usr>/plotarmor-program/target/idl/plotarmor.json
 1081:       "name": "sign_contract",
 1082:       "discriminator": [
 1083:         145,
@@ -1531,7 +1531,7 @@ FILE: /home/sucka/plotarmor-program/target/idl/plotarmor.json
 1164:               {
 1165:                 "kind": "account",
 1166:                 "path": "contract_artifact"
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.json {
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.json {
   "name": "sign_contract",
   "discriminator": [
     145,
@@ -1649,7 +1649,7 @@ FILE: /home/sucka/plotarmor-program/target/idl/plotarmor.json
   ]
 }
 
-FILE: /home/sucka/plotarmor-demo/src/anchor/plotarmor.json
+FILE: /home/<usr>/plotarmor-demo/src/anchor/plotarmor.json
 734:       "name": "sign_contract",
 735:       "discriminator": [145, 83, 234, 177, 104, 87, 183, 156],
 736:       "accounts": [
@@ -1739,303 +1739,303 @@ FILE: /home/sucka/plotarmor-demo/src/anchor/plotarmor.json
 IDL exact equality: False
 
 CALL SITE SEARCH:
-ARGV ['rg', '-n', '--hidden', '-g', '!.git', '-g', '!node_modules', '-g', '!target', '-g', '!evidence', '-g', '!.m2-pass4-scratch', '-g', '!dist', 'signContract|sign_contract|83, *120, *194, *61|registryConfig', '/home/sucka/plotarmor-program'] 
- /home/sucka/plotarmor-program/programs/plotarmor/src/lib.rs:30:use instructions::sign_contract::__client_accounts_sign_contract;
-/home/sucka/plotarmor-program/programs/plotarmor/src/lib.rs:162:    pub fn sign_contract(
-/home/sucka/plotarmor-program/programs/plotarmor/src/lib.rs:166:        instructions::sign_contract::handler(ctx, content_hash)
-/home/sucka/plotarmor-program/programs/plotarmor/src/instructions.rs:7:pub mod sign_contract;
-/home/sucka/plotarmor-program/programs/plotarmor/src/instructions.rs:15:pub use sign_contract::SignContract;
-/home/sucka/plotarmor-program/programs/plotarmor/src/state.rs:134:// handler, never accepted as a client-supplied argument (see sign_contract.rs).
-/home/sucka/plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:9:    // Added 2026-09-04 (audit M2). sign_contract was previously the ONLY instruction
-/home/sucka/plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:21:    // is never init'd here (sign_contract does not stand alone -- see spec §Design decisions #3).
-/home/sucka/plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:65:// sign_contract-spec.md "Open question"). Consequently `signer` may be any
-/home/sucka/plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:78:    // second; add_owner and sign_contract take no anchor_mode_arg, so paused is
-/home/sucka/plotarmor-program/sign_contract-spec.md:1:# PlotArmor — `sign_contract` Instruction Implementation Brief
-/home/sucka/plotarmor-program/sign_contract-spec.md:4:**Scope:** Add a dedicated `sign_contract` instruction to the `plotarmor-program` Anchor program. Creator-only MVP, designed to generalize to multi-signer later.
-/home/sucka/plotarmor-program/sign_contract-spec.md:17:3. **Dependency:** the contract must already exist on-chain as a `ContractArtifact` before it can be signed. `sign_contract` does not stand alone.
-/home/sucka/plotarmor-program/sign_contract-spec.md:68:## 3. Instruction: `sign_contract`
-/home/sucka/plotarmor-program/sign_contract-spec.md:73:pub fn sign_contract(
-/home/sucka/plotarmor-program/sign_contract-spec.md:147:5. **Devnet deploy + one real signature** — after local passes, deploy to devnet, execute one real `sign_contract` from the frontend wallet path, and confirm the on-chain `ContractSignature` account via a block explorer / `getAccountInfo`. "Passes on local validator" is not "works on devnet."
-/home/sucka/plotarmor-program/sign_contract-spec.md:148:6. **IDL regenerated** — the frontend needs the updated IDL to call the new instruction. Confirm the IDL includes `sign_contract` and the `ContractSignature` account, and that the regenerated IDL is copied to wherever the frontend imports it.
-/home/sucka/plotarmor-program/sign_contract-spec.md:156:- The frontend `handleSign` in `ContractsApp.tsx` currently inserts a Supabase signature row and (conditionally) calls `anchorAuthorizedContract`. The new flow: the creator's signature should call `sign_contract` via the connected wallet, capturing the returned transaction signature and storing it on the Supabase `contract_signatures` row (there are already `tx_id` / `anchor_state` columns).
-/home/sucka/plotarmor-program/sign_contract-spec.md:164:Does the program have an on-chain, checkable notion of "who created this contract"? Constraint #2 depends entirely on this. If the creator is only known in Supabase and not represented on-chain in a way `sign_contract` can verify, then creator-only authorization cannot be enforced at the program level — and you must decide whether to (a) enforce it only in the frontend/RLS (weaker, but acceptable for MVP if documented as such), or (b) add the creator to the on-chain contract representation first. Flag this the moment it's known; it's the most likely thing to change the shape of the work.
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:13:This brief covers the PlotArmor Anchor program implementing the v1 instruction set: `register_work_claim`, `add_version`, `add_owner`, `anchor_evidence_contract`, `anchor_authorized_contract`, `init_registry_config`, and `sign_contract` (added 2026-07-15, see §7). Year-two instructions (WorkMetadata, WorkRelation) are reserved PDA seeds, not implemented.
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:28:- `sign_contract_tests.rs`: 7 tests (added 2026-07-15) — happy path, missing/nonexistent ContractArtifact, content_hash mismatch, double-sign-by-same-signer rejection, on-chain clock (not client-supplied) timestamp/slot, no-on-chain-creator-check confirmed (Option 2, see §7)
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:29:Live-verified 2026-07-22, now 4 of the 4-pass standard (passes 3-4 completed in a second, independent session the same day): (1) both the devnet default build and `cargo test --features mainnet` ran 52/52 clean, after rebuilding `target/deploy-mainnet/plotarmor.so`, which had gone stale since the 2026-07-03 Finding 1 deploy and did not contain the `sign_contract` instruction — 6 of 7 `sign_contract_tests.rs` cases failed with `InstructionFallbackNotFound` against the stale binary before the rebuild (build-artifact staleness, not a program-logic defect); (2) `anchor test` (TypeScript/Mocha, local validator — a distinct execution harness from LiteSVM) ran 34/34 clean on first run, including the 4 new `sign_contract` tests below; (3) independent re-audit: `sign_contract.rs`/`state.rs`/`error.rs` re-read fresh against `sign_contract-spec.md` in a separate session, confirming the `ContractSignature` layout, `LEN` (121 bytes), and `ContentHashMismatch`-only error surface match the spec exactly, plus an independent re-run of both cargo test builds (52/52 each) and `anchor test` (34/34); (4) live devnet adversarial check via new script `scripts/devnet_sign_contract_adversarial_test.ts` — wrong `content_hash` → `ContentHashMismatch` (6011), double-sign by the same signer → already-in-use, signing a nonexistent `ContractArtifact` → account-validation failure, all 3 passed on first live run against the deployed devnet program.
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:31:Layer 2 (TypeScript/Mocha, 34 tests, `tests/plotarmor.ts`, local validator; 30 original + 4 added 2026-07-22 for `sign_contract`):
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:34:- `sign_contract` Layer 2 coverage (added 2026-07-22): 1 happy path (creates `ContractSignature`, asserts `contractArtifact`/`signer`/`contentHash` match the submitted values and `signedAt`/`slot` are populated from the chain) + 3 rejections mirroring `sign_contract_tests.rs` — wrong `content_hash` → `ContentHashMismatch` (6011), double-sign by the same signer → account already in use, signing a nonexistent `ContractArtifact` → account-validation failure. Adversarial live-devnet coverage for these same three paths was added the same day via `scripts/devnet_sign_contract_adversarial_test.ts` — see §10.
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:36:*Prior count (`3bf2ac3`): 75 tests per build (45 Rust + 30 TypeScript). The 2026-07-15 `sign_contract` addition added 7 Rust tests, bringing the per-build Rust total to 52 and the combined total to 82. The 2026-07-22 Layer 2 addition brought TypeScript to 34 and the combined total to 86.*
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:39:**Devnet scenario suite** (`scripts/measure_devnet.ts`): 24 scenarios (1-7, 9-24; scenario 8 intentionally merged into scenario 6) — positive measurements and adversarial edge cases. All pass. Script exits non-zero on any failure. `measure_devnet.ts` does not cover `sign_contract`; see `scripts/devnet_sign_contract_test.ts` above for its separate, standalone devnet proof.
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:78:| 6011 | `ContentHashMismatch` | Added 2026-07-15 with `sign_contract`. LiteSVM: `wrong_content_hash_rejected` in `sign_contract_tests.rs`. Exercised live on devnet 2026-07-22 via `scripts/devnet_sign_contract_adversarial_test.ts`. |
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:80:System Program `0x0` ("already in use") confirmed on: duplicate `OwnerRecord`, evidence replay, authorized contract PDA collision, `init_registry_config` second call, and (as of 2026-07-15) double-sign of the same `ContractSignature` PDA (`double_sign_by_same_signer_rejected`, LiteSVM; confirmed live on devnet 2026-07-22 via `scripts/devnet_sign_contract_adversarial_test.ts`).
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:115:| `sign_contract` (added 2026-07-15, measured 2026-07-22) | ContractSignature | ~$0.1564 (1,738,040 lamports = 1,733,040 rent-exemption for the 121-byte account + 5,000 base tx fee; measured live via wallet balance-delta, tx `mMCthtHF12bGA5YHhLmKzufokJdsjK779gk2z7dqdNd35pNvFBsUVLM1kGToAKD1DrmaM8GiaoX4FCWTYc2hB49`) |
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:142:**F. `sign_contract` — no on-chain creator/party authorization check (added 2026-07-15, Option 2, locked by Milan)**
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:143:`sign_contract` records "this wallet signed this exact content hash at this on-chain time," not "the contract's creator or a listed party signed." `ContractArtifact` carries no creator/authority field (it is content-addressed and shared — any wallet's first call to `anchor_evidence_contract`/`anchor_authorized_contract` may have initialized a given hash), so there is no program-checked identity to restrict `signer` against. Any funded wallet can call `sign_contract` against any existing `ContractArtifact`. Creator/party restriction is enforced OFF-CHAIN only (Supabase/RLS gating which wallet the frontend will prompt to sign). Do not describe a `ContractSignature` as on-chain proof of *who* is a contractual party in UI or docs — only of *which wallet* signed *which content hash* *when*. The account structure (`ContractSignature`, one PDA per contract+signer pair) is intentionally shaped so a future on-chain party check can be added without a PDA redesign. See `sign_contract-spec.md` for the full design brief and locked decisions.
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:145:**G. `sign_contract` timestamp is program-captured, not client-supplied**
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:146:`signed_at` and `slot` come from `Clock::get()` inside the handler, never from an instruction argument. This is the load-bearing correctness property of the whole feature — a client-supplied timestamp would make "signed at this time" meaningless as evidence. Verified in LiteSVM (`signed_at_and_slot_come_from_onchain_clock_not_a_fixed_value`) and independently on live devnet by decoding raw account bytes rather than trusting the Anchor client's echo (`scripts/devnet_sign_contract_test.ts`).
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:174:- `sign_contract`'s no-on-chain-creator-check design (limitation F, §7) in the context of what a `ContractSignature` can and cannot be represented as proving — this is the design decision most likely to be misread by someone skimming only the account struct
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:175:- `sign_contract` now has Layer 1 (LiteSVM) and Layer 2 (TypeScript/local-validator) coverage for all three adversarial paths, plus one live-devnet happy-path scenario, but the adversarial paths themselves (double-sign, wrong content_hash, nonexistent contract) have never been run against live devnet — only LiteSVM and a local validator. This is a smaller gap than before but not closed.
-/home/sucka/plotarmor-program/AUDITOR_BRIEF.md:179:*Prepared: June 2026; test-count, scenario-count, and build-tooling corrections applied 2026-07-01. Program commit as of that date: `c40f09a`, 74 tests passing. Finding 1 fix deployed to devnet 2026-07-03, commit `3bf2ac3`, 75 tests passing per build, 5 verification passes (see §7). `sign_contract` instruction added 2026-07-15, commit `09c5bfc`. As of 2026-07-22 (docs, Layer 2 tests, and cost measurement added on top of `09c5bfc`, no source change): 86 tests passing per build (52 Rust + 34 TypeScript), sign_contract devnet cost measured at ~$0.1564, 2 of 4 required verification passes complete (see §2 and §7 items F-G) — not yet through the full 4-pass standard. Demo repo commit: `f6f82e0`. IPFS wiring complete.*
-/home/sucka/plotarmor-program/scripts/verify_calls.py:18:  signContract:             1  (content_hash)
-/home/sucka/plotarmor-program/scripts/verify_calls.py:29:    "signContract": 1,
-/home/sucka/plotarmor-program/CLAUDE.md:70:ContractSignature PDA     = ["signature", contract_artifact_pda, signer_pubkey]              // added 2026-07-15, sign_contract
-/home/sucka/plotarmor-program/CLAUDE.md:202:pub struct ContractSignature {        // ~121 bytes; added 2026-07-15, sign_contract, Option 2 (no on-chain creator check)
-/home/sucka/plotarmor-program/CLAUDE.md:217:anchor_evidence_contract, add_version, register_work_claim, sign_contract. Corrected
-/home/sucka/plotarmor-program/CLAUDE.md:238:- sign_contract(content_hash) -> ContractSignature (added 2026-07-15, sign_contract-spec.md, Option 2 locked by Milan)
-/home/sucka/plotarmor-program/CLAUDE.md:243:  worth knowing: sign_contract now requires RegistryConfig to EXIST. That is not
-/home/sucka/plotarmor-program/CLAUDE.md:244:  reachable in practice, because sign_contract requires a pre-existing ContractArtifact
-/home/sucka/plotarmor-program/CLAUDE.md:248:  ContractArtifact must already exist on-chain (never init'd here; sign_contract does not stand alone).
-/home/sucka/plotarmor-program/CLAUDE.md:270:  sign_contract (added 2026-07-15) -- a ContractSignature is not an anchoring event in the
-/home/sucka/plotarmor-program/CLAUDE.md:330:  Unauthorized(6009), SupersededClaim(6010), ContentHashMismatch(6011, sign_contract, added 2026-07-15)
-/home/sucka/plotarmor-program/CLAUDE.md:336:sign_contract ~$0.1564 (added 2026-07-15, measured 2026-07-22).
-/home/sucka/plotarmor-program/CLAUDE.md:337:sign_contract measured live on devnet: 1,738,040 lamports total (0.00173804 SOL, ~$0.1564
-/home/sucka/plotarmor-program/CLAUDE.md:340:sign_contract call alone (scripts/devnet_sign_contract_test.ts), not derived from account
-/home/sucka/plotarmor-program/CLAUDE.md:353:    in Known v1 limitations), and 7 in sign_contract_tests.rs (added 2026-07-15). Fast, no
-/home/sucka/plotarmor-program/CLAUDE.md:358:    (predated the sign_contract commit and failed 6/7 sign_contract_tests.rs cases with
-/home/sucka/plotarmor-program/CLAUDE.md:363:    Mocha/Chai tests in tests/plotarmor.ts (added 2026-07-22: 4 sign_contract tests, up from
-/home/sucka/plotarmor-program/CLAUDE.md:365:    rejection tests verifying every error code path. sign_contract's Layer 2 coverage: 1 happy
-/home/sucka/plotarmor-program/CLAUDE.md:370:    already covered in sign_contract_tests.rs. Live-verified 2026-07-22 (1 pass, this
-/home/sucka/plotarmor-program/CLAUDE.md:427:19:43 is sign_contract being added. The last two upgrades pushed IDENTICAL program lengths
-/home/sucka/plotarmor-program/CLAUDE.md:436:Option 2 sign_contract") is dated 2026-07-15 12:39 UTC, about 14 hours LATER. The program
-/home/sucka/plotarmor-program/CLAUDE.md:444:Current HEAD: 98a7ebb ("docs: close sign_contract 4-pass verification with live devnet
-/home/sucka/plotarmor-program/CLAUDE.md:623:   change: bringing sign_contract under the paused flag did NOT add a setter. All six
-/home/sucka/plotarmor-program/CLAUDE.md:628:   sign_contract_tests.rs::paused_registry_rejects_sign_contract).
-/home/sucka/plotarmor-program/CLAUDE.md:685:   sign_contract-spec.md Section 2 exactly -- no deviation, no rename needed. This differs
-/home/sucka/plotarmor-program/CLAUDE.md:692:   sign_contract.rs), so Anchor's own account-already-exists check at the runtime level
-/home/sucka/plotarmor-program/CLAUDE.md:826:modes.rs, state.rs, and all 7 files under instructions/, INCLUDING sign_contract.rs, which
-/home/sucka/plotarmor-program/CLAUDE.md:929:## Test coverage report (June 2026; Rust count updated 2026-07-22, see sign_contract below)
-/home/sucka/plotarmor-program/CLAUDE.md:940:As of the 2026-07-15 sign_contract addition (commit 09c5bfc, see Instructions v1 set and
-/home/sucka/plotarmor-program/CLAUDE.md:942:in sign_contract_tests.rs). Combined per-build total at that point: 82 (52 Rust + 30
-/home/sucka/plotarmor-program/CLAUDE.md:943:TypeScript, sign_contract not yet covered at Layer 2).
-/home/sucka/plotarmor-program/CLAUDE.md:946:TypeScript/Mocha is now 34 tests (30 above plus 4 new sign_contract tests in
-/home/sucka/plotarmor-program/CLAUDE.md:949:sign_contract_tests.rs -- wrong content_hash -> ContentHashMismatch 6011, double-sign by
-/home/sucka/plotarmor-program/CLAUDE.md:956:2026-07-03 Finding 1 deploy and did not yet contain the sign_contract instruction -- 6 of
-/home/sucka/plotarmor-program/CLAUDE.md:957:the 7 sign_contract_tests.rs cases failed with InstructionFallbackNotFound against the
-/home/sucka/plotarmor-program/CLAUDE.md:961:LiteSVM) ran clean at 34/34 on first run, including the 4 new sign_contract tests.
-/home/sucka/plotarmor-program/CLAUDE.md:967:(3) Independent re-audit: sign_contract.rs, state.rs, error.rs, and sign_contract-spec.md
-/home/sucka/plotarmor-program/CLAUDE.md:970:error.rs's ContentHashMismatch is the only sign_contract-specific error code (UnauthorizedSigner
-/home/sucka/plotarmor-program/CLAUDE.md:975:in sign_contract.rs exactly. As part of this same pass, both cargo test builds (default and
-/home/sucka/plotarmor-program/CLAUDE.md:980:section below (no adversarial devnet scenarios for sign_contract had ever been run live, only
-/home/sucka/plotarmor-program/CLAUDE.md:982:scripts/devnet_sign_contract_adversarial_test.ts runs the three rejection paths against the
-/home/sucka/plotarmor-program/CLAUDE.md:991:Per this file's own Verification standard, sign_contract has now completed all 4 required
-/home/sucka/plotarmor-program/CLAUDE.md:1055:sign_contract broke 10 in-repo call sites and both checkers still reported PASS on the
-/home/sucka/plotarmor-program/CLAUDE.md:1056:un-updated code, because the argument count (signContract=1) never changed. Do not treat
-/home/sucka/plotarmor-program/CLAUDE.md:1059:- `python3 scripts/verify_calls.py scripts/measure_devnet.ts tests/plotarmor.ts scripts/devnet_register_test.ts scripts/devnet_ext_ref_hash_test.ts scripts/devnet_sign_contract_test.ts scripts/devnet_sign_contract_adversarial_test.ts`
-/home/sucka/plotarmor-program/CLAUDE.md:1062:  anchorAuthorizedContract=5, signContract=1. Fixed 2026-07-01: previously only read argv[1] and
-/home/sucka/plotarmor-program/CLAUDE.md:1064:  UPDATED 2026-07-22: added devnet_sign_contract_test.ts to the file list and signContract=1
-/home/sucka/plotarmor-program/CLAUDE.md:1066:  been updated when sign_contract was added on 2026-07-15, so signContract call sites were
-/home/sucka/plotarmor-program/CLAUDE.md:1068:  UPDATED 2026-07-22 (session 2): added devnet_sign_contract_adversarial_test.ts to the file
-/home/sucka/plotarmor-program/CLAUDE.md:1070:- `python3 scripts/check_integrity.py scripts/measure_devnet.ts tests/plotarmor.ts scripts/devnet_register_test.ts scripts/devnet_ext_ref_hash_test.ts scripts/devnet_sign_contract_test.ts scripts/devnet_sign_contract_adversarial_test.ts`
-/home/sucka/plotarmor-program/CLAUDE.md:1076:  `grep -rn "\.registerWorkClaim\|\.addVersion\|\.anchorEvidenceContract\|\.anchorAuthorizedContract\|\.signContract" . | grep -v node_modules | grep -v target`
-/home/sucka/plotarmor-program/CLAUDE.md:1080:REDEPLOY PENDING, 2026-09-04. sign_contract gained a required RegistryConfig account
-/home/sucka/plotarmor-program/CLAUDE.md:1082:sign_contract devnet scripts below have been updated to the new account list and WILL
-/home/sucka/plotarmor-program/CLAUDE.md:1084:  scripts/devnet_sign_contract_test.ts
-/home/sucka/plotarmor-program/CLAUDE.md:1085:  scripts/devnet_sign_contract_adversarial_test.ts
-/home/sucka/plotarmor-program/CLAUDE.md:1087:scripts by removing registryConfig; they are correct for the current source and wrong
-/home/sucka/plotarmor-program/CLAUDE.md:1089:devnet_ext_ref_hash_test.ts do not call sign_contract and are unaffected.
-/home/sucka/plotarmor-program/CLAUDE.md:1101:- `devnet_sign_contract_test.ts` (added 2026-07-15) — standalone proof script for
-/home/sucka/plotarmor-program/CLAUDE.md:1102:  sign_contract. Single happy-path scenario: anchor_evidence_contract creates a fresh
-/home/sucka/plotarmor-program/CLAUDE.md:1103:  ContractArtifact, then sign_contract signs it, then the resulting ContractSignature is
-/home/sucka/plotarmor-program/CLAUDE.md:1107:  live-devnet coverage sign_contract had.
-/home/sucka/plotarmor-program/CLAUDE.md:1109:  sign_contract call (before/after connection.getBalance around step 2 only, not step 1's
-/home/sucka/plotarmor-program/CLAUDE.md:1113:- `devnet_sign_contract_adversarial_test.ts` (added 2026-07-22, session 2 -- closes the gap
-/home/sucka/plotarmor-program/CLAUDE.md:1114:  the entry above used to flag): the 3 adversarial sign_contract paths, run live against the
-/home/sucka/plotarmor-program/CLAUDE.md:1119:  `DEVNET_RPC_URL=<url> node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_adversarial_test.ts`
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:2: * PlotArmor — Standalone Devnet Proof Script for sign_contract
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:5: * anchor_evidence_contract, then call the new sign_contract instruction,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:11: *   HELIUS_API_KEY=<key> node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_test.ts
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:60:  console.log("PlotArmor — Devnet sign_contract Proof");
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:85:  const registryConfig = derive([Buffer.from("config")]);
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:86:  const existingConfig = await connection.getAccountInfo(registryConfig);
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:88:    console.error("RegistryConfig not found at", registryConfig.toBase58());
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:92:  console.log("RegistryConfig confirmed present:", registryConfig.toBase58());
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:127:      registryConfig,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:138:  // 2. sign_contract
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:144:  console.log("\nStep 2: sign_contract...");
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:155:    .signContract(ba(rawContractHash))
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:157:      registryConfig,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:228:  console.log(allPass ? "RESULT: Devnet sign_contract proof SUCCESSFUL" : "RESULT: FAILED — see checks above");
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:245:    sign_contract_cost_lamports: costLamports,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:246:    sign_contract_cost_sol: costSol,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_test.ts:247:    sign_contract_cost_usd_at_90: costUsd,
-/home/sucka/plotarmor-program/scripts/check_integrity.py:16:  signContract:             1
-/home/sucka/plotarmor-program/scripts/check_integrity.py:32:    "signContract": 1,
-/home/sucka/plotarmor-program/scripts/finding1_live_check.ts:47:  registryConfig: PublicKey,
-/home/sucka/plotarmor-program/scripts/finding1_live_check.ts:66:        registryConfig,
-/home/sucka/plotarmor-program/scripts/finding1_live_check.ts:98:  const registryConfig = derive([Buffer.from("config")]);
-/home/sucka/plotarmor-program/scripts/finding1_live_check.ts:105:  const resA = await attemptRegister(program, payer, registryConfig, 2);
-/home/sucka/plotarmor-program/scripts/finding1_live_check.ts:119:  const resB = await attemptRegister(program, payer, registryConfig, 1);
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:100:  const registryConfig = derive([Buffer.from("config")]);
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:122:        .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:146:        .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:166:    .accountsStrict({ registryConfig, contentArtifact: baseContentArtifact, workClaim: baseWorkClaim, ownership: baseOwnership, ownerRecord: baseOwnerRecord, claimArtifactLink: baseClaimArtifactLink, anchorRecord: baseAnchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:181:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, contentArtifact, claimArtifactLink, anchorRecord, claimant: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:203:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, contentArtifact, claimArtifactLink, anchorRecord, claimant: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:225:        .accountsStrict({ registryConfig, contractArtifact, evidenceAnchor, anchorRecord, anchorer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:246:        .accountsStrict({ registryConfig, contractArtifact, evidenceAnchor, anchorRecord, anchorer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:267:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, ownership: baseOwnership, contractArtifact, authorizedContractAnchor, anchorRecord, admin: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:288:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, ownership: baseOwnership, contractArtifact, authorizedContractAnchor, anchorRecord, admin: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:308:        .accountsStrict({ registryConfig, contractArtifact, evidenceAnchor, anchorRecord, anchorer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:329:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, ownership: baseOwnership, contractArtifact, authorizedContractAnchor, anchorRecord, admin: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:353:        .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:374:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, contentArtifact, claimArtifactLink, anchorRecord, claimant: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:395:        .accountsStrict({ registryConfig, contractArtifact, evidenceAnchor, anchorRecord, anchorer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:416:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, ownership: baseOwnership, contractArtifact, authorizedContractAnchor, anchorRecord, admin: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/scripts/devnet_register_test.ts:97:  const registryConfig = derive([Buffer.from("config")]);
-/home/sucka/plotarmor-program/scripts/devnet_register_test.ts:98:  console.log("RegistryConfig PDA:", registryConfig.toBase58());
-/home/sucka/plotarmor-program/scripts/devnet_register_test.ts:100:  const existingConfig = await connection.getAccountInfo(registryConfig);
-/home/sucka/plotarmor-program/scripts/devnet_register_test.ts:109:          registryConfig,
-/home/sucka/plotarmor-program/scripts/devnet_register_test.ts:180:        registryConfig,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:2: * PlotArmor — sign_contract Adversarial Devnet Test
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:4: * devnet_sign_contract_test.ts (2026-07-15) proved only the happy path live
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:7: * only ever been run against LiteSVM (sign_contract_tests.rs) and a local
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:12: *   1. sign_contract — wrong content_hash -> ContentHashMismatch (6011)
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:13: *   2. sign_contract — double-sign by same signer -> already in use
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:14: *   3. sign_contract — nonexistent ContractArtifact -> account-validation failure
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:17: *   DEVNET_RPC_URL=<url> node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_adversarial_test.ts
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:77:  const registryConfig = derive([Buffer.from("config")]);
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:78:  const existingConfig = await connection.getAccountInfo(registryConfig);
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:80:    console.error("RegistryConfig not found at", registryConfig.toBase58());
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:105:      registryConfig,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:118:    const label = "sign_contract — wrong content_hash (expect ContentHashMismatch 6011)";
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:127:        .signContract(wrongHash)
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:129:          registryConfig,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:147:    const label = "sign_contract — double-sign by same signer (expect already-in-use)";
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:155:      .signContract(rawContractHash)
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:157:        registryConfig,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:168:        .signContract(rawContractHash)
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:170:          registryConfig,
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:188:    const label = "sign_contract — nonexistent ContractArtifact (expect account-validation failure)";
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:198:        .signContract(phantomHash)
-/home/sucka/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:200:          registryConfig,
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:92:fn sign_contract_instruction(
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:104:    // (audit M2), when sign_contract gained the RegistryConfig account.
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:161:fn sign_contract_happy_path() {
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:178:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:215:        sign_contract_instruction(contract_artifact, &context.authority, wrong_hash);
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:225:// Design decision, locked by Milan (sign_contract-spec.md, "Open question"):
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:255:        sign_contract_instruction(contract_artifact, &stranger, raw_contract_hash);
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:281:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:292:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:319:        sign_contract_instruction(phantom_contract_artifact, &context.authority, phantom_hash);
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:364:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:382:// Audit M2, closed 2026-09-04. Until then sign_contract was the ONLY instruction
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:393:fn paused_registry_rejects_sign_contract() {
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:424:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
-/home/sucka/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:427:        .expect_err("sign_contract must be rejected while the registry is paused");
-/home/sucka/plotarmor-program/tests/plotarmor.ts:56:  const registryConfig = derive([Buffer.from("config")]);
-/home/sucka/plotarmor-program/tests/plotarmor.ts:112:        registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:177:        registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:193:  // used to create it, for reuse by sign_contract tests.
-/home/sucka/plotarmor-program/tests/plotarmor.ts:216:        registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:234:        registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:249:      const cfg = await program.account.registryConfig.fetch(registryConfig);
-/home/sucka/plotarmor-program/tests/plotarmor.ts:382:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:451:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:492:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:528:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:551:  describe("sign_contract", () => {
-/home/sucka/plotarmor-program/tests/plotarmor.ts:561:        .signContract(ba(rawContractHash))
-/home/sucka/plotarmor-program/tests/plotarmor.ts:563:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:594:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:640:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:668:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:711:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:747:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:777:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/tests/plotarmor.ts:796:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/tests/plotarmor.ts:815:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/tests/plotarmor.ts:836:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/tests/plotarmor.ts:856:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
-/home/sucka/plotarmor-program/tests/plotarmor.ts:871:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:893:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:916:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:942:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:957:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:990:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1003:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1036:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1057:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1078:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1091:    // --- sign_contract ────────────────────────────────────────────────────────
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1093:    it("sign_contract wrong content_hash -> ContentHashMismatch 6011", async () => {
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1103:          .signContract(ba(wrongHash))
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1105:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1118:    it("sign_contract double-sign by same signer -> already in use", async () => {
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1126:        .signContract(ba(rawContractHash))
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1128:          registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1138:          .signContract(ba(rawContractHash))
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1140:            registryConfig,
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1153:    it("sign_contract on a nonexistent ContractArtifact fails", async () => {
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1163:          .signContract(ba(phantomHash))
-/home/sucka/plotarmor-program/tests/plotarmor.ts:1165:            registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:182:  const registryConfig = derive([Buffer.from("config")]);
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:226:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:238:      [{ name: "RegistryConfig", pubkey: registryConfig }],
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:242:    const info = await connection.getAccountInfo(registryConfig, COMMITMENT);
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:249:      `\ninit_registry_config skipped — RegistryConfig already exists at ${registryConfig.toBase58()} (${info.data.length} bytes)`,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:266:      registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:323:      registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:380:      registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:429:      registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:469:      registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:512:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:573:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:634:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:671:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:741:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:818:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:886:      registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:899:      registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:954:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1019:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1079:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1126:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1156:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1204:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1248:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1280:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1352:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1411:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1451:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1479:  // — but only on first-ever call in a fresh environment. On a devnet where registryConfig
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1500:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1564:        registryConfig,
-/home/sucka/plotarmor-program/scripts/measure_devnet.ts:1608:        registryConfig,
+ARGV ['rg', '-n', '--hidden', '-g', '!.git', '-g', '!node_modules', '-g', '!target', '-g', '!evidence', '-g', '!.m2-pass4-scratch', '-g', '!dist', 'signContract|sign_contract|83, *120, *194, *61|registryConfig', '/home/<usr>/plotarmor-program'] 
+ /home/<usr>/plotarmor-program/programs/plotarmor/src/lib.rs:30:use instructions::sign_contract::__client_accounts_sign_contract;
+/home/<usr>/plotarmor-program/programs/plotarmor/src/lib.rs:162:    pub fn sign_contract(
+/home/<usr>/plotarmor-program/programs/plotarmor/src/lib.rs:166:        instructions::sign_contract::handler(ctx, content_hash)
+/home/<usr>/plotarmor-program/programs/plotarmor/src/instructions.rs:7:pub mod sign_contract;
+/home/<usr>/plotarmor-program/programs/plotarmor/src/instructions.rs:15:pub use sign_contract::SignContract;
+/home/<usr>/plotarmor-program/programs/plotarmor/src/state.rs:134:// handler, never accepted as a client-supplied argument (see sign_contract.rs).
+/home/<usr>/plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:9:    // Added 2026-09-04 (audit M2). sign_contract was previously the ONLY instruction
+/home/<usr>/plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:21:    // is never init'd here (sign_contract does not stand alone -- see spec §Design decisions #3).
+/home/<usr>/plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:65:// sign_contract-spec.md "Open question"). Consequently `signer` may be any
+/home/<usr>/plotarmor-program/programs/plotarmor/src/instructions/sign_contract.rs:78:    // second; add_owner and sign_contract take no anchor_mode_arg, so paused is
+/home/<usr>/plotarmor-program/sign_contract-spec.md:1:# PlotArmor — `sign_contract` Instruction Implementation Brief
+/home/<usr>/plotarmor-program/sign_contract-spec.md:4:**Scope:** Add a dedicated `sign_contract` instruction to the `plotarmor-program` Anchor program. Creator-only MVP, designed to generalize to multi-signer later.
+/home/<usr>/plotarmor-program/sign_contract-spec.md:17:3. **Dependency:** the contract must already exist on-chain as a `ContractArtifact` before it can be signed. `sign_contract` does not stand alone.
+/home/<usr>/plotarmor-program/sign_contract-spec.md:68:## 3. Instruction: `sign_contract`
+/home/<usr>/plotarmor-program/sign_contract-spec.md:73:pub fn sign_contract(
+/home/<usr>/plotarmor-program/sign_contract-spec.md:147:5. **Devnet deploy + one real signature** — after local passes, deploy to devnet, execute one real `sign_contract` from the frontend wallet path, and confirm the on-chain `ContractSignature` account via a block explorer / `getAccountInfo`. "Passes on local validator" is not "works on devnet."
+/home/<usr>/plotarmor-program/sign_contract-spec.md:148:6. **IDL regenerated** — the frontend needs the updated IDL to call the new instruction. Confirm the IDL includes `sign_contract` and the `ContractSignature` account, and that the regenerated IDL is copied to wherever the frontend imports it.
+/home/<usr>/plotarmor-program/sign_contract-spec.md:156:- The frontend `handleSign` in `ContractsApp.tsx` currently inserts a Supabase signature row and (conditionally) calls `anchorAuthorizedContract`. The new flow: the creator's signature should call `sign_contract` via the connected wallet, capturing the returned transaction signature and storing it on the Supabase `contract_signatures` row (there are already `tx_id` / `anchor_state` columns).
+/home/<usr>/plotarmor-program/sign_contract-spec.md:164:Does the program have an on-chain, checkable notion of "who created this contract"? Constraint #2 depends entirely on this. If the creator is only known in Supabase and not represented on-chain in a way `sign_contract` can verify, then creator-only authorization cannot be enforced at the program level — and you must decide whether to (a) enforce it only in the frontend/RLS (weaker, but acceptable for MVP if documented as such), or (b) add the creator to the on-chain contract representation first. Flag this the moment it's known; it's the most likely thing to change the shape of the work.
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:13:This brief covers the PlotArmor Anchor program implementing the v1 instruction set: `register_work_claim`, `add_version`, `add_owner`, `anchor_evidence_contract`, `anchor_authorized_contract`, `init_registry_config`, and `sign_contract` (added 2026-07-15, see §7). Year-two instructions (WorkMetadata, WorkRelation) are reserved PDA seeds, not implemented.
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:28:- `sign_contract_tests.rs`: 7 tests (added 2026-07-15) — happy path, missing/nonexistent ContractArtifact, content_hash mismatch, double-sign-by-same-signer rejection, on-chain clock (not client-supplied) timestamp/slot, no-on-chain-creator-check confirmed (Option 2, see §7)
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:29:Live-verified 2026-07-22, now 4 of the 4-pass standard (passes 3-4 completed in a second, independent session the same day): (1) both the devnet default build and `cargo test --features mainnet` ran 52/52 clean, after rebuilding `target/deploy-mainnet/plotarmor.so`, which had gone stale since the 2026-07-03 Finding 1 deploy and did not contain the `sign_contract` instruction — 6 of 7 `sign_contract_tests.rs` cases failed with `InstructionFallbackNotFound` against the stale binary before the rebuild (build-artifact staleness, not a program-logic defect); (2) `anchor test` (TypeScript/Mocha, local validator — a distinct execution harness from LiteSVM) ran 34/34 clean on first run, including the 4 new `sign_contract` tests below; (3) independent re-audit: `sign_contract.rs`/`state.rs`/`error.rs` re-read fresh against `sign_contract-spec.md` in a separate session, confirming the `ContractSignature` layout, `LEN` (121 bytes), and `ContentHashMismatch`-only error surface match the spec exactly, plus an independent re-run of both cargo test builds (52/52 each) and `anchor test` (34/34); (4) live devnet adversarial check via new script `scripts/devnet_sign_contract_adversarial_test.ts` — wrong `content_hash` → `ContentHashMismatch` (6011), double-sign by the same signer → already-in-use, signing a nonexistent `ContractArtifact` → account-validation failure, all 3 passed on first live run against the deployed devnet program.
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:31:Layer 2 (TypeScript/Mocha, 34 tests, `tests/plotarmor.ts`, local validator; 30 original + 4 added 2026-07-22 for `sign_contract`):
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:34:- `sign_contract` Layer 2 coverage (added 2026-07-22): 1 happy path (creates `ContractSignature`, asserts `contractArtifact`/`signer`/`contentHash` match the submitted values and `signedAt`/`slot` are populated from the chain) + 3 rejections mirroring `sign_contract_tests.rs` — wrong `content_hash` → `ContentHashMismatch` (6011), double-sign by the same signer → account already in use, signing a nonexistent `ContractArtifact` → account-validation failure. Adversarial live-devnet coverage for these same three paths was added the same day via `scripts/devnet_sign_contract_adversarial_test.ts` — see §10.
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:36:*Prior count (`3bf2ac3`): 75 tests per build (45 Rust + 30 TypeScript). The 2026-07-15 `sign_contract` addition added 7 Rust tests, bringing the per-build Rust total to 52 and the combined total to 82. The 2026-07-22 Layer 2 addition brought TypeScript to 34 and the combined total to 86.*
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:39:**Devnet scenario suite** (`scripts/measure_devnet.ts`): 24 scenarios (1-7, 9-24; scenario 8 intentionally merged into scenario 6) — positive measurements and adversarial edge cases. All pass. Script exits non-zero on any failure. `measure_devnet.ts` does not cover `sign_contract`; see `scripts/devnet_sign_contract_test.ts` above for its separate, standalone devnet proof.
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:78:| 6011 | `ContentHashMismatch` | Added 2026-07-15 with `sign_contract`. LiteSVM: `wrong_content_hash_rejected` in `sign_contract_tests.rs`. Exercised live on devnet 2026-07-22 via `scripts/devnet_sign_contract_adversarial_test.ts`. |
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:80:System Program `0x0` ("already in use") confirmed on: duplicate `OwnerRecord`, evidence replay, authorized contract PDA collision, `init_registry_config` second call, and (as of 2026-07-15) double-sign of the same `ContractSignature` PDA (`double_sign_by_same_signer_rejected`, LiteSVM; confirmed live on devnet 2026-07-22 via `scripts/devnet_sign_contract_adversarial_test.ts`).
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:115:| `sign_contract` (added 2026-07-15, measured 2026-07-22) | ContractSignature | ~$0.1564 (1,738,040 lamports = 1,733,040 rent-exemption for the 121-byte account + 5,000 base tx fee; measured live via wallet balance-delta, tx `mMCthtHF12bGA5YHhLmKzufokJdsjK779gk2z7dqdNd35pNvFBsUVLM1kGToAKD1DrmaM8GiaoX4FCWTYc2hB49`) |
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:142:**F. `sign_contract` — no on-chain creator/party authorization check (added 2026-07-15, Option 2, locked by Milan)**
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:143:`sign_contract` records "this wallet signed this exact content hash at this on-chain time," not "the contract's creator or a listed party signed." `ContractArtifact` carries no creator/authority field (it is content-addressed and shared — any wallet's first call to `anchor_evidence_contract`/`anchor_authorized_contract` may have initialized a given hash), so there is no program-checked identity to restrict `signer` against. Any funded wallet can call `sign_contract` against any existing `ContractArtifact`. Creator/party restriction is enforced OFF-CHAIN only (Supabase/RLS gating which wallet the frontend will prompt to sign). Do not describe a `ContractSignature` as on-chain proof of *who* is a contractual party in UI or docs — only of *which wallet* signed *which content hash* *when*. The account structure (`ContractSignature`, one PDA per contract+signer pair) is intentionally shaped so a future on-chain party check can be added without a PDA redesign. See `sign_contract-spec.md` for the full design brief and locked decisions.
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:145:**G. `sign_contract` timestamp is program-captured, not client-supplied**
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:146:`signed_at` and `slot` come from `Clock::get()` inside the handler, never from an instruction argument. This is the load-bearing correctness property of the whole feature — a client-supplied timestamp would make "signed at this time" meaningless as evidence. Verified in LiteSVM (`signed_at_and_slot_come_from_onchain_clock_not_a_fixed_value`) and independently on live devnet by decoding raw account bytes rather than trusting the Anchor client's echo (`scripts/devnet_sign_contract_test.ts`).
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:174:- `sign_contract`'s no-on-chain-creator-check design (limitation F, §7) in the context of what a `ContractSignature` can and cannot be represented as proving — this is the design decision most likely to be misread by someone skimming only the account struct
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:175:- `sign_contract` now has Layer 1 (LiteSVM) and Layer 2 (TypeScript/local-validator) coverage for all three adversarial paths, plus one live-devnet happy-path scenario, but the adversarial paths themselves (double-sign, wrong content_hash, nonexistent contract) have never been run against live devnet — only LiteSVM and a local validator. This is a smaller gap than before but not closed.
+/home/<usr>/plotarmor-program/AUDITOR_BRIEF.md:179:*Prepared: June 2026; test-count, scenario-count, and build-tooling corrections applied 2026-07-01. Program commit as of that date: `c40f09a`, 74 tests passing. Finding 1 fix deployed to devnet 2026-07-03, commit `3bf2ac3`, 75 tests passing per build, 5 verification passes (see §7). `sign_contract` instruction added 2026-07-15, commit `09c5bfc`. As of 2026-07-22 (docs, Layer 2 tests, and cost measurement added on top of `09c5bfc`, no source change): 86 tests passing per build (52 Rust + 34 TypeScript), sign_contract devnet cost measured at ~$0.1564, 2 of 4 required verification passes complete (see §2 and §7 items F-G) — not yet through the full 4-pass standard. Demo repo commit: `f6f82e0`. IPFS wiring complete.*
+/home/<usr>/plotarmor-program/scripts/verify_calls.py:18:  signContract:             1  (content_hash)
+/home/<usr>/plotarmor-program/scripts/verify_calls.py:29:    "signContract": 1,
+/home/<usr>/plotarmor-program/CLAUDE.md:70:ContractSignature PDA     = ["signature", contract_artifact_pda, signer_pubkey]              // added 2026-07-15, sign_contract
+/home/<usr>/plotarmor-program/CLAUDE.md:202:pub struct ContractSignature {        // ~121 bytes; added 2026-07-15, sign_contract, Option 2 (no on-chain creator check)
+/home/<usr>/plotarmor-program/CLAUDE.md:217:anchor_evidence_contract, add_version, register_work_claim, sign_contract. Corrected
+/home/<usr>/plotarmor-program/CLAUDE.md:238:- sign_contract(content_hash) -> ContractSignature (added 2026-07-15, sign_contract-spec.md, Option 2 locked by Milan)
+/home/<usr>/plotarmor-program/CLAUDE.md:243:  worth knowing: sign_contract now requires RegistryConfig to EXIST. That is not
+/home/<usr>/plotarmor-program/CLAUDE.md:244:  reachable in practice, because sign_contract requires a pre-existing ContractArtifact
+/home/<usr>/plotarmor-program/CLAUDE.md:248:  ContractArtifact must already exist on-chain (never init'd here; sign_contract does not stand alone).
+/home/<usr>/plotarmor-program/CLAUDE.md:270:  sign_contract (added 2026-07-15) -- a ContractSignature is not an anchoring event in the
+/home/<usr>/plotarmor-program/CLAUDE.md:330:  Unauthorized(6009), SupersededClaim(6010), ContentHashMismatch(6011, sign_contract, added 2026-07-15)
+/home/<usr>/plotarmor-program/CLAUDE.md:336:sign_contract ~$0.1564 (added 2026-07-15, measured 2026-07-22).
+/home/<usr>/plotarmor-program/CLAUDE.md:337:sign_contract measured live on devnet: 1,738,040 lamports total (0.00173804 SOL, ~$0.1564
+/home/<usr>/plotarmor-program/CLAUDE.md:340:sign_contract call alone (scripts/devnet_sign_contract_test.ts), not derived from account
+/home/<usr>/plotarmor-program/CLAUDE.md:353:    in Known v1 limitations), and 7 in sign_contract_tests.rs (added 2026-07-15). Fast, no
+/home/<usr>/plotarmor-program/CLAUDE.md:358:    (predated the sign_contract commit and failed 6/7 sign_contract_tests.rs cases with
+/home/<usr>/plotarmor-program/CLAUDE.md:363:    Mocha/Chai tests in tests/plotarmor.ts (added 2026-07-22: 4 sign_contract tests, up from
+/home/<usr>/plotarmor-program/CLAUDE.md:365:    rejection tests verifying every error code path. sign_contract's Layer 2 coverage: 1 happy
+/home/<usr>/plotarmor-program/CLAUDE.md:370:    already covered in sign_contract_tests.rs. Live-verified 2026-07-22 (1 pass, this
+/home/<usr>/plotarmor-program/CLAUDE.md:427:19:43 is sign_contract being added. The last two upgrades pushed IDENTICAL program lengths
+/home/<usr>/plotarmor-program/CLAUDE.md:436:Option 2 sign_contract") is dated 2026-07-15 12:39 UTC, about 14 hours LATER. The program
+/home/<usr>/plotarmor-program/CLAUDE.md:444:Current HEAD: 98a7ebb ("docs: close sign_contract 4-pass verification with live devnet
+/home/<usr>/plotarmor-program/CLAUDE.md:623:   change: bringing sign_contract under the paused flag did NOT add a setter. All six
+/home/<usr>/plotarmor-program/CLAUDE.md:628:   sign_contract_tests.rs::paused_registry_rejects_sign_contract).
+/home/<usr>/plotarmor-program/CLAUDE.md:685:   sign_contract-spec.md Section 2 exactly -- no deviation, no rename needed. This differs
+/home/<usr>/plotarmor-program/CLAUDE.md:692:   sign_contract.rs), so Anchor's own account-already-exists check at the runtime level
+/home/<usr>/plotarmor-program/CLAUDE.md:826:modes.rs, state.rs, and all 7 files under instructions/, INCLUDING sign_contract.rs, which
+/home/<usr>/plotarmor-program/CLAUDE.md:929:## Test coverage report (June 2026; Rust count updated 2026-07-22, see sign_contract below)
+/home/<usr>/plotarmor-program/CLAUDE.md:940:As of the 2026-07-15 sign_contract addition (commit 09c5bfc, see Instructions v1 set and
+/home/<usr>/plotarmor-program/CLAUDE.md:942:in sign_contract_tests.rs). Combined per-build total at that point: 82 (52 Rust + 30
+/home/<usr>/plotarmor-program/CLAUDE.md:943:TypeScript, sign_contract not yet covered at Layer 2).
+/home/<usr>/plotarmor-program/CLAUDE.md:946:TypeScript/Mocha is now 34 tests (30 above plus 4 new sign_contract tests in
+/home/<usr>/plotarmor-program/CLAUDE.md:949:sign_contract_tests.rs -- wrong content_hash -> ContentHashMismatch 6011, double-sign by
+/home/<usr>/plotarmor-program/CLAUDE.md:956:2026-07-03 Finding 1 deploy and did not yet contain the sign_contract instruction -- 6 of
+/home/<usr>/plotarmor-program/CLAUDE.md:957:the 7 sign_contract_tests.rs cases failed with InstructionFallbackNotFound against the
+/home/<usr>/plotarmor-program/CLAUDE.md:961:LiteSVM) ran clean at 34/34 on first run, including the 4 new sign_contract tests.
+/home/<usr>/plotarmor-program/CLAUDE.md:967:(3) Independent re-audit: sign_contract.rs, state.rs, error.rs, and sign_contract-spec.md
+/home/<usr>/plotarmor-program/CLAUDE.md:970:error.rs's ContentHashMismatch is the only sign_contract-specific error code (UnauthorizedSigner
+/home/<usr>/plotarmor-program/CLAUDE.md:975:in sign_contract.rs exactly. As part of this same pass, both cargo test builds (default and
+/home/<usr>/plotarmor-program/CLAUDE.md:980:section below (no adversarial devnet scenarios for sign_contract had ever been run live, only
+/home/<usr>/plotarmor-program/CLAUDE.md:982:scripts/devnet_sign_contract_adversarial_test.ts runs the three rejection paths against the
+/home/<usr>/plotarmor-program/CLAUDE.md:991:Per this file's own Verification standard, sign_contract has now completed all 4 required
+/home/<usr>/plotarmor-program/CLAUDE.md:1055:sign_contract broke 10 in-repo call sites and both checkers still reported PASS on the
+/home/<usr>/plotarmor-program/CLAUDE.md:1056:un-updated code, because the argument count (signContract=1) never changed. Do not treat
+/home/<usr>/plotarmor-program/CLAUDE.md:1059:- `python3 scripts/verify_calls.py scripts/measure_devnet.ts tests/plotarmor.ts scripts/devnet_register_test.ts scripts/devnet_ext_ref_hash_test.ts scripts/devnet_sign_contract_test.ts scripts/devnet_sign_contract_adversarial_test.ts`
+/home/<usr>/plotarmor-program/CLAUDE.md:1062:  anchorAuthorizedContract=5, signContract=1. Fixed 2026-07-01: previously only read argv[1] and
+/home/<usr>/plotarmor-program/CLAUDE.md:1064:  UPDATED 2026-07-22: added devnet_sign_contract_test.ts to the file list and signContract=1
+/home/<usr>/plotarmor-program/CLAUDE.md:1066:  been updated when sign_contract was added on 2026-07-15, so signContract call sites were
+/home/<usr>/plotarmor-program/CLAUDE.md:1068:  UPDATED 2026-07-22 (session 2): added devnet_sign_contract_adversarial_test.ts to the file
+/home/<usr>/plotarmor-program/CLAUDE.md:1070:- `python3 scripts/check_integrity.py scripts/measure_devnet.ts tests/plotarmor.ts scripts/devnet_register_test.ts scripts/devnet_ext_ref_hash_test.ts scripts/devnet_sign_contract_test.ts scripts/devnet_sign_contract_adversarial_test.ts`
+/home/<usr>/plotarmor-program/CLAUDE.md:1076:  `grep -rn "\.registerWorkClaim\|\.addVersion\|\.anchorEvidenceContract\|\.anchorAuthorizedContract\|\.signContract" . | grep -v node_modules | grep -v target`
+/home/<usr>/plotarmor-program/CLAUDE.md:1080:REDEPLOY PENDING, 2026-09-04. sign_contract gained a required RegistryConfig account
+/home/<usr>/plotarmor-program/CLAUDE.md:1082:sign_contract devnet scripts below have been updated to the new account list and WILL
+/home/<usr>/plotarmor-program/CLAUDE.md:1084:  scripts/devnet_sign_contract_test.ts
+/home/<usr>/plotarmor-program/CLAUDE.md:1085:  scripts/devnet_sign_contract_adversarial_test.ts
+/home/<usr>/plotarmor-program/CLAUDE.md:1087:scripts by removing registryConfig; they are correct for the current source and wrong
+/home/<usr>/plotarmor-program/CLAUDE.md:1089:devnet_ext_ref_hash_test.ts do not call sign_contract and are unaffected.
+/home/<usr>/plotarmor-program/CLAUDE.md:1101:- `devnet_sign_contract_test.ts` (added 2026-07-15) — standalone proof script for
+/home/<usr>/plotarmor-program/CLAUDE.md:1102:  sign_contract. Single happy-path scenario: anchor_evidence_contract creates a fresh
+/home/<usr>/plotarmor-program/CLAUDE.md:1103:  ContractArtifact, then sign_contract signs it, then the resulting ContractSignature is
+/home/<usr>/plotarmor-program/CLAUDE.md:1107:  live-devnet coverage sign_contract had.
+/home/<usr>/plotarmor-program/CLAUDE.md:1109:  sign_contract call (before/after connection.getBalance around step 2 only, not step 1's
+/home/<usr>/plotarmor-program/CLAUDE.md:1113:- `devnet_sign_contract_adversarial_test.ts` (added 2026-07-22, session 2 -- closes the gap
+/home/<usr>/plotarmor-program/CLAUDE.md:1114:  the entry above used to flag): the 3 adversarial sign_contract paths, run live against the
+/home/<usr>/plotarmor-program/CLAUDE.md:1119:  `DEVNET_RPC_URL=<url> node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_adversarial_test.ts`
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:2: * PlotArmor — Standalone Devnet Proof Script for sign_contract
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:5: * anchor_evidence_contract, then call the new sign_contract instruction,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:11: *   HELIUS_API_KEY=<key> node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_test.ts
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:60:  console.log("PlotArmor — Devnet sign_contract Proof");
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:85:  const registryConfig = derive([Buffer.from("config")]);
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:86:  const existingConfig = await connection.getAccountInfo(registryConfig);
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:88:    console.error("RegistryConfig not found at", registryConfig.toBase58());
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:92:  console.log("RegistryConfig confirmed present:", registryConfig.toBase58());
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:127:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:138:  // 2. sign_contract
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:144:  console.log("\nStep 2: sign_contract...");
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:155:    .signContract(ba(rawContractHash))
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:157:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:228:  console.log(allPass ? "RESULT: Devnet sign_contract proof SUCCESSFUL" : "RESULT: FAILED — see checks above");
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:245:    sign_contract_cost_lamports: costLamports,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:246:    sign_contract_cost_sol: costSol,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_test.ts:247:    sign_contract_cost_usd_at_90: costUsd,
+/home/<usr>/plotarmor-program/scripts/check_integrity.py:16:  signContract:             1
+/home/<usr>/plotarmor-program/scripts/check_integrity.py:32:    "signContract": 1,
+/home/<usr>/plotarmor-program/scripts/finding1_live_check.ts:47:  registryConfig: PublicKey,
+/home/<usr>/plotarmor-program/scripts/finding1_live_check.ts:66:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/finding1_live_check.ts:98:  const registryConfig = derive([Buffer.from("config")]);
+/home/<usr>/plotarmor-program/scripts/finding1_live_check.ts:105:  const resA = await attemptRegister(program, payer, registryConfig, 2);
+/home/<usr>/plotarmor-program/scripts/finding1_live_check.ts:119:  const resB = await attemptRegister(program, payer, registryConfig, 1);
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:100:  const registryConfig = derive([Buffer.from("config")]);
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:122:        .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:146:        .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:166:    .accountsStrict({ registryConfig, contentArtifact: baseContentArtifact, workClaim: baseWorkClaim, ownership: baseOwnership, ownerRecord: baseOwnerRecord, claimArtifactLink: baseClaimArtifactLink, anchorRecord: baseAnchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:181:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, contentArtifact, claimArtifactLink, anchorRecord, claimant: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:203:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, contentArtifact, claimArtifactLink, anchorRecord, claimant: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:225:        .accountsStrict({ registryConfig, contractArtifact, evidenceAnchor, anchorRecord, anchorer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:246:        .accountsStrict({ registryConfig, contractArtifact, evidenceAnchor, anchorRecord, anchorer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:267:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, ownership: baseOwnership, contractArtifact, authorizedContractAnchor, anchorRecord, admin: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:288:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, ownership: baseOwnership, contractArtifact, authorizedContractAnchor, anchorRecord, admin: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:308:        .accountsStrict({ registryConfig, contractArtifact, evidenceAnchor, anchorRecord, anchorer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:329:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, ownership: baseOwnership, contractArtifact, authorizedContractAnchor, anchorRecord, admin: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:353:        .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:374:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, contentArtifact, claimArtifactLink, anchorRecord, claimant: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:395:        .accountsStrict({ registryConfig, contractArtifact, evidenceAnchor, anchorRecord, anchorer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_ext_ref_hash_test.ts:416:        .accountsStrict({ registryConfig, workClaim: baseWorkClaim, ownership: baseOwnership, contractArtifact, authorizedContractAnchor, anchorRecord, admin: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/scripts/devnet_register_test.ts:97:  const registryConfig = derive([Buffer.from("config")]);
+/home/<usr>/plotarmor-program/scripts/devnet_register_test.ts:98:  console.log("RegistryConfig PDA:", registryConfig.toBase58());
+/home/<usr>/plotarmor-program/scripts/devnet_register_test.ts:100:  const existingConfig = await connection.getAccountInfo(registryConfig);
+/home/<usr>/plotarmor-program/scripts/devnet_register_test.ts:109:          registryConfig,
+/home/<usr>/plotarmor-program/scripts/devnet_register_test.ts:180:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:2: * PlotArmor — sign_contract Adversarial Devnet Test
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:4: * devnet_sign_contract_test.ts (2026-07-15) proved only the happy path live
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:7: * only ever been run against LiteSVM (sign_contract_tests.rs) and a local
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:12: *   1. sign_contract — wrong content_hash -> ContentHashMismatch (6011)
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:13: *   2. sign_contract — double-sign by same signer -> already in use
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:14: *   3. sign_contract — nonexistent ContractArtifact -> account-validation failure
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:17: *   DEVNET_RPC_URL=<url> node_modules/.bin/ts-node --transpile-only scripts/devnet_sign_contract_adversarial_test.ts
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:77:  const registryConfig = derive([Buffer.from("config")]);
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:78:  const existingConfig = await connection.getAccountInfo(registryConfig);
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:80:    console.error("RegistryConfig not found at", registryConfig.toBase58());
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:105:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:118:    const label = "sign_contract — wrong content_hash (expect ContentHashMismatch 6011)";
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:127:        .signContract(wrongHash)
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:129:          registryConfig,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:147:    const label = "sign_contract — double-sign by same signer (expect already-in-use)";
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:155:      .signContract(rawContractHash)
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:157:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:168:        .signContract(rawContractHash)
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:170:          registryConfig,
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:188:    const label = "sign_contract — nonexistent ContractArtifact (expect account-validation failure)";
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:198:        .signContract(phantomHash)
+/home/<usr>/plotarmor-program/scripts/devnet_sign_contract_adversarial_test.ts:200:          registryConfig,
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:92:fn sign_contract_instruction(
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:104:    // (audit M2), when sign_contract gained the RegistryConfig account.
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:161:fn sign_contract_happy_path() {
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:178:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:215:        sign_contract_instruction(contract_artifact, &context.authority, wrong_hash);
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:225:// Design decision, locked by Milan (sign_contract-spec.md, "Open question"):
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:255:        sign_contract_instruction(contract_artifact, &stranger, raw_contract_hash);
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:281:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:292:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:319:        sign_contract_instruction(phantom_contract_artifact, &context.authority, phantom_hash);
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:364:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:382:// Audit M2, closed 2026-09-04. Until then sign_contract was the ONLY instruction
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:393:fn paused_registry_rejects_sign_contract() {
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:424:        sign_contract_instruction(contract_artifact, &context.authority, raw_contract_hash);
+/home/<usr>/plotarmor-program/programs/plotarmor/tests/sign_contract_tests.rs:427:        .expect_err("sign_contract must be rejected while the registry is paused");
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:56:  const registryConfig = derive([Buffer.from("config")]);
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:112:        registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:177:        registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:193:  // used to create it, for reuse by sign_contract tests.
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:216:        registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:234:        registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:249:      const cfg = await program.account.registryConfig.fetch(registryConfig);
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:382:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:451:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:492:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:528:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:551:  describe("sign_contract", () => {
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:561:        .signContract(ba(rawContractHash))
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:563:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:594:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:640:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:668:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:711:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:747:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:777:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:796:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:815:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:836:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:856:          .accountsStrict({ registryConfig, contentArtifact, workClaim, ownership, ownerRecord, claimArtifactLink, anchorRecord, signer: payer.publicKey, systemProgram: SystemProgram.programId })
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:871:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:893:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:916:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:942:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:957:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:990:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1003:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1036:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1057:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1078:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1091:    // --- sign_contract ────────────────────────────────────────────────────────
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1093:    it("sign_contract wrong content_hash -> ContentHashMismatch 6011", async () => {
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1103:          .signContract(ba(wrongHash))
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1105:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1118:    it("sign_contract double-sign by same signer -> already in use", async () => {
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1126:        .signContract(ba(rawContractHash))
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1128:          registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1138:          .signContract(ba(rawContractHash))
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1140:            registryConfig,
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1153:    it("sign_contract on a nonexistent ContractArtifact fails", async () => {
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1163:          .signContract(ba(phantomHash))
+/home/<usr>/plotarmor-program/tests/plotarmor.ts:1165:            registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:182:  const registryConfig = derive([Buffer.from("config")]);
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:226:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:238:      [{ name: "RegistryConfig", pubkey: registryConfig }],
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:242:    const info = await connection.getAccountInfo(registryConfig, COMMITMENT);
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:249:      `\ninit_registry_config skipped — RegistryConfig already exists at ${registryConfig.toBase58()} (${info.data.length} bytes)`,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:266:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:323:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:380:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:429:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:469:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:512:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:573:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:634:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:671:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:741:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:818:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:886:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:899:      registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:954:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1019:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1079:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1126:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1156:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1204:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1248:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1280:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1352:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1411:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1451:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1479:  // — but only on first-ever call in a fresh environment. On a devnet where registryConfig
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1500:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1564:        registryConfig,
+/home/<usr>/plotarmor-program/scripts/measure_devnet.ts:1608:        registryConfig,
  EXIT 0
-ARGV ['rg', '-n', '--hidden', '-g', '!.git', '-g', '!node_modules', '-g', '!target', '-g', '!evidence', '-g', '!.m2-pass4-scratch', '-g', '!dist', 'signContract|sign_contract|83, *120, *194, *61|registryConfig', '/home/sucka/plotarmor-demo'] 
- /home/sucka/plotarmor-demo/scripts/pa_solana_wiring_test.js:153:  const registryConfig = derive([Buffer.from("config")]);
-/home/sucka/plotarmor-demo/scripts/pa_solana_wiring_test.js:167:          registryConfig,
-/home/sucka/plotarmor-demo/src/ContractsApp.tsx:788:          const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
-/home/sucka/plotarmor-demo/src/ContractsApp.tsx:812:              registryConfig,
-/home/sucka/plotarmor-demo/src/ContractsApp.tsx:1187:          const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
-/home/sucka/plotarmor-demo/src/ContractsApp.tsx:1202:            .signContract(Array.from(rawHashBytes))
-/home/sucka/plotarmor-demo/src/ContractsApp.tsx:1204:              registryConfig,
-/home/sucka/plotarmor-demo/src/ContractsApp.tsx:1278:            const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
-/home/sucka/plotarmor-demo/src/ContractsApp.tsx:1306:                registryConfig,
-/home/sucka/plotarmor-demo/src/vault/WorkDetail.tsx:301:      const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
-/home/sucka/plotarmor-demo/src/vault/WorkDetail.tsx:314:          registryConfig,
-/home/sucka/plotarmor-demo/src/vault/UploadFlow.tsx:491:          const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
-/home/sucka/plotarmor-demo/src/vault/UploadFlow.tsx:534:                registryConfig,
-/home/sucka/plotarmor-demo/src/vault/UploadFlow.tsx:572:                registryConfig,
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.json:734:      "name": "sign_contract",
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:21:          name: "registryConfig";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:122:          name: "registryConfig";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:265:          name: "registryConfig";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:411:          name: "registryConfig";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:525:          name: "registryConfig";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:560:          name: "registryConfig";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:740:      name: "signContract";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:744:          name: "registryConfig";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:848:      name: "registryConfig";
-/home/sucka/plotarmor-demo/src/anchor/plotarmor.ts:1166:      name: "registryConfig";
+ARGV ['rg', '-n', '--hidden', '-g', '!.git', '-g', '!node_modules', '-g', '!target', '-g', '!evidence', '-g', '!.m2-pass4-scratch', '-g', '!dist', 'signContract|sign_contract|83, *120, *194, *61|registryConfig', '/home/<usr>/plotarmor-demo'] 
+ /home/<usr>/plotarmor-demo/scripts/pa_solana_wiring_test.js:153:  const registryConfig = derive([Buffer.from("config")]);
+/home/<usr>/plotarmor-demo/scripts/pa_solana_wiring_test.js:167:          registryConfig,
+/home/<usr>/plotarmor-demo/src/ContractsApp.tsx:788:          const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
+/home/<usr>/plotarmor-demo/src/ContractsApp.tsx:812:              registryConfig,
+/home/<usr>/plotarmor-demo/src/ContractsApp.tsx:1187:          const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
+/home/<usr>/plotarmor-demo/src/ContractsApp.tsx:1202:            .signContract(Array.from(rawHashBytes))
+/home/<usr>/plotarmor-demo/src/ContractsApp.tsx:1204:              registryConfig,
+/home/<usr>/plotarmor-demo/src/ContractsApp.tsx:1278:            const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
+/home/<usr>/plotarmor-demo/src/ContractsApp.tsx:1306:                registryConfig,
+/home/<usr>/plotarmor-demo/src/vault/WorkDetail.tsx:301:      const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
+/home/<usr>/plotarmor-demo/src/vault/WorkDetail.tsx:314:          registryConfig,
+/home/<usr>/plotarmor-demo/src/vault/UploadFlow.tsx:491:          const registryConfig = PublicKey.findProgramAddressSync([Buffer.from("config")], programId)[0];
+/home/<usr>/plotarmor-demo/src/vault/UploadFlow.tsx:534:                registryConfig,
+/home/<usr>/plotarmor-demo/src/vault/UploadFlow.tsx:572:                registryConfig,
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.json:734:      "name": "sign_contract",
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:21:          name: "registryConfig";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:122:          name: "registryConfig";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:265:          name: "registryConfig";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:411:          name: "registryConfig";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:525:          name: "registryConfig";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:560:          name: "registryConfig";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:740:      name: "signContract";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:744:          name: "registryConfig";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:848:      name: "registryConfig";
+/home/<usr>/plotarmor-demo/src/anchor/plotarmor.ts:1166:      name: "registryConfig";
  EXIT 0
-ARGV ['rg', '-n', '--hidden', '-g', '!.git', '-g', '!node_modules', '-g', '!target', '-g', '!evidence', '-g', '!.m2-pass4-scratch', '-g', '!dist', 'signContract|sign_contract|83, *120, *194, *61|registryConfig', '/home/sucka/plotarmor-kora'] 
- /home/sucka/plotarmor-kora/README.md:341:| `sign_contract` | 5 | RegistryConfig and existing ContractArtifact |
-/home/sucka/plotarmor-kora/README.md:561:evidence-anchor pass; `sign_contract` remains unprobed and its current client shape
+ARGV ['rg', '-n', '--hidden', '-g', '!.git', '-g', '!node_modules', '-g', '!target', '-g', '!evidence', '-g', '!.m2-pass4-scratch', '-g', '!dist', 'signContract|sign_contract|83, *120, *194, *61|registryConfig', '/home/<usr>/plotarmor-kora'] 
+ /home/<usr>/plotarmor-kora/README.md:341:| `sign_contract` | 5 | RegistryConfig and existing ContractArtifact |
+/home/<usr>/plotarmor-kora/README.md:561:evidence-anchor pass; `sign_contract` remains unprobed and its current client shape
  EXIT 0
 
-FILE: /home/sucka/plotarmor-demo/src/ContractsApp.tsx
+FILE: /home/<usr>/plotarmor-demo/src/ContractsApp.tsx
 1170:           text: "Off-chain signature recorded. No on-chain signature was created because no wallet was connected.",
 1171:         });
 1172:       } else if (!isCreator) {

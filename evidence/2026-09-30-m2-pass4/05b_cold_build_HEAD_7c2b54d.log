@@ -120,7 +120,7 @@ platform-tools pin: v1.52  (mode: devnet)
    Compiling anchor-derive-accounts v1.0.2
    Compiling anchor-attribute-program v1.0.2
    Compiling anchor-lang v1.0.2
-   Compiling plotarmor v0.1.0 (/tmp/claude-1000/-home-sucka-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/tmp/claude-1000/-home-<usr>-plotarmor-program/1ccc8016-c7b4-47c3-861f-f48dc16a151b/scratchpad/cold-HEAD/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 5m 34s
 
 real	5m38.487s

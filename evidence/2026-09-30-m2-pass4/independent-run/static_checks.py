@@ -1,6 +1,6 @@
 from pathlib import Path
 import re,json,subprocess,base64,hashlib
-S=Path('/home/sucka/plotarmor-demo/.m2-pass4-scratch');P=Path('/home/sucka/plotarmor-program');D=Path('/home/sucka/plotarmor-demo');K=Path('/home/sucka/plotarmor-kora')
+S=Path('/home/<usr>/plotarmor-demo/.m2-pass4-scratch');P=Path('/home/<usr>/plotarmor-program');D=Path('/home/<usr>/plotarmor-demo');K=Path('/home/<usr>/plotarmor-kora')
 pattern=r'#\[account\(\s*seeds = \[b"config"\],\s*bump,\s*\)\]\s*pub registry_config: Account<\'info, RegistryConfig>,'
 for p in sorted((S/'programs/plotarmor/src/instructions').glob('*.rs')):
  if p.stem=='init_registry_config': continue

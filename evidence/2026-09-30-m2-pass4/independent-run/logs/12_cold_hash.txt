@@ -1,7 +1,7 @@
 UTC: 2026-09-29T18:26:19.908841+00:00
-CWD: /home/sucka/plotarmor-demo/.m2-pass4-scratch
+CWD: /home/<usr>/plotarmor-demo/.m2-pass4-scratch
 ARGV: ['python3', '/tmp/m2-pass4-independent/hash.py']
-Artifact: /home/sucka/plotarmor-demo/.m2-pass4-scratch/target/deploy/plotarmor.so 
+Artifact: /home/<usr>/plotarmor-demo/.m2-pass4-scratch/target/deploy/plotarmor.so 
 Full length: 472280 
 Full SHA256: 27998e6f6437e7998bf35fffb65cde8a8599cf541fcb01fba509baafbc22e231 
 Trim method: bytes.rstrip(b"\0")

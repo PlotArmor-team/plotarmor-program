@@ -125,4 +125,4 @@ NOT re-run in this pass.
 - `independent-run/` in this directory was written by a DIFFERENT agent (not this session)
   between 20:18 and 20:33 UTC. Its REPORT.md reaches the same split verdict. This session
   did not verify it and did not commit it. Its PREPARATION.md mentions a scratch extract at
-  /home/sucka/plotarmor-demo/.m2-pass4-scratch. That path no longer exists (checked).
+  /home/<usr>/plotarmor-demo/.m2-pass4-scratch. That path no longer exists (checked).

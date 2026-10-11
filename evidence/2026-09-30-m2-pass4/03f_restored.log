@@ -2,7 +2,7 @@ Tue Sep 29 18:50:20 UTC 2026
 ### RESTORED: sign_contract.rs back to 7c267e9
 source identical to 7c267e9
 platform-tools pin: v1.52  (mode: devnet)
-   Compiling plotarmor v0.1.0 (/home/sucka/.m2-pass4-claude-scratch/src/programs/plotarmor)
+   Compiling plotarmor v0.1.0 (/home/<usr>/.m2-pass4-claude-scratch/src/programs/plotarmor)
     Finished `release` profile [optimized] target(s) in 8.19s
 target/deploy/plotarmor.so bytes 472280 sha256_trimmed 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
 expected 789f64d7a2f6ece13e600052877849a3fcb7d9b6637205bd997dd49dd43a4cf6
